@@ -35,7 +35,6 @@ const Home =()=>{
 
       //Top Offer 
       fetchAllTopOfferData().then(function(result){
-         console.log("result==>",result[0].categoryName);
          settopoffer(result)
       })
 
