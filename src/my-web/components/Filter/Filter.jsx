@@ -6,13 +6,10 @@ import './Filter.css';
 import CartContext from '../../context/cart/CartContext';
 
 
-
-
 export const Filter=(props)=>{
   let {filter,filterdispatch} = useContext(CartContext);
   const { sortBy, ram, rom,expandableMemory,price, discount , rating ,productName,extraoff} = filter;
   const { _4GB, _6GB , _12GB , _32GB } = ram ;
-
 
 
   const render_clearProduct=()=>{
@@ -27,7 +24,6 @@ export const Filter=(props)=>{
      
     )
   }
-
 
   const render_rangeprice=()=>{
     return(
@@ -45,7 +41,6 @@ export const Filter=(props)=>{
     )
   }
 
-
   const render_discount=()=>{
     return(
       <section className='typography-padding-top-bottom'>
@@ -61,7 +56,6 @@ export const Filter=(props)=>{
               <span>50% and above</span>
             </label>
           </li>
-
           <li>
             <label for="input-40%" className="flex-row">
               <input type="radio"  id="input-40%" name="radio-discount" checked={discount === 40}
@@ -97,7 +91,6 @@ export const Filter=(props)=>{
       </section>
     )
   }
-
 
   const render_rating=()=>{
      return(
@@ -315,22 +308,20 @@ export const Filter=(props)=>{
         {render_searchProduct()}
          <hr/>
         <section className='filter-container-scroll'> 
-          {render_rangeprice()}
-          {render_discount()}
-          {render_rating()}
-          {render_extraOFF()}
-
-          {
-            props.filterselectedMenu === "Mobiles" ?
-              <>
-              {render_mobile_ram()}
-              {render_mobile_rom()}
-              {render_mobile_expandableMemory()}
-              </>
-            :
-            null
-          }
-
+            {render_rangeprice()}
+            {render_discount()}
+            {render_rating()}
+            {render_extraOFF()}
+            {
+              props.filterselectedMenu === "Mobiles" ?
+                <>
+                {render_mobile_ram()}
+                {render_mobile_rom()}
+                {render_mobile_expandableMemory()}
+                </>
+              :
+              null
+            }
       </section>
     </div>
     </div>

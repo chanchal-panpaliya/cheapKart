@@ -40,8 +40,8 @@ const CardProduct1=(props)=>{
                       </div>
                     </Link>
                     <div className="flex-row col-gap-2rem flex-justify-content-end product-card-bottom">
-                              <i class="fa-solid fa-heart curser-pointer" onClick={()=>addToWishList(props)}></i>
-                              <i class="fa-solid fa-basket-shopping curser-pointer" onClick={()=>addToCart(props)}></i>
+                    <i class="fa-solid fa-heart curser-pointer" onClick={()=>addToWishList(props)}></i>
+                    <i class="fa-solid fa-basket-shopping curser-pointer" onClick={()=>addToCart(props)}></i>
                   </div>
              </div>
           }

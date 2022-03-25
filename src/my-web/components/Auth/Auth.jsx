@@ -8,9 +8,7 @@ import loginImg from '../../img/login-image.png';
 //api
 import { handleRegistration ,handleLogin} from '../../useEffect/useEffectCart';
 
-
 const AuthModal=(props)=>{
-  
    return(
     <div className='modal'>
         <div className="modal-container">
@@ -43,6 +41,7 @@ const testCredentials = {
     rememberMe: false,
   };
 
+
 const Login=(props)=>{
     const [formData, setFormData] = useState(formInitialState);
     const { email, password, rememberMe } = formData;
@@ -70,7 +69,6 @@ const Login=(props)=>{
                         onChange={handleInput} required/>
                         <label className="text-placeholder"> Email Id </label>                                                
                     </div>
-
                     <div className="flex-row  col-gap-2rem textField-container">  
                         <input type="password" name="password" value={password} className="text-input" autocomplete="off" 
                         onChange={handleInput} required/>
@@ -91,14 +89,10 @@ const Login=(props)=>{
             </form> 
                <br/><br/>
               <button type='button' onClick={() => setFormData(testCredentials)} className={'button button-login'}>  Use test credentials </button>
-               
-         
-            <div className='flex-row flex-justify-content-flex-space-between typology-padding-top'>
-                <a  onClick={props.FPopen}> forgot password ? </a>
-                <a  onClick={props.Ropen}> Registartion </a>
-            </div>
-           
-
+              <div className='flex-row flex-justify-content-flex-space-between typology-padding-top'>
+                    <a  onClick={props.FPopen}> forgot password ? </a>
+                    <a  onClick={props.Ropen}> Registartion </a>
+               </div>
         </div>
     )
 }
@@ -125,8 +119,6 @@ const Registration=(props)=>{
         }
     }
 
-
-
     const handleSubmit=(e)=>{
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -142,8 +134,6 @@ const Registration=(props)=>{
 
     }  
     
- 
-
     return(
     <div className='flex-col'>
         <h4> Registration </h4>

@@ -17,15 +17,12 @@ import { getSortedProducts,getPricedProducts,getDiscountedProducts,getFliteredPr
          getexpandableMemory,getRatingProduct,getSearchProduct,getExtraOff} from "./utlities";
 
 
-
-
 const ProductList=()=>{
     let {selectedMenu , filter ,filterdispatch} = useContext(CartContext);
     const [data,setdata]=useState([]);
     const [openbottomfilter,SetOpenBottomFilter]=useState(false)
-
     selectedMenu = localStorage.getItem('MENU_SELECTED');
-    
+
     useEffect(()=>{
       fetch("/api/products/",{
         method:"GET",
@@ -36,7 +33,6 @@ const ProductList=()=>{
     });
     },[selectedMenu])
 
-
     const pricedProducts = getPricedProducts( data,filter.price);
     const discountedProducts = getDiscountedProducts(pricedProducts,filter.discount);
     const productram = getFliteredProductsRAM(discountedProducts, selectedMenu, filter.ram._4GB , filter.ram._6GB , filter.ram._12GB , filter.ram._32GB);
@@ -46,9 +42,8 @@ const ProductList=()=>{
     const SearchProducts = getSearchProduct(SortedProducts,filter.productName);
     const ExtraOff = getExtraOff(SearchProducts ,filter.extraoff);
     const finalFilteredProducts = getRatingProduct(ExtraOff,filter.rating);
-
      
-   const ListPage =()=>{
+    const ListPage =()=>{
      return(
         <div className='product-container'>
             <div className='display-filter'>
@@ -83,7 +78,6 @@ const ProductList=()=>{
     </div>
      )
    }
-   
    
    const ListTopOffer =()=>{
        return(
