@@ -1,0 +1,37 @@
+.wishlist-cart-display{
+    display: grid;
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+    justify-content: center;
+}
+
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .wishlist-cart-display{
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+    .wishlist-cart-display{
+        grid-template-columns: 1fr ;
+    }
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+    .wishlist-cart-display{
+        grid-template-columns: 1fr ;
+    }
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .wishlist-cart-display{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
