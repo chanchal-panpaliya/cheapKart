@@ -1,0 +1,62 @@
+/*filter*/
+
+.Product-List-Filter{
+    width: 15.625rem;
+    height: 100vh;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    left: 0;
+    background-color: var(--color-white);
+    position: sticky;
+    z-index: 2;
+ }
+
+ .filter-container-scroll{
+    overflow-y: scroll;
+ }
+ 
+ .Filter-Container{
+     display: flex;
+     justify-content: center;
+     flex-direction: column;
+     margin-top: 5vh;
+ }
+
+
+ .Mobile-Product-List-Filter{
+    left: 0;
+    background-color: var(--color-white);
+    z-index: 2;
+ }
+
+ .Mobile-Filter-Container{
+    display: flex;
+    flex-direction: column;
+}
+
+
+@media (max-width: 800px){
+    .filter-container-scroll{
+        height: 30vh;
+       overflow-y: scroll;
+    }
+}
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+    .filter-container-scroll{
+        height: 30vh;
+       overflow-y: scroll;
+    }
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .filter-container-scroll{
+        height: 76vh;
+       overflow-y: scroll;
+       padding-top: 3rem;
+       padding-bottom: 3rem;
+    }
+}

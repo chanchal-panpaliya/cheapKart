@@ -1,0 +1,192 @@
+
+.product-container{
+        display: flex;
+        justify-content: center;
+        align-items: baseline;      
+}
+
+.display-filter{
+        position: sticky;
+        left: 0;
+		z-index: 2;
+        top: 4rem;
+		padding: 0rem;        
+}
+
+.display-cart{
+    display: flex;
+    top:0;
+    position: relative;
+    flex-direction: column;
+}
+
+.display-sort{
+    width: 80vw;
+    column-gap: 2rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-end;    
+}
+
+.top-offer-sort{
+    margin-top: 2.5%;
+    position: fixed;
+}
+
+.diaplay-cart-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.bottom-filter{
+    display: none;
+    position: fixed;
+    bottom: 0;
+    background-color: var(--color-white);
+    width:-webkit-fill-available;
+    padding: 1rem;
+}
+
+.bottom-filter-button{
+    width:-webkit-fill-available;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+
+/*----------------*/
+
+.top-offer-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.display-topoffer-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.top-offer-cart-display{
+    display: grid;
+    grid-column-gap: 5rem;
+    grid-row-gap: 5rem;
+}
+
+  /* Extra small devices (phones, 600px and down) */
+  @media (max-width: 400px){
+        .display-filter{ display: none; }
+        .diaplay-cart-list{
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            margin-left:0rem;
+            grid-column-gap: 10px;
+            grid-row-gap: 10px;
+        }
+        .bottom-filter{
+            display: block;
+        }
+
+        .top-offer-cart-display{
+            grid-template-columns: 1fr;
+            grid-column-gap: 5rem;
+            grid-row-gap: 5rem;
+        }
+}
+
+
+  @media (max-width: 800px){
+       .display-filter{ display: none;}
+        .diaplay-cart-list{
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            margin-left:0rem;
+            grid-column-gap: 5rem;
+            grid-row-gap: 10rem;
+       }
+        .bottom-filter{
+            display: block;
+        }
+        .top-offer-cart-display{
+            grid-template-columns: 1fr;
+            grid-column-gap: 5rem;
+            grid-row-gap: 5rem;
+        }
+  }
+
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    .diaplay-cart-list{
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        margin-left:0rem;
+        grid-column-gap: 5rem;
+        grid-row-gap: 10rem;
+    }
+  
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (max-width: 768px) {
+    .diaplay-cart-list{
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        margin-left:0rem;
+        grid-column-gap: 5rem;
+        grid-row-gap: 10rem;
+    }
+    .display-filter{
+        display: none;
+    }
+    .bottom-filter{
+        display: block;
+    }
+    .top-offer-cart-display{
+        grid-template-columns: 1fr;
+        grid-column-gap: 5rem;
+        grid-row-gap: 5rem;
+       }
+  } 
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (max-width: 992px) {
+    .diaplay-cart-list{
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        grid-column-gap: 5rem;
+        grid-row-gap: 10rem;
+    }
+    .display-filter{
+        display: none;
+    }
+    .bottom-filter{
+        display: block;
+    }
+    .top-offer-cart-display{
+        grid-template-columns: 1fr;
+        grid-column-gap: 5rem;
+        grid-row-gap: 5rem;
+       }
+  } 
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    .diaplay-cart-list{
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        margin-left: 0;
+        grid-column-gap: 5rem;
+        grid-row-gap: 10rem;
+    }
+    .top-offer-cart-display{
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 5rem;
+        grid-row-gap: 5rem;
+       }
+  }
