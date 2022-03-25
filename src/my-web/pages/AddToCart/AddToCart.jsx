@@ -13,7 +13,6 @@ import './AddToCart.css';
 //img
 import login_image from '../../img/login-image.png'
 
-
 const AddToCart = () =>{
 const {cartItems,removeItem,IncrementQuntity,DecreamentQuntity} = useContext(CartContext);
    
