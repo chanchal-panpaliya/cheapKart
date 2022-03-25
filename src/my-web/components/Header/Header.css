@@ -1,0 +1,218 @@
+.header-container{
+    background-color: var(--color-brand-blue);
+    width: -webkit-fill-available;
+    height: auto;
+    padding: 0.438rem ;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+}
+
+
+.header-container-flex{
+    display: flex;
+    gap: 2%;
+    flex-wrap: wrap;
+    flex-shrink: inherit;
+}
+
+.header-left-end {
+    width: 12%;
+}
+
+.header-right-end {
+    width: 10%;
+}
+
+/*Logo*/
+
+.logoimage-size{
+    width: 4.5rem;
+}
+
+.logoimage-size-small{
+    width:0.8vw;
+    margin-left: 0.25rem;
+}
+
+.header-logo{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-shrink: inherit;
+}
+
+.logo-sub-heading{
+    display: flex;
+    justify-content: space-evenly;
+    color: var(--color-white);
+    font-style: italic;
+    flex-wrap: wrap;
+    flex-shrink: inherit;
+    position: relative;
+    left: -0.125rem;
+}
+
+.small-logo-content{
+    font-size: 0.625rem;
+}
+
+/*search*/
+
+.header-search{
+    margin: auto;
+    display: flex;
+}
+
+.header-search-input{
+    height: inherit;
+    width: 30rem;
+    padding: 0.625rem;
+    border: solid;
+    border-color: var(--color-white);
+}
+
+.header-search-button{
+    height: inherit;
+    padding-right: 0.625rem;
+    padding-left: 0.625rem;
+    cursor: pointer;
+    border: none;
+    background: var(--color-white);
+}
+
+/*right-header*/
+
+.header-right-container{
+    display: flex;
+    gap: 2%;
+    flex: 1;
+    justify-content: end;
+    flex-wrap: wrap;
+    flex-shrink: inherit;
+    align-items: center;
+}
+
+.header-button-login{
+    width: 7rem;
+    height: inherit;
+    padding: 0.5rem;
+    background: var(--color-white);
+    color: var(--color-brand-blue);
+    font-weight: bold;
+    border: none;
+}
+
+.header-button-more , .header-button-cart{
+    width: 5rem;
+    height: inherit;
+    padding: 0.75rem;
+    color: var(--color-white);
+    border: none;
+    background: transparent;
+}
+
+/*dropdown*/
+
+.header-more-container , .header-login-container {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-login-content , .dropdown-more-content{
+    display: none;
+    position: absolute;
+    background-color: var(--color-white);
+    width: -webkit-fill-available;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 2;
+    flex-direction: column;
+    row-gap: 1rem;
+    margin-top: 0.1rem;
+    padding: 1rem;
+  }
+
+  .header-login-container:hover  .dropdown-login-content{
+      display: flex;
+  }
+
+  .header-more-container:hover  .dropdown-more-content{
+    display: flex;
+}
+
+/*frop down arrow*/
+.dropdown-login-content::before , .dropdown-more-content::before{
+    position: absolute;
+    top: -0.438rem;
+    right: 1.813rem;
+    display: inline-block;
+    border-right: 0.438rem solid transparent;
+    border-bottom: 0.438rem solid var(--color-white);
+    border-left: 0.438rem solid transparent;
+    border-bottom-color: var(--color-white);
+    box-shadow: 0px 0.5rem 1rem 0px rgba(0,0,0,0.2);
+    content: '';
+}
+
+.dropdown-login-content::after , .dropdown-more-content::after{
+    position: absolute;
+    top: -0.375rem;
+    right: 1.875rem;
+    display: inline-block;
+    border-right: 0.375rem solid transparent;
+    border-bottom: 0.375rem solid var(--color-white);
+    border-left: 0.375rem solid transparent;
+    content: '';
+}
+
+.itemcount{
+    background-color: var(--color-wishlist-red);
+    border-radius: 50%;
+    font-size: 0.625rem;
+    height: 0.875rem;
+    width: 0.875rem;
+}
+
+@media (max-width: 800px){
+    .header-container-flex{
+        justify-content: center;
+        row-gap: 1rem;
+    }
+
+    .header-search{
+        display: flex
+    }
+
+    .header-search-input{
+         width: -webkit-fill-available;
+    }
+
+    .header-left-end , .header-right-end{
+        width: auto;
+    }
+
+    .header-right-container{
+        justify-content: center;
+    }
+
+  }
+
+  @media (max-width: 300px){
+    .header-container-flex{
+        justify-content: center;
+        row-gap: 1rem;
+    }
+    .header-search{
+        display: flex
+    }
+
+    .header-search-input{
+         width: -webkit-fill-available;
+    }
+    .header-left-end , .header-right-end{
+        width: auto;
+    }
+    .header-right-container{
+        justify-content: center;
+    }
+  }
