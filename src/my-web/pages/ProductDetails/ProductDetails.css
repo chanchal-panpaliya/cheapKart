@@ -1,0 +1,270 @@
+.Product-box{
+    background: var(--color-white);
+}
+
+.ProductDetails-Container{
+    margin-top: 6.25rem;
+    display: flex;
+    justify-content: center;
+}
+
+.pd-reviewandrating{
+    margin-top: 1.25rem;
+}
+
+.pd-review-images{
+    width:3.125rem;
+    height: 3.125rem;
+    object-fit: cover;
+}
+
+.row{
+    display: flex;
+    align-items: baseline;
+    position: sticky;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    column-gap: 2rem;
+}
+
+.pd-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    column-gap: 1rem;
+}
+
+.bg-cr-addtocart{
+    background-color: var(--secondary-color);
+    color:  var(--color-white);
+}
+
+.bg-cr-addtowishlist{
+    background-color: var(--ternary-color);
+    color:  var(--color-white);
+}
+
+.pd-image-container{
+    display: flex;
+    position: sticky;
+    top: 21vh;
+    flex-direction: column;
+}
+
+.pd-image-small{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.small-img{
+    max-width: 100%;
+    width: 20%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.pd-details-container{
+    width: 70vw;
+    white-space: pre-wrap;
+}
+
+.pd-details{
+   height: 70%;
+}
+
+/*-------------*/
+.pd-rating{
+    background-color: var(--heighlight-color-green);
+    color: var( --color-white);
+    padding: 0.1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    border-radius: 5px;
+}
+
+.pd-rating-star{
+    font-size: 0.5rem;
+    text-align: center;
+}
+
+.pd-extraoff{
+    color:var(--heighlight-color-green);
+}
+
+.pd-saleingprice{
+   font-size: 1.5rem;
+   font-weight: 900;
+}
+
+.pd-costprice{
+    font-size: 1rem;
+    color: var(--heighlight-color-grey);
+}
+
+.pd-percentOff{
+    font-size: 1rem;
+    color: var(--heighlight-color-red);
+}
+
+.pd-availableoffers{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 1.5rem;
+}
+
+.pd-highlights{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size:small ;
+}
+
+.pd-availableoffers-list{
+    padding: 0.5rem ;
+}
+
+.pd-padding-top-bottom{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+
+/*tables*/
+.table {
+    display: inline-block;
+    width:100%;
+    text-align:start;
+  }
+  
+  .row-table {
+    display: table-row;
+    width: 100vh;
+    min-height: 2.5rem;
+    word-wrap: break-word;
+    font-size:small ;
+  }
+  
+  .column-table {
+     font-size: small;
+     width: 100vh;
+    display: table-cell;
+    border: 1px solid var( --table-background);
+    vertical-align: middle;
+    padding:0.625rem 0;
+    word-wrap: break-word;
+  }
+  
+
+  .pd-table-title{
+      background-color: var( --table-background);
+      color: black;
+  }
+
+
+  /*-----------top offer-----------*/
+
+  .image-top-offer{
+      width: 30vh;
+      object-fit:cover ;
+  }
+
+  .smallimage-top-offer{
+      width: 3vh;
+      object-fit: cover;
+  }
+
+  .pd-size{
+      width: fit-content;
+      height: fit-content;
+      background-color: var(--backgroundcolor2);
+      border: 1px solid var(--color-black);
+      border-radius: 999px;
+      margin-left: 0.625rem;
+  }
+
+  .pd-flex-colume-gap-4rem{
+    column-gap: 4rem;
+  }
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .row{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        row-gap: 2rem;
+    }
+    .pd-image-container {
+        position: static;
+    }
+    .pd-details-container{
+        width: 70vw;
+        white-space: pre-wrap;
+        height: auto;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+    .row{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        row-gap: 2rem;
+    }
+    .pd-image-container {
+        position: static;
+    }
+    .pd-details-container{
+        width: 70vw;
+        white-space: pre-wrap;
+        height: auto;
+    }
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+    .row{
+        display: flex;
+        align-items: baseline;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        column-gap: 2rem;
+    }
+    .pd-image-container {
+        position: static;
+    }
+    .pd-details-container{
+        width: 70vw;
+        white-space: pre-wrap;
+        height: auto;
+    }
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
+    .row{
+        display: flex;
+        align-items: baseline;
+        flex-wrap: wrap;
+        justify-content:space-around;
+        column-gap: 2rem;
+    }
+    .pd-image-container {
+        position: static;
+    }
+    .pd-details-container{
+        width: 70vw;
+        white-space: pre-wrap;
+        height: 70%;
+    }
+}
