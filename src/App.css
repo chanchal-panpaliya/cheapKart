@@ -1,0 +1,6 @@
+/*--------app---------*/
+.container{
+  display: grid;
+  height: 100%;
+  position: relative;
+}

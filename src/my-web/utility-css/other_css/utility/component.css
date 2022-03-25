@@ -1,0 +1,22 @@
+
+@import './comman.css';
+
+@import './image.css';
+@import './utility-alignment.css';
+@import './utility-border-radius.css';
+@import './utility-flex.css';
+@import './utility-padding.css';
+@import './utility-list.css';
+@import './utility-margin.css';
+@import './utility-fontweight.css';
+@import './utility-icon-size.css';
+@import './utility-para.css';
+@import './utility-heading.css';
+
+
+@import '../componentclass/Button.css';
+@import '../componentclass/Input.css';
+@import '../componentclass/Slider.css';
+
+
+

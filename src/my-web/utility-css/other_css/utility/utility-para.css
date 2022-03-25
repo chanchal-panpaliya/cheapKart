@@ -1,0 +1,32 @@
+
+
+  /*---------------------------p*/
+
+  .typography-p-larger{
+    font-size: 3rem;
+    line-height: 4rem;
+ }
+
+ .typography-p-medium-Larger{
+   font-size: 2rem;
+   line-height: 2.5rem;
+ }
+
+ .typography-p-medium-Small{
+   font-size: 1.5rem;
+   line-height: 2rem;
+ }
+
+ .typography-p-small{
+   font-size: 1rem;
+   line-height: 1.5rem;
+ }
+
+ .typography-p-extrasmall{
+   font-size: 0.5rem;
+   line-height: 1rem;
+ }
+
+ .typography-p-10px{
+  font-size: 0.688rem;
+}

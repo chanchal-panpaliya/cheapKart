@@ -1,0 +1,26 @@
+  /*----------------heading*/
+
+  .typography-h1{
+    font-size: 3rem;
+    line-height: 4rem;
+  }
+
+  .typography-h2{
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+
+  .typography-h3{
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .typography-h4{
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .typography-h5{
+    font-size: 0.5rem;
+    line-height: 1rem;
+  }

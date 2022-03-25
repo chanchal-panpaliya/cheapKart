@@ -1,0 +1,79 @@
+@import url(./my-web/utility-css/utility.css);
+@import url(./my-web/utility-css/other_css/shap.css);
+
+/*universal*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto,Arial,sans-serif;
+  letter-spacing: 0;
+  word-wrap: break-word;
+  scroll-behavior: smooth;
+}
+
+:root {
+ 
+  /**/
+  --background-body:#f1f3f6;
+  --font-color:#212121;
+  --color-white: #fffcfc;
+  --secondary-color: #ff9f00;
+  --color-bright-orange: #e79900;
+  --ternary-color: #fb641b;
+  --heighlight-color-green: #258b3b;
+  --heighlight-color-red: #ff4343;
+  --heighlight-color-grey: #717171;
+  --table-background:#d4d4d4;
+  --backgroundcolor2 : rgb(221, 221, 221);
+  --backgroundcolor3:rgb(102, 101, 101);
+  --color-black: #010101;
+  --primary-color: #2874f0;
+  --color-grey-dark:#999;
+  --background-scroll-color:#f1f1f1;
+  --color-wishlist-red: #ff4343;
+  --color-brand-footer: #172337;
+  --color-brand-blue: #2874f0;
+  --color-brand-bbd: #2455f4;
+  --color-error-red: #ff6161;
+  --color-payment-orange: #ffc200;
+  --color-wishlist-red: #ff4343;
+  --color-grey-grade10: #f5f5f5;
+  --color-light-black: #172337;
+  --color-yellowish-orange: #ff9f00;
+
+}
+
+
+body {
+  margin: auto;
+  font-size: 0.875rem;
+  background-color: var(--background-body);
+  color: var(--font-color);
+  line-height: 1.4;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+a, img {
+  text-decoration: none;
+  color: inherit;
+  border: none;
+  outline: none;
+}
+
+a{
+  cursor: pointer;
+}
+
+button{
+  cursor: pointer;
+  border:none;
+}
+
+ul{
+ list-style-type: none;
+}
