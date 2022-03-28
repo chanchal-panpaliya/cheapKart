@@ -70,7 +70,7 @@ const Login=(props)=>{
                         <label className="text-placeholder"> Email Id </label>                                                
                     </div>
                     <div className="flex-row  col-gap-2rem textField-container">  
-                        <input type="password" name="password" value={password} className="text-input" autocomplete="off" 
+                        <input type= {hideshowpassword?"text":"password"} name="password" value={password} className="text-input" autocomplete="off" 
                         onChange={handleInput} required/>
                          <input type="checkbox" className="check-show-password" value={hideshowpassword} onChange={(e)=>{sethideshowpassword(!hideshowpassword)}}/> 
                         <label className="text-placeholder"> Password </label>                                                
@@ -204,13 +204,13 @@ const ForgotPassword=(props)=>{
                 </div>
 
                 <div className="flex-row  col-gap-2rem textField-container">  
-                    <input type="password" name="password" value={password} className="text-input" autocomplete="off" onChange={(e)=>{setPassword(e.target.value)}} required/>
+                    <input type={hideshowpassword?"text":"password"} name="password" value={password} className="text-input" autocomplete="off" onChange={(e)=>{setPassword(e.target.value)}} required/>
                     <input type="checkbox" className="check-show-password" value={hideshowpassword} onChange={(e)=>{sethideshowpassword(!hideshowpassword)}}/> 
                     <label className="text-placeholder"> Password </label>                                                
                 </div>
 
                 <div className="flex-row  col-gap-2rem textField-container">  
-                    <input type="password" value={retypedPassword} className="text-input" onChange={(e)=>{setRetypedPassword(e.target.value)}} required/>
+                    <input type={hideshow_rety_Pass?"text":"password"} value={retypedPassword} className="text-input" onChange={(e)=>{setRetypedPassword(e.target.value)}} required/>
                     <input type="checkbox" className="check-show-password" value={hideshow_rety_Pass} onChange={(e)=>{Sethideshow_rety_Pass(!hideshow_rety_Pass)}}/> 
                     <label className="text-placeholder"> Confirm password </label>                                             
                 </div>
