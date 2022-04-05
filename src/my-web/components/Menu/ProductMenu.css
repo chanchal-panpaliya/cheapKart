@@ -37,7 +37,6 @@
     flex-direction: column;
 }
 
-
 .productmenu-item-label{
     font-size: 0.813rem;
     font-weight: 600;
@@ -52,7 +51,6 @@
 }
 
 /*drop down - menu item*/
-
 .productdrodown-submenu {
     list-style:none inside;
     margin:0;

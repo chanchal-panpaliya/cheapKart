@@ -12,7 +12,6 @@ const CountDownTimer = () =>{
     return ()=>clearTimeout(timer);
   })
 
-
    const handleCountDown=()=>{
       let today = new Date();
       let tomorrow = new Date();
@@ -42,7 +41,6 @@ const CountDownTimer = () =>{
               minutes: minutes,
               seconds: seconds
            }
-
         }  
         return Left ;
    }

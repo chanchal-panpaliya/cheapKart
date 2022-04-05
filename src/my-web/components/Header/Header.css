@@ -8,7 +8,6 @@
     z-index: 3;
 }
 
-
 .header-container-flex{
     display: flex;
     gap: 2%;
@@ -25,7 +24,6 @@
 }
 
 /*Logo*/
-
 .logoimage-size{
     width: 4.5rem;
 }
@@ -58,7 +56,6 @@
 }
 
 /*search*/
-
 .header-search{
     margin: auto;
     display: flex;
@@ -84,7 +81,6 @@
 }
 
 /*right-header*/
-
 .header-right-container{
     display: flex;
     gap: 2%;
