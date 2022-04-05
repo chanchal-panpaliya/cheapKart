@@ -7,13 +7,14 @@ import AddToCart from './my-web/pages/AddToCart/AddToCart';
 import AddToWishList from './my-web/pages/AddToWishList/AddToWishList';
 import ProductList from './my-web/pages/ProductList/ProductList';
 import ProductDetails from './my-web/pages/ProductDetails/ProductDetails';
+import Checkout from './my-web/pages/CheckOut/Checkout';
+import PageNotFound from './my-web/pages/404error/pagenotfound';
 //Toast
 import { Toast } from './my-web/components/Toast/Toast';
 //constext
 import { useContext } from 'react';
 import CartContext from './my-web/context/cart/CartContext';
 //mockBee
-
 
 function App() {
   const {toastList} = useContext(CartContext);
@@ -27,6 +28,8 @@ function App() {
                <Route path="/addtowishlist" element={<AddToWishList/>} />
                <Route path="/product" element={<ProductList/>}/>
                <Route path="/productDetails/:id" element={<ProductDetails/>}/>
+               <Route path="/checkout" element={<Checkout/>}/>
+               <Route path="*" element={<PageNotFound/>}/>
          </Routes>
         </Router>  
         <Toast data={toastList} />
