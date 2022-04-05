@@ -33,7 +33,7 @@
     float: right;
     background: none;
     border: none;
-    color: #fff;
+    color: var(--color-white);
     opacity: 0.8;
     cursor: pointer;
   }

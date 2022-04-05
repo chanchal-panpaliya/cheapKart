@@ -10,7 +10,7 @@ const Pagination = ({ data, RenderComponent, pageLimit, dataLimit }) =>{
         window.scrollTo({ behavior: 'smooth', top: '0px' }); // scroll to top
       }, [currentPage]);
 
-   
+
       const getPaginationGroup = () => {
         let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
         return new Array(pageLimit).fill().map((item,index) => start + index + 1); 

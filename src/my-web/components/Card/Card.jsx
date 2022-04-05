@@ -45,10 +45,6 @@ const CardProduct1=(props)=>{
                       </div>
                     </Link>
                     <div className="flex-row col-gap-2rem flex-justify-content-end product-card-bottom">
-                       
-
-                        {/* <i style={{color:flag?"red":""}} class="fa-solid fa-heart curser-pointer" 
-                        onClick={()=>{ addToWishList(props) }}></i> */}
 
                         <button class={checkedwishlist?"fa-solid fa-heart":"fa-solid fa-heart curser-pointer"} 
                                 onClick={()=>{ addToWishList(props) }} 
@@ -203,7 +199,6 @@ const CardTOPOFFER=(props)=>{
                                 onClick={()=>{ addToWishList(props) }} 
                                 disabled={checkedwishlist}>  
                         </button>
-
                         <button class={checkedcart?"fa-solid fa-basket-shopping ":"fa-solid fa-basket-shopping curser-pointer" } 
                                 onClick={()=>addToCart(props)} 
                                 disabled={checkedcart}>  

@@ -187,7 +187,7 @@
     z-index: 3;
     width: 30rem;
     position: absolute;
-    top: 40px;
+    top: 40px; /*used px here only bz UI -px working fine compared to rem */
   }
   
   .searchList {
@@ -230,7 +230,6 @@
 @media (max-width: 400px){
     .searchResults{
         width: 25vh;
-        /* top:6.5rem; */
     }
 }  
 
