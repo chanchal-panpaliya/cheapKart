@@ -173,3 +173,124 @@ export const getExtraOff=(products,extraoff)=>{
       }
     return products
 }
+
+//getGrosaryType
+export const getGrosaryType=(products,selectedMenu,type)=>{
+ 
+    if(selectedMenu==="Grocery"){
+        if(type.length === 0) {
+            return products
+        }else{
+           return products.filter((item) => type.includes(item.Type));   
+        }
+    }else{
+        return products
+    }    
+}
+//getGrosaryBrand
+export const getGrosaryBrand=(products,selectedMenu,brand)=>{
+ 
+    if(selectedMenu==="Grocery"){
+        if(brand.length === 0) {
+            return products
+        }else{
+           return products.filter((item) => brand.includes(item.Brand));   
+        }
+    }else{
+        return products
+    }    
+}
+
+//getFashionType
+export const getFashionType=(products,selectedMenu,type)=>{
+    if(selectedMenu==="Fashion"){
+        if(type.length === 0) {
+            return products
+        }else{
+           return products.filter((item) => type.includes(item.FashionType));   
+        }
+    }else{
+        return products
+    } 
+}
+
+//getFashionColor
+export const getFashionColor=(products,selectedMenu,color)=>{
+    if(selectedMenu==="Fashion"){
+        if(color.length === 0) {
+            return products
+        }else{
+           return products.filter((item) => color.includes(item.Color));   
+        }
+    }else{
+        return products
+    }
+}
+
+//getElectronicstype
+
+export const getElectronicstype=(products,selectedMenu,type)=>{
+    if(selectedMenu==="Electronics"){
+        if(type.length === 0) {
+            return products
+        }else{
+           return products.filter((item) => type.includes(item.Electronics_type));   
+        }
+    }else{
+        return products
+    } 
+}
+
+//getHometype
+
+export const getHometype=(products,selectedMenu,type)=>{
+    if(selectedMenu==="Home"){
+        if(type.length === 0) {
+            return products
+        }else{
+           return products.filter((item) => type.includes(item.type));   
+        }
+    }else{
+        return products
+    } 
+}
+
+//getAppliancestype
+
+export const getAppliancestype=(products,selectedMenu,type)=>{
+    if(selectedMenu==="Appliances"){
+        if(type.length === 0) {
+            return products
+        }else{
+           return products.filter((item) => type.includes(item.type));   
+        }
+    }else{
+        return products
+    }
+}
+
+//getMoreBrand
+export const getMoreBrand=(products,selectedMenu,Brand)=>{
+    if(selectedMenu==="Beauty, Toys & More"){
+        if(Brand.length === 0) {
+            return products
+        }else{
+           return products.filter((item) => Brand.includes(item.Brand));   
+        }
+    }else{
+        return products
+    }
+}
+
+//
+export const getMoreType=(products,selectedMenu,type)=>{
+    if(selectedMenu==="Beauty, Toys & More"){
+        if(type.length === 0) {
+            return products
+        }else{
+           return products.filter((item) => type.includes(item.type));   
+        }
+    }else{
+        return products
+    }
+}

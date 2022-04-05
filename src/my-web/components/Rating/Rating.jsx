@@ -24,14 +24,17 @@ const Rating =(props)=>{
         </div>
         <div> 
           {props.reviewText!=="" ? 
-         <small>  {props.reviewText} review </small>
+         <small>  
+           {props.reviewText}
+            {props.cardtype==="product_home" || props.cardtype==="product_topoffer" ? <span> rev.. </span> : null} 
+            {props.cardtype==="product_list" ? <span> review </span> : null} 
+            {props.cardtype==="product_wishlist"?<span>  </span>:null}
+         </small>
           : null }
         </div>
       </div>
     );
   };
     
-
-
 
 export default Rating ;

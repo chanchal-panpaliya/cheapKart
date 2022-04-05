@@ -1,14 +1,18 @@
 //react
-import { useContext ,useEffect } from 'react'; 
+import { useContext ,useEffect,useState } from 'react'; 
 //css
 import './Filter.css';
 //context
 import CartContext from '../../context/cart/CartContext';
+import { render } from '@testing-library/react';
+
+
 
 
 export const Filter=(props)=>{
   let {filter,filterdispatch} = useContext(CartContext);
-  const { sortBy, ram, rom,expandableMemory,price, discount , rating ,productName,extraoff} = filter;
+  const { sortBy, ram, rom,expandableMemory,price, discount , rating ,productName,extraoff,GrosaryType,GrosaryBrand,FashionType,
+          FashionColor,Electronicstype,Hometype,Appliancestype,MoreBrand,MoreType} = filter;
   const { _4GB, _6GB , _12GB , _32GB } = ram ;
 
 
@@ -24,6 +28,7 @@ export const Filter=(props)=>{
      
     )
   }
+
 
   const render_rangeprice=()=>{
     return(
@@ -41,6 +46,7 @@ export const Filter=(props)=>{
     )
   }
 
+
   const render_discount=()=>{
     return(
       <section className='typography-padding-top-bottom'>
@@ -56,6 +62,7 @@ export const Filter=(props)=>{
               <span>50% and above</span>
             </label>
           </li>
+
           <li>
             <label for="input-40%" className="flex-row">
               <input type="radio"  id="input-40%" name="radio-discount" checked={discount === 40}
@@ -91,6 +98,7 @@ export const Filter=(props)=>{
       </section>
     )
   }
+
 
   const render_rating=()=>{
      return(
@@ -296,6 +304,241 @@ export const Filter=(props)=>{
      )
   }
 
+  const render_Grocery_brand=()=>{
+      
+    let unique_list = props.originaldata.length>0 && [...new Set(props.originaldata.map(q => q.Brand))];    
+    let updated_list = unique_list.length>0 && unique_list.filter((item)=>item!=="")
+  
+  return(
+    <section>
+         <h3> Brand </h3>
+              {
+                      updated_list.length>0 ? updated_list.map((item,index)=>{
+                      return(
+                          <>
+                              <label key={index} className="flex-row flex-align-item-center">
+                                  {item}
+                                  <input  type="checkbox" name="GrosaryBrand"  value={item} checked={GrosaryBrand.includes(item)}
+                                   onChange={(e)=>filterdispatch({type:"GROSARY_BRAND",payload: e.target.value,status: e.target.checked})}
+                                  />
+                                  
+                              </label> 
+                          </>
+                      )
+                  }) : <small> No type found </small>
+                  }
+    </section>
+  )
+  }
+
+  const render_Grocery_type=()=>{
+    
+      let unique_list = props.originaldata.length>0 && [...new Set(props.originaldata.map(q => q.Type))];    
+      let updated_list = unique_list.length>0 && unique_list.filter((item)=>item!=="")
+    
+    return(
+      <div className='typology-padding-top'>
+           <h3> Type </h3>
+                {
+                        updated_list.length>0 ? updated_list.map((item,index)=>{
+                        return(
+                            <>
+                                <label key={index} className="flex-row flex-align-item-center">
+                                    {item}
+                                    <input  type="checkbox" name="GrosaryType"  value={item} checked={GrosaryType.includes(item)}
+                                     onChange={(e)=>filterdispatch({type:"GROSARY_TYPE",payload: e.target.value,status: e.target.checked})}
+                                    />
+                                    
+                                </label> 
+                            </>
+                        )
+                    }) : <small> No type found </small>
+                    }
+      </div>
+    )
+  }
+
+  const render_Grocery_FashionType=()=>{
+    let unique_list = props.originaldata.length>0 && [...new Set(props.originaldata.map(q => q.FashionType))];    
+    let updated_list = unique_list.length>0 && unique_list.filter((item)=>item!=="")
+  
+  return(
+    <div className='typology-padding-top'>
+         <h3> Type </h3>
+              {
+                      updated_list.length>0 ? updated_list.map((item,index)=>{
+                      return(
+                          <>
+                              <label key={index} className="flex-row flex-align-item-center">
+                                  {item}
+                                  <input  type="checkbox" name="FashionType"  value={item} checked={FashionType.includes(item)}
+                                   onChange={(e)=>filterdispatch({type:"Fashion_Type",payload: e.target.value,status: e.target.checked})}
+                                  />
+                                  
+                              </label> 
+                          </>
+                      )
+                  }) : <small> No type found </small>
+                  }
+    </div>
+  )
+  }
+
+  const render_Grocery_Color=()=>{
+    let unique_list = props.originaldata.length>0 && [...new Set(props.originaldata.map(q => q.Color))];    
+    let updated_list = unique_list.length>0 && unique_list.filter((item)=>item!=="")
+  
+  return(
+    <div className='typology-padding-top'>
+         <h3> Color </h3>
+              {
+                      updated_list.length>0 ? updated_list.map((item,index)=>{
+                      return(
+                          <>
+                              <label key={index} className="flex-row flex-align-item-center">
+                                  {item}
+                                  <input  type="checkbox" name="FashionColor"  value={item} checked={FashionColor.includes(item)}
+                                   onChange={(e)=>filterdispatch({type:"Fashion_Color",payload: e.target.value,status: e.target.checked})}
+                                  />
+                                  
+                              </label> 
+                          </>
+                      )
+                  }) : <small> No type found </small>
+                  }
+    </div>
+  )  
+  }
+
+  const render_Electronics_type=()=>{
+    let unique_list = props.originaldata.length>0 && [...new Set(props.originaldata.map(q => q.Electronics_type))];    
+    let updated_list = unique_list.length>0 && unique_list.filter((item)=>item!=="")
+  
+  return(
+    <div className='typology-padding-top'>
+         <h3> Electronics Type </h3>
+              {
+                      updated_list.length>0 ? updated_list.map((item,index)=>{
+                      return(
+                          <>
+                              <label key={index} className="flex-row flex-align-item-center">
+                                  {item}
+                                  <input  type="checkbox" name="Electronicstype"  value={item} checked={Electronicstype.includes(item)}
+                                   onChange={(e)=>filterdispatch({type:"Electronics_type",payload: e.target.value,status: e.target.checked})}
+                                  />
+                                  
+                              </label> 
+                          </>
+                      )
+                  }) : <small> No type found </small>
+                  }
+    </div>
+  )   
+  }
+
+  const render_Home_type=()=>{
+    let unique_list = props.originaldata.length>0 && [...new Set(props.originaldata.map(q => q.type))];    
+    let updated_list = unique_list.length>0 && unique_list.filter((item)=>item!=="")
+  
+  return(
+    <div className='typology-padding-top'>
+         <h3> Home Type </h3>
+              {
+                      updated_list.length>0 ? updated_list.map((item,index)=>{
+                      return(
+                          <>
+                              <label key={index} className="flex-row flex-align-item-center">
+                                  {item}
+                                  <input  type="checkbox" name="Hometype"  value={item} checked={Hometype.includes(item)}
+                                   onChange={(e)=>filterdispatch({type:"Home_type",payload: e.target.value,status: e.target.checked})}
+                                  />
+                                  
+                              </label> 
+                          </>
+                      )
+                  }) : <small> No type found </small>
+                  }
+    </div>
+  )  
+  }
+
+  const render_Appliances_type=()=>{
+    let unique_list = props.originaldata.length>0 && [...new Set(props.originaldata.map(q => q.type))];    
+    let updated_list = unique_list.length>0 && unique_list.filter((item)=>item!=="")
+  
+  return(
+    <div className='typology-padding-top'>
+         <h3> Appliances Type </h3>
+              {
+                      updated_list.length>0 ? updated_list.map((item,index)=>{
+                      return(
+                          <>
+                              <label key={index} className="flex-row flex-align-item-center">
+                                  {item}
+                                  <input  type="checkbox" name="Appliancestype"  value={item} checked={Appliancestype.includes(item)}
+                                   onChange={(e)=>filterdispatch({type:"Appliances_type",payload: e.target.value,status: e.target.checked})}
+                                  />
+                                  
+                              </label> 
+                          </>
+                      )
+                  }) : <small> No type found </small>
+                  }
+    </div>
+  )  
+  }
+
+  const render_More_Brand=()=>{
+    let unique_list = props.originaldata.length>0 && [...new Set(props.originaldata.map(q => q.Brand))];    
+    let updated_list = unique_list.length>0 && unique_list.filter((item)=>item!=="")
+  
+  return(
+    <div className='typology-padding-top'>
+         <h3> Brand </h3>
+              {
+                      updated_list.length>0 ? updated_list.map((item,index)=>{
+                      return(
+                          <>
+                              <label key={index} className="flex-row flex-align-item-center">
+                                  {item}
+                                  <input  type="checkbox" name="MoreBrand"  value={item} checked={MoreBrand.includes(item)}
+                                   onChange={(e)=>filterdispatch({type:"More_Brand",payload: e.target.value,status: e.target.checked})}
+                                  />
+                                  
+                              </label> 
+                          </>
+                      )
+                  }) : <small> No type found </small>
+                  }
+    </div>
+  ) 
+  }
+
+  const render_More_type=()=>{
+    let unique_list = props.originaldata.length>0 && [...new Set(props.originaldata.map(q => q.type))];    
+    let updated_list = unique_list.length>0 && unique_list.filter((item)=>item!=="")
+  
+  return(
+    <div className='typology-padding-top'>
+         <h3> Type </h3>
+              {
+                      updated_list.length>0 ? updated_list.map((item,index)=>{
+                      return(
+                          <>
+                              <label key={index} className="flex-row flex-align-item-center">
+                                  {item}
+                                  <input  type="checkbox" name="MoreType"  value={item} checked={MoreType.includes(item)}
+                                   onChange={(e)=>filterdispatch({type:"More_Type",payload: e.target.value,status: e.target.checked})}
+                                  />
+                                  
+                              </label> 
+                          </>
+                      )
+                  }) : <small> No type found </small>
+                  }
+    </div>
+  ) 
+  }
 
   return(
     <div className= {props.layout ==="mobile" ? 'Mobile-Product-List-Filter' : 'Product-List-Filter'} > 
@@ -303,25 +546,84 @@ export const Filter=(props)=>{
         <div className='flex-row flex-space-between typography-padding-top-bottom'> 
             <h3> Filter </h3>  
             {render_clearProduct()}    
+        </div>
+        <div className='flex-row flex-space-between typography-padding-top-bottom'>
+            sort by price- 
+                    <button onClick={() => filterdispatch({ type: "LOW_TO_HIGH" })}> Asc - Dec </button>
+                    <button onClick={() => filterdispatch({ type: "HIGH_TO_LOW" })}> Dec - Asc </button>
         </div>     
         <hr/>
         {render_searchProduct()}
          <hr/>
         <section className='filter-container-scroll'> 
-            {render_rangeprice()}
-            {render_discount()}
-            {render_rating()}
-            {render_extraOFF()}
-            {
-              props.filterselectedMenu === "Mobiles" ?
-                <>
-                {render_mobile_ram()}
-                {render_mobile_rom()}
-                {render_mobile_expandableMemory()}
-                </>
-              :
-              null
-            }
+          {render_rangeprice()}
+          {render_discount()}
+          {render_rating()}
+          {render_extraOFF()}
+          
+
+          {
+            props.filterselectedMenu === "Mobiles" ?
+              <div> 
+              {render_mobile_ram()}
+              {render_mobile_rom()}
+              {render_mobile_expandableMemory()}
+              </div>
+            :
+            null
+          }
+
+          {
+            props.filterselectedMenu === "Grocery" ?
+              <>
+               {render_Grocery_brand()}
+               {render_Grocery_type()}
+              </>
+            :
+            null
+          }
+
+          {
+           props.filterselectedMenu ==="Fashion"?
+           <>
+            {render_Grocery_FashionType()}
+            {render_Grocery_Color()}
+          </>
+          :
+          null
+          }
+
+          {
+            props.filterselectedMenu === "Electronics"?
+            <>
+              {render_Electronics_type()}
+            </>
+            :
+            null
+          }
+          {
+            props.filterselectedMenu === "Home"?
+            <>
+              {render_Home_type()}
+            </>
+            :
+            null
+          }
+          {
+            props.filterselectedMenu === "Appliances"?
+            <>
+              {render_Appliances_type()}
+            </>:
+            null
+          }
+          {
+            props.filterselectedMenu === "Beauty, Toys & More"?
+            <>
+             {render_More_Brand()}
+             {render_More_type()}
+            </>:null
+          }
+
       </section>
     </div>
     </div>

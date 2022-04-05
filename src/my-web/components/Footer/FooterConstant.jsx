@@ -13,6 +13,6 @@ export const footerlink = [
     },
     {
         name:"Github",
-        link:"https://github.com/chanchal-panpaliya"
+        link:"https://github.com/chanchal-panpaliya/cheapKart"
     }
 ]

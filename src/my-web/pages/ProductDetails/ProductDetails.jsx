@@ -30,6 +30,7 @@ const ProductDetails = () =>{
     useEffect(()=>{
        let selectedProduct = JSON.parse(localStorage.getItem('DATA_SELECTED'));
         fetchProductDetailsData(id).then(function(result){
+            // console.log(result)
              if(result=== null){
                 SetProductData(selectedProduct)  
              }else{

@@ -1,9 +1,11 @@
 //react
-import { useContext} from 'react';
+import { useContext,useState,useEffect} from 'react';
+import { Link } from 'react-router-dom';
 //componet
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
+import { CouponCodeModal } from '../../components/Modal/Modal';
 //api
 
 //context
@@ -12,10 +14,93 @@ import CartContext from '../../context/cart/CartContext';
 import './AddToCart.css';
 //img
 import login_image from '../../img/login-image.png'
+//constant
+import { CouponCODE } from '../../constant/copancode';
+
 
 const AddToCart = () =>{
-const {cartItems,removeItem,IncrementQuntity,DecreamentQuntity} = useContext(CartContext);
+const {cartItems,removeItem,IncrementQuntity,DecreamentQuntity,addToWishList,wishlist,getcheckoutdata} = useContext(CartContext);
+const [openmodal,setopenmodal]=useState(false)
+const [getcoupancode,setcoupancode]=useState("");
+const [getcoupanDiscount,setgetcoupanDiscount]=useState(0);
+
+
+useEffect(()=>{
+    let time = setTimeout(()=>{
+        const coupancode=
+        localStorage.getItem("coupancode") == null
+          ? ""
+          : localStorage.getItem("coupancode")
+    
+          setcoupancode(coupancode)
+    
+          if(coupancode!==""){ 
+            let data = CouponCODE.filter((item)=>{                
+                    if(item.code.includes(getcoupancode)){
+                        return item
+                    } 
+               })
+               if(data.length>0){
+                setgetcoupanDiscount(data[0].discount)
+               }
+           }
+    },0)
+    return ()=>clearTimeout(time) 
+})
+
+
+const renderTotalAmount=()=>{
+   let gettotalamount =  cartItems.length>0 && cartItems.reduce((amount, item) =>{
+        let price = item.data.saleingprice.replace(/\,(\d\d)$/, ".$1").replace(',','');
+        let sale_cost  = Number(price);
+        let quntity = Number(item.data.quntity);
+        let extraoff = Number(item.data.extraOff);
+        return ((sale_cost-extraoff)*quntity) + amount}, 0) + 75  
+
+    let discounttotal = gettotalamount - (gettotalamount * (getcoupanDiscount/100))
+    return(
+       <div> {discounttotal}</div>        
+    )
+}
+
+const renderSubAmount=()=>{
+    let getsubamount = cartItems.length>0 && cartItems.reduce((amount, item) =>{
+        let price = item.data.saleingprice.replace(/\,(\d\d)$/, ".$1").replace(',','');
+        let sale_cost  = Number(price);
+        let quntity = Number(item.data.quntity);
+        let extraoff = Number(item.data.extraOff);
+
+        return ((sale_cost-extraoff)*quntity) + amount}, 0)
+        
+        return(
+            <div> {getsubamount} </div>
+        )
+}
+
+const handlecheckout=()=>{
+
+    let gettotalamount =  cartItems.length>0 && cartItems.reduce((amount, item) =>{
+        let price = item.data.saleingprice.replace(/\,(\d\d)$/, ".$1").replace(',','');
+        let sale_cost  = Number(price);
+        let quntity = Number(item.data.quntity);
+        let extraoff = Number(item.data.extraOff);
+        return ((sale_cost-extraoff)*quntity) + amount}, 0)
+
+    let discounttotal = gettotalamount - (gettotalamount * (getcoupanDiscount/100))
+
+     let data = {
+         Items : cartItems,
+         Subamount:gettotalamount,
+         Delivery:75,
+         Total: gettotalamount+75,
+         Coupancode:getcoupancode,
+         Discount:getcoupanDiscount,
+         Finaltotal:discounttotal
+     }
    
+     getcheckoutdata(data) 
+}
+
    return(
        <div>
          <Header/>  
@@ -40,6 +125,7 @@ const {cartItems,removeItem,IncrementQuntity,DecreamentQuntity} = useContext(Car
                         {
                             cartItems.map((item,index)=>{
                                 let price = item.data.saleingprice.replace(/\,(\d\d)$/, ".$1").replace(',','');
+                                let checkedwishlist = wishlist.find((wish_item)=>{ return wish_item.data._id === item.data._id })
                                 return(
                                     <tr key={index}>
                                     <td> 
@@ -50,7 +136,10 @@ const {cartItems,removeItem,IncrementQuntity,DecreamentQuntity} = useContext(Car
                                                     <small> Price : {item.data.saleingprice} </small>
                                                     <small> ExtraOff: {item.data.extraOff} </small>
                                                     <br/>
-                                                    <button onClick={()=>removeItem(item.data._id)}> remove </button>
+                                                    <div className='flex-row col-gap-2rem'> 
+                                                        <button className={checkedwishlist?'':'text-color-primary'} onClick={()=>{addToWishList(item);removeItem(item.data._id);}} disabled={checkedwishlist}> move to wishlist </button>
+                                                        <button className='text-color-red' onClick={()=>removeItem(item.data._id)}> remove </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </td>
@@ -65,43 +154,67 @@ const {cartItems,removeItem,IncrementQuntity,DecreamentQuntity} = useContext(Car
                             }
                             </tbody>
                             </table>
+                            
                             <div class="total-price">
                                 <table>
                                     <tbody>
                                     <tr> 
                                         <td> Subtotal </td>
                                         <td>  
-                                            {
-                                                cartItems.length>0 && cartItems.reduce((amount, item) =>{
-                                                        let price = item.data.saleingprice.replace(/\,(\d\d)$/, ".$1").replace(',','');
-                                                        let sale_cost  = Number(price);
-                                                        let quntity = Number(item.data.quntity);
-                                                        let extraoff = Number(item.data.extraOff);
-                                            
-                                                        return ((sale_cost-extraoff)*quntity) + amount}, 0)
-                                                }
+                                            {renderSubAmount()}
                                         </td>
                                     </tr>
                                     <tr> 
-                                        <td> Tax </td>
+                                        <td> Delivery Charges </td>
                                         <td> 75  </td>
                                     </tr>
+                                    {
+                                    getcoupancode!==""?
+                                    <tr>
+                                        <td> Coupon Code </td>
+                                        <td> 
+                                            {getcoupancode} <small> ({getcoupanDiscount}% discount) </small>  
+                                        </td>
+                                    </tr>
+                                    :null
+                                    }
                                     <tr> 
                                         <td> Total </td>
                                         <td> 
                                             {
-                                                cartItems.length>0 && cartItems.reduce((amount, item) =>{
-                                                    let price = item.data.saleingprice.replace(/\,(\d\d)$/, ".$1").replace(',','');
-                                                    let sale_cost  = Number(price);
-                                                    let quntity = Number(item.data.quntity);
-                                                    let extraoff = Number(item.data.extraOff);
-                                                    return ((sale_cost-extraoff)*quntity) + amount}, 0) + 75    
+                                               renderTotalAmount()  
                                             }
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td> </td>
-                                        <td>  <Button> Checkout </Button> </td>
+                                        <td className='flex-row flex-align-item-center'> 
+                                             {
+                                                 getcoupancode===""?
+                                                 <>
+                                                     <label> Apply Coupon Code? </label> 
+                                                     <input type="checkbox" value={openmodal} checked={openmodal===true} 
+                                                     onClick={(e)=>{setopenmodal(!openmodal);setinputbox(!showinputbox)}} />
+                                                 </>
+                                                  :
+                                                  <label> 
+                                                    <small> 
+                                                    This coupan code, by default, is applied for the whole day. You will generate the new coupan code the next day.
+                                                    </small>
+                                                    <h4> Happy Shopping! </h4>
+                                                  </label> 
+                                             }
+                                             
+                                        </td>
+                                        <td>  
+                                           
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td> 
+                                        </td>
+                                        <td>  
+                                            <Link to={'/checkout'}> <Button disabled={cartItems.length===0} handleClick={handlecheckout}> Proceed to Checkout </Button> </Link> 
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -109,6 +222,7 @@ const {cartItems,removeItem,IncrementQuntity,DecreamentQuntity} = useContext(Car
                         </div>                    
                     }
               </div>
+              {openmodal?<CouponCodeModal modalClose={()=>setopenmodal(false)} />:null}
        <Footer/>
        </div>
    )

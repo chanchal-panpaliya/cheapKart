@@ -1,6 +1,6 @@
 //react
-import { useContext, useState } from 'react';
-import { Link } from "react-router-dom";
+import { useContext, useState , useEffect} from 'react';
+import { Link ,useNavigate ,useLocation } from "react-router-dom";
 //img
 import Plus from '../../img/golden-star.png';
 //component
@@ -10,16 +10,45 @@ import { Registration ,Login , ForgotPassword} from '../Auth/Auth';
 import './Header.css';
 //context
 import CartContext from '../../context/cart/CartContext';
+import {fetchAllCartData,fetchProductDetailsData} from '../../useEffect/useEffectCart';
 
 const Header =() =>{
 
     let [flagAuth_SignUp,setflagAuth_SignUp]=useState(false);
     let [flagAuth_SignIn,setflagAuth_SignIn]=useState(false);
     let [flagAuth_ForgotPass,setflagAuth_ForgotPass]=useState(false);
-
-    const {cartItems,wishlist} = useContext(CartContext);
-
+    const [getTite,setTitle]=useState("");
+    const [alldata,setalldata] = useState([]);
+    const [searchResults, setSearchResults] = useState([]);
+    const {cartItems,wishlist,getSingleSelectedData} = useContext(CartContext);
+    const navigate = useNavigate();
+    const [getid_product,setid_product] = useState("");
+     
     
+    
+    useEffect(()=>{
+        fetchAllCartData().then(function(result){
+            setalldata(result)  
+        });
+     },[])
+
+  
+     const handleChange =(e)=>{
+        setTitle(e.target.value);
+        let filterdatabytitle = alldata.filter((item)=>{
+             return item.title.toLowerCase().includes(getTite.toLowerCase()) 
+        })
+        setSearchResults(filterdatabytitle)
+     }
+
+     const openProductDetailsPage = (item) => {
+         getSingleSelectedData(item)
+         let selectedProduct = JSON.parse(localStorage.getItem('DATA_SELECTED'));
+          window.open(window.location.origin+`/productDetails/${selectedProduct._id}`, '_blank', 'noopener,noreferrer')
+         setSearchResults([])
+         setTitle('')
+      }
+
     return(
      <div className='header-container'>
         <div className='header-container-flex'>
@@ -41,7 +70,16 @@ const Header =() =>{
                {/* /Search Bar/ */}
                <div className='flex-row'>
                    <div className='header-search'>
-                        <input className='header-search-input' type="search" placeholder='Search for products,brands and more '/>
+                        <input className='header-search-input' type="search" placeholder='Search for products by title'value={getTite} onChange={handleChange}/>
+                        {
+                            getTite!==""?
+                             searchResults.length !== 0 && <> 
+                                <div className='searchResults'>
+                                      {searchResults.map(item => <p className="searchList" onClick={()=>openProductDetailsPage(item)}>{item.title}</p>)}
+                                </div></>
+                            : null
+                        }
+                       
                         <button className='header-search-button'> search </button>
                    </div>
                 </div>
@@ -80,19 +118,20 @@ const Header =() =>{
               </div>
         </div>
 
-{/* /  for code review person -  here i'm tried to made one dialog (modal). 
-    / only changing a data /
-    / not close modal component /
+   {/*/  for code review person -  here i'm tried to made one dialog (modal). 
+    / only changing a data without close modal component /
     / not used router for modal - bz header is outsider component - router not work here/
-    here i'm passing a data as a component for routing feature .
-    / i'm new in react - this is my thinking level /
-    /if you have alternate option for this then please suggest .
+    here i'm passing a data as a component for routing feature.
+    date 4-4-22 : initially i was new to react.now i know what i did mistake .i will update code. 
+
     */}
+
         {flagAuth_SignUp?
             <AuthModal 
                 onClose={() => setflagAuth_SignUp(false)} 
                 IsModal="SignUp" 
-                data={<Registration Lopen={()=> {setflagAuth_SignIn(true); setflagAuth_SignUp(false) ; setflagAuth_ForgotPass(false)}} /> }
+                data={<Registration Lopen={()=> {setflagAuth_SignIn(true); setflagAuth_SignUp(false) ; setflagAuth_ForgotPass(false)}} 
+                        onClose={() => setflagAuth_SignUp(false)} /> }
                 HeadingLabel = "Looks like you're new here!"
                 SubHeadingLabel = "Sign up to get started"
             />:null}
@@ -105,6 +144,7 @@ const Header =() =>{
                 <Login 
                     FPopen={()=> {setflagAuth_SignIn(false); setflagAuth_SignUp(false) ; setflagAuth_ForgotPass(true)}} 
                     Ropen={()=> {setflagAuth_SignIn(false); setflagAuth_SignUp(true) ; setflagAuth_ForgotPass(false)}} 
+                    onClose={() => setflagAuth_SignIn(false)}
                 /> }
                 HeadingLabel = "Login"
                 SubHeadingLabel = "Get access to your Orders, Wishlist and Recommendations"
@@ -118,6 +158,7 @@ const Header =() =>{
             <ForgotPassword 
                 Lopen={()=> {setflagAuth_SignIn(true); setflagAuth_SignUp(false) ; setflagAuth_ForgotPass(false)}}
                 Ropen={()=> {setflagAuth_SignIn(false); setflagAuth_SignUp(true) ; setflagAuth_ForgotPass(false)}} 
+                onClose={() => setflagAuth_ForgotPass(false)}
             /> }
             HeadingLabel = "Forgot Password?"
             SubHeadingLabel = "Forgot Password"

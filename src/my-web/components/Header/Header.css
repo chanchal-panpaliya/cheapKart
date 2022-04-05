@@ -62,6 +62,7 @@
 .header-search{
     margin: auto;
     display: flex;
+    position: relative;
 }
 
 .header-search-input{
@@ -70,6 +71,7 @@
     padding: 0.625rem;
     border: solid;
     border-color: var(--color-white);
+    position: relative;
 }
 
 .header-search-button{
@@ -173,7 +175,74 @@
     width: 0.875rem;
 }
 
-@media (max-width: 800px){
+ /**/  
+  .searchResults{
+    height: fit-content;
+    max-height: 10rem;
+    overflow: hidden;
+    overflow-y: scroll;
+    background-color: var(--background-body);
+    position: absolute;
+    top: 3rem;
+    z-index: 3;
+    width: 30rem;
+    position: absolute;
+    top: 40px;
+  }
+  
+  .searchList {
+    font-size: 10px;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  .searchList:hover {
+    background-color:var(--table-background);
+  }
+    
+/**/
+
+@media (max-width: 300px){
+    .header-container-flex{
+        justify-content: center;
+        row-gap: 1rem;
+    }
+    .header-search{
+        display: flex
+    }
+
+    .header-search-input{
+         width: -webkit-fill-available;
+    }
+    .header-left-end , .header-right-end{
+        width: auto;
+    }
+    .header-right-container{
+        justify-content: center;
+    }
+
+    .searchResults{
+        width: 20vh;
+    }
+  }
+
+/* Extra small devices (phones, 600px and down) */
+@media (max-width: 400px){
+    .searchResults{
+        width: 25vh;
+        /* top:6.5rem; */
+    }
+}  
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+    .searchResults{
+        width: 30vh;
+    }
+}
+
+@media(max-width: 800px){
     .header-container-flex{
         justify-content: center;
         row-gap: 1rem;
@@ -195,24 +264,23 @@
         justify-content: center;
     }
 
-  }
-
-  @media (max-width: 300px){
-    .header-container-flex{
-        justify-content: center;
-        row-gap: 1rem;
-    }
-    .header-search{
-        display: flex
-    }
-
-    .header-search-input{
-         width: -webkit-fill-available;
-    }
-    .header-left-end , .header-right-end{
-        width: auto;
-    }
-    .header-right-container{
-        justify-content: center;
+    .searchResults{
+        width: -webkit-fill-available;
     }
   }
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .searchResults{
+        width: 30rem;
+    }
+}
+
+
+
+
+
+  
+
+ 

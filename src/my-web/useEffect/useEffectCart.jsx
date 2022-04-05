@@ -1,5 +1,6 @@
 
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 //all data
 export async function fetchAllCartData() {
@@ -142,18 +143,24 @@ export async function handleRegistration(data){
 }
 
 //login
-export const handleLogin = async ({e,email,password,setFormData}) => {
+export const handleLogin = async ({e,email,password,setFormData,props}) => {
     e.preventDefault();
-    try {
-     await axios.post('/api/auth/login', {
-          email,
-          password
-        }).then((res)=>
-             console.log(res)
-        );
-      } catch (error) {
-          console.log(error)
-      }
+    const navigator = useNavigate();
+    
+    // if(email==="adarshbalika@gmail.com" || password==="adarshbalika"){
+    //     return true
+    // }
 
-  };
+    const { data: { foundUser, encodedToken } } = await axios({
+        method: 'post',
+        url: `/api/auth/login`,
+        data: {
+            email, password
+        }
+    })
+}
+
+
+
+
 

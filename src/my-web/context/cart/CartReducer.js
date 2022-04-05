@@ -3,7 +3,7 @@
 const CartReducer=(state,action)=>{
 
     switch(action.type){  
-        //Add to cart
+
         case 'ADD_TO_CART' :{
             const checker = state.cartItems.find((item) => {
                 return item.data._id === action.payload.data._id;
@@ -17,12 +17,14 @@ const CartReducer=(state,action)=>{
                  return{...state,cartItems:updatecart}
               }
               return {...state,cartItems : [...state.cartItems , action.payload]}
-        }   
-        //remove item from cart
+        }  
+        
+        
         case 'REMOVE_ITEM' :{
             return{...state,cartItems : state.cartItems.filter(item=>item.data._id!==action.payload)}
         }
-        //increment by one
+
+
         case 'Increment_Quntity':{
             let updatecart = state.cartItems.map((item,index)=>{
                  
@@ -32,7 +34,8 @@ const CartReducer=(state,action)=>{
             })
             return{...state,cartItems:updatecart}
         }
-        //decrement by one
+
+
         case 'Decreament_Quntity':{
             let updatecart = state.cartItems.map((item,index)=>{
                 return{
@@ -46,15 +49,25 @@ const CartReducer=(state,action)=>{
             }) 
             return{...state,cartItems:updatecart}
         }
-        // add to wishlist
+
+
         case 'ADD_TO_WISHLIST':{
-            return{...state,wishlist : [...state.wishlist,action.payload]}
+            const checker = state.wishlist.find((item) => {
+                return item.data._id === action.payload.data._id;
+              });
+              
+              if(!checker) {
+                return{...state,wishlist : [...state.wishlist,action.payload]}
+              }
+           
         }
-        //remove wishlist
+
+
         case 'REMOVE_WISHLIST' : {
             return{...state,wishlist : state.wishlist.filter(item=>item.data._id!==action.payload)}  
         }
-        //default   
+
+           
         default :
         return state
     }

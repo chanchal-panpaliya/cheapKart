@@ -1,32 +1,55 @@
-import { useReducer } from "react";
+import { useReducer ,useEffect } from "react";
 import CartContext from './CartContext';
 import CartReducer from  './CartReducer';
 import ToastReducer from '../Toast/ToastReducer';
 import FilterReducer from "../Filterdata/FilterReducer";
+import { checkout_reducer } from "../checkout/checkout";
 import {MenuReducer,SingleProductData} from "../menu/MenuReducer";
 
 const CartState =({ children })=>{
 
+const cartItems=
+    localStorage.getItem("cartItems") == null
+      ? []
+      : JSON.parse(localStorage.getItem("cartItems"))
+
+
+
+const wishlist =
+    localStorage.getItem("wishlist") == null
+      ? []
+      : JSON.parse(localStorage.getItem("wishlist"))
+
+const checkoutdata =
+      localStorage.getItem("checkoutdata") == null
+        ? ""
+        : JSON.parse(localStorage.getItem("checkoutdata"))
+
+
     // add cart
-    const [state,dispatch] = useReducer(CartReducer,{ cartItems : [] , wishlist:[] })
+    const [state,dispatch] = useReducer(CartReducer,{ cartItems , wishlist})
     //toast
     const [toast,toastdispatch] = useReducer(ToastReducer,{showToast:false , toastList : []})
     //filter data
     const [filter,filterdispatch] = useReducer(FilterReducer,{
         sortBy: "",
-        ram: { _4GB: false, _6GB: false , _12GB:false , _32GB:false },
-        rom: { _32GB: false, _64GB: false , _128GB:false , _256GB:false },
-        expandableMemory:"",
-        price: 100000,
-        discount: "",
-        rating:"",
-        productName: "",
-        extraoff:""
+        ram: { _4GB: false, _6GB: false , _12GB:false , _32GB:false },rom: { _32GB: false, _64GB: false , _128GB:false , _256GB:false },expandableMemory:"",
+        price: 100000,discount: "",rating:"",productName: "",extraoff:"",
+        GrosaryType:[],GrosaryBrand:[],FashionType:[],FashionColor:[],Electronicstype:[],Hometype:[],Appliancestype:[],MoreBrand:[],MoreType:[]
     })
     //menu selected
     const [menu,selectedmenudispatch] = useReducer(MenuReducer,{selectedMenu:""})
     //getsingle data
     const [singledata,singledatadispatch] = useReducer(SingleProductData,{getsingledata:""})
+    //chcekout data
+    const [checkout,checkoutdispatch]=useReducer(checkout_reducer,{checkoutdata})
+
+   //useeffect
+   useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+    localStorage.setItem("wishlist", JSON.stringify(state.wishlist));
+    localStorage.setItem("checkoutdata", JSON.stringify(checkout.checkoutdata));
+  }, [state.cartItems,state.wishlist,checkout.checkoutdata]);
 
 
     //singledata
@@ -79,6 +102,10 @@ const CartState =({ children })=>{
        toastdispatch({type:'REMOVE_TOAST',payload:id})  
    }
 
+   //checkoutdispatch
+   const getcheckoutdata = (item)=>{
+    checkoutdispatch({type:'CHECKOUT_DATA',payload:item})
+   }
 
     return(
         <CartContext.Provider value={{
@@ -89,6 +116,7 @@ const CartState =({ children })=>{
              filterList : filter.filterList,
             selectedMenu:menu.selectedMenu,
             getsingledata:singledata.getsingledata,
+            checkoutdata:checkout.checkoutdata,
             filter,
             //
             filterdispatch,
@@ -102,7 +130,9 @@ const CartState =({ children })=>{
             deleteToast ,
             menuselected,
             //
-            getSingleSelectedData
+            getSingleSelectedData,
+            //
+            getcheckoutdata
         
         }}>
             { children }

@@ -47,6 +47,10 @@
     color: var(--color-brand-blue);
 }
 
+.productMenu-item-selected{
+    color: var(--color-brand-blue); 
+}
+
 /*drop down - menu item*/
 
 .productdrodown-submenu {

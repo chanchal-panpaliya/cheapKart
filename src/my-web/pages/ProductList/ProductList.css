@@ -43,11 +43,11 @@
 
 .bottom-filter{
     display: none;
-    position: fixed;
-    bottom: 0;
+    /* position: fixed;
+    bottom: 1;
     background-color: var(--color-white);
     width:-webkit-fill-available;
-    padding: 1rem;
+    padding: 1rem; */
 }
 
 .bottom-filter-button{
@@ -90,6 +90,11 @@
         }
         .bottom-filter{
             display: block;
+            position: fixed;
+            bottom: 0;
+            background-color: var(--color-white);
+            width:-webkit-fill-available;
+            padding: 1rem;
         }
 
         .top-offer-cart-display{
@@ -111,6 +116,11 @@
        }
         .bottom-filter{
             display: block;
+            position: fixed;
+            bottom: 0;
+            background-color: var(--color-white);
+            width:-webkit-fill-available;
+            padding: 1rem;
         }
         .top-offer-cart-display{
             grid-template-columns: 1fr;
@@ -146,6 +156,11 @@
     }
     .bottom-filter{
         display: block;
+        position: fixed;
+        bottom: 0;
+        background-color: var(--color-white);
+        width:-webkit-fill-available;
+        padding: 1rem;
     }
     .top-offer-cart-display{
         grid-template-columns: 1fr;
@@ -167,6 +182,11 @@
     }
     .bottom-filter{
         display: block;
+        position: fixed;
+        bottom: 0;
+        background-color: var(--color-white);
+        width:-webkit-fill-available;
+        padding: 1rem;
     }
     .top-offer-cart-display{
         grid-template-columns: 1fr;

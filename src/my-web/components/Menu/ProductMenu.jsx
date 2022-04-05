@@ -9,7 +9,8 @@ import ProductMenuList  from '../../constant/menu_p_constant';
 import CartContext from '../../context/cart/CartContext';
 
 const ProductMenu = () =>{
-    const {menuselected} = useContext(CartContext);
+    const {menuselected,selectedMenu} = useContext(CartContext);
+    console.log("selectedMenu===>",selectedMenu)
     return(
         <div className='productmenu-container'>
         <div className='productMenu-container-flex'>
@@ -18,7 +19,7 @@ const ProductMenu = () =>{
                   return(
                     <ul className='productdrodown-submenu' key={index} onClick={(e)=>menuselected(item.menu_name)}>
                         <Link to={item.Link}> 
-                            <li className='productMenu-item'>
+                            <li className={selectedMenu === item.menu_name ?'productMenu-item productMenu-item-selected':'productMenu-item'} >
                                 <div className='productmenu-item-label'> {item.menu_name} </div>
                             </li>
                         </Link>

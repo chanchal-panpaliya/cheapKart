@@ -7,6 +7,7 @@ import "../../Home/Home.css";
 //component
 import Rating from "../../../components/Rating/Rating";
 import SliderCard from "../../../components/SliderCard/SliderCard";
+import { Modal } from '../../../components/Modal/Modal';
 //context
 import CartContext from '../../../context/cart/CartContext';
 //api
@@ -14,8 +15,12 @@ import { fetchAllBeautyToysMoreData } from "../../../useEffect/useEffectCart";
 
 
 const BeautyToysMoreData_ProductDetails=(props)=>{
-    const { addToCart,addToWishList,menuselected,getSingleSelectedData ,getsingledata} = useContext(CartContext);
+    const { addToCart,addToWishList,menuselected,getSingleSelectedData ,getsingledata,cartItems,wishlist} = useContext(CartContext);
+    const [showmodal,set_showmodal]=useState(false);
     let [slider_data_list,setslider_data_list]=useState([]);
+
+    let checkcart = cartItems.length>0 && cartItems.find((item)=>{ return item.data._id === props.data._id })
+    let checkwishlist = wishlist.length>0 && wishlist.find((item)=>{ return item.data._id === props.data._id })
 
     useEffect(()=>{
         fetchAllBeautyToysMoreData().then(function(result){
@@ -43,8 +48,16 @@ return(
             </div>
             {/* button */}
             <div className='pd-buttons'>
-                <button className='button bg-cr-addtocart' onClick={()=>addToCart(props)}> Add to cart </button>
-                <button className='button bg-cr-addtowishlist'  onClick={()=>addToWishList(props)}> Add to wishlist </button>
+                <button class={checkcart?"button bg-cr-disable" :"button bg-cr-addtocart "} 
+                                onClick={()=>{addToCart(props)}} 
+                                disabled={checkcart}> 
+                                 {checkcart ? "Product Added" :"Add To Cart"}  
+                 </button>
+                 <button class={checkwishlist?"button bg-cr-disable":"button bg-cr-addtowishlist "} 
+                                onClick={()=>{ addToWishList(props) }} 
+                                disabled={checkwishlist}> 
+                                 {checkwishlist?"Saved":"Add To Wishlist"} 
+                 </button>
             </div>
         </div>
         <div className='pd-details-container'>
@@ -79,9 +92,7 @@ return(
                 <div>
                     Type : {props.data.type}
                 </div>
-                {/* <div>
-                    Size : {props.data.Size}
-                </div> */}
+
                 { props.data.Availableoffers!="" ?
                 <div className='pd-availableoffers'>
                     <h4> Available offers </h4>
@@ -99,13 +110,7 @@ return(
                 </div>
                 : ""
                   }
-                {/* {props.data.SizeList!=""?
-                <div className='pd-padding-top-bottom'>
-                    Size :
-                        { props.data.SizeList.map((sizeitem,sizeindex)=>{
-                            return <button className='pd-size'> {sizeitem} </button>
-                        })}
-                </div> : ""} */}
+
                 <div className='pd-padding-top-bottom'>
                     Delivery : {props.data.DeliverBy} (Delivery Charges - {props.data.Change})
                 </div>
@@ -144,7 +149,7 @@ return(
             </div>
         </div>
         <div className='pd-image-container'>
-            <i class="fa-solid fa-share"></i>
+            <i class="fa-solid fa-share" onClick={()=>{set_showmodal(!showmodal)}}></i>
         </div>
     </div>
     <div className='pd-reviewandrating'>
@@ -155,7 +160,7 @@ return(
                   <ul className='pd-padding-top-bottom' key={reviewindex}>
                       <li> <b>  {reviewitem.title} </b> </li>
                       <li> {reviewitem.desc} </li>
-                      <li> <Rating value={Number(reviewitem.rating)} reviewText={""} /> </li>
+                      <li> <Rating cardtype={""} value={Number(reviewitem.rating)} reviewText={""} /> </li>
                       <li> { reviewitem.images!=="" ? reviewitem.images.map((img,index)=>{
                              return <img src={img} className="pd-review-images"/>
                             })
@@ -187,6 +192,7 @@ return(
             </div>
         </div>
     </div>
+    {showmodal? <Modal data={props.data} modalClose={()=>set_showmodal(false)} /> : null} 
 </div>
  )
 }

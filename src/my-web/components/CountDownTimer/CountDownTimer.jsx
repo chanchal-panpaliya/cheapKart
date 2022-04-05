@@ -24,6 +24,7 @@ const CountDownTimer = () =>{
 
         if(difference<=0){
           clearTimeout(timer);
+          localStorage.setItem("coupancode","");
         }else{
 
           let seconds = Math.floor(difference / 1000);
