@@ -8,7 +8,7 @@ import { v4 as uuid } from "uuid";
 export const products = [
   //mobile
   {
-    _id: uuid(),
+    _id: 1,
     categoryName: "Mobiles",
     quntity:"1",
     title: "Xiaomi 11i 5G (Camo Green, 128 GB)  (6 GB RAM)",
@@ -246,7 +246,7 @@ export const products = [
      ],
   },
   {
-      _id: uuid(),
+      _id: 2,
       categoryName: "Mobiles",
       quntity:"1",
       title: "OPPO A16k (White, 32 GB)  (3 GB RAM) - Offer for the week ",
@@ -430,7 +430,7 @@ export const products = [
     },
 
     {
-      _id: uuid(),
+      _id: 3,
       categoryName: "Mobiles",
       quntity:"1",
       title: "SAMSUNG Galaxy F12 (Sea Green, 64 GB)(4 GB RAM)",
@@ -655,7 +655,7 @@ export const products = [
     },
 
     {
-      _id: uuid(),
+      _id: 4,
       categoryName: "Mobiles",
       quntity:"1",
       title: "POCO C31 (Royal Blue, 32 GB)(3 GB RAM) - New Brand.",
@@ -866,7 +866,7 @@ export const products = [
        ],
     },
     {
-      _id: uuid(),
+      _id: 5,
       categoryName: "Mobiles",
       quntity:"1",
       title: "MOTOROLA G40 Fusion (Dynamic Gray, 64 GB)  (4 GB RAM)",
@@ -1070,7 +1070,7 @@ export const products = [
        ],
     },
     {
-      _id: uuid(),
+      _id: 6,
       categoryName: "Mobiles",
       quntity:"1",
       title: "APPLE iPhone SE (Red, 128 GB) - Offer today (free delivery)",
@@ -1274,7 +1274,7 @@ export const products = [
        ],
     },
     {
-      _id: uuid(),
+      _id: 7,
       categoryName: "Mobiles",
       quntity:"1",
       title: "ASUS ROG Phone 5 (Black, 128 GB)  (8 GB RAM) ",
@@ -1478,7 +1478,7 @@ export const products = [
        ],
     },
     {
-      _id: uuid(),
+      _id: 8,
       categoryName: "Mobiles",
       quntity:"1",
       title: "vivo V23 5G (Sunshine Gold, 128 GB)  (8 GB RAM)#JustHere",
@@ -1685,7 +1685,7 @@ export const products = [
        ],
     },
     {
-      _id: uuid(),
+      _id: 9,
       categoryName: "Mobiles",
       quntity:"1",
       title: "realme Narzo 30 5G (Racing Silver, 128 GB)  (6 GB RAM)",
@@ -1889,7 +1889,7 @@ export const products = [
        ],
     },
     {
-      _id: uuid(),
+      _id: 10,
       categoryName: "Mobiles",
       quntity:"1",
       title: "OPPO Reno6 Pro 5G (Majestic Gold, 256 GB)  (12 GB RAM)#JustHere",
@@ -2074,7 +2074,7 @@ export const products = [
     },
     ///Top Offer
     {
-      _id: uuid(),
+      _id: 11,
       categoryName: "Top Offer",
       quntity:"1",
       title: "by Hrithik Roshan Men White Running Shoes Running Shoes For Men  (White)",
@@ -2130,7 +2130,7 @@ export const products = [
        ],
     },
     {
-      _id: uuid(),
+      _id: 12,
       categoryName: "Top Offer",
       quntity:"1",
       title: "Combo of 6 pair Small Colorful Jhumka Alloy Jhumki Earring (multy colour)",
@@ -2184,7 +2184,7 @@ export const products = [
        ],
     },
     {
-      _id: uuid(),
+      _id: 13,
       categoryName: "Top Offer",
       quntity:"1",
       title: "Printed, Embellished, Checkered, Self Design Daily Wear Art Silk Saree  (Pack of 2)",
@@ -2234,7 +2234,7 @@ export const products = [
        ],
     },
     {
-      _id: uuid(),
+      _id: 14,
       categoryName: "Top Offer",
       quntity:"1",
       title: "Check-in Suitcase(66 cm)-AMT BRANDON SP 66CM-BLUE -Blue",
@@ -2293,7 +2293,7 @@ export const products = [
        ],
     },
     {
-      _id: uuid(),
+      _id: 15,
       categoryName: "Top Offer",
       quntity:"1",
       title: "by Lenskart Polarized, UV Protection Rectangular Sunglasses (For Men, Blue)",
@@ -2342,7 +2342,7 @@ export const products = [
        ],
     },
     {
-      _id: uuid(),
+      _id: 16,
       categoryName: "Top Offer",
       quntity:"1",
       title: "WRG00066B Analog Watch - For Men (with a Manufacturer Warranty by Timex of 1 Year)",
@@ -2400,7 +2400,7 @@ export const products = [
        ],
     },
     {
-      _id: uuid(),
+      _id: 17,
       categoryName: "Top Offer",
       quntity:"1",
       title: "Women Tan Tote - Mini bag for woman (Special PriceGet extra 30% off of this brand)",
@@ -2459,7 +2459,7 @@ export const products = [
        ],
     },
     {
-      _id: uuid(),
+      _id: 18,
       categoryName: "Top Offer",
       quntity:"1",
       title: "Girls Below Knee Casual Dress  (Pink, Short Sleeve) (discount - Get extra 30% off)",
@@ -2518,7 +2518,7 @@ export const products = [
        ],
     },
     {
-      _id: uuid(),
+      _id: 19,
       categoryName: "Top Offer",
       quntity:"1",
       title: "Men Casual Blue Genuine Leather Wallet - Mini  (5 Card Slots) - Offer For today",
@@ -2573,7 +2573,7 @@ export const products = [
        ],
     },
     {
-      _id: uuid(),
+      _id: 20,
       categoryName: "Top Offer",
       quntity:"1",
       title: "Alloy, Silk Dori Gold-plated Jewel Set  (Gold, Silver) - Toriox brand - jwellery for girls ",
@@ -2616,7 +2616,7 @@ export const products = [
     },
     ///////grosary
     {
-      _id: uuid(),
+      _id: 21,
       categoryName: "Grocery",
       quntity:"1",
       title: "Pillsbury Chakki Fresh Atta  (10 kg) ",
@@ -2667,7 +2667,7 @@ export const products = [
 
   },
   {
-    _id: uuid(),
+    _id: 22,
     categoryName: "Grocery",
     quntity:"1",
     title: "Tata Iodized Salt  (1 kg) ",
@@ -2716,7 +2716,7 @@ export const products = [
 },
 
 {
-  _id: uuid(),
+  _id: 23,
   categoryName: "Grocery",
   quntity:"1",
   title: "Molsi's Nuts Tiny Delight Cashews  (500 g) ",
@@ -2765,7 +2765,7 @@ SmallImages:[
 },
 
 {
-  _id: uuid(),
+  _id: 24,
   categoryName: "Grocery",
   quntity:"1",
   title: "Colgate Strong Teeth Anticavity Toothpaste, India's No. 1 Toothpaste, Amino Shakti Formula, Saver Pack Toothpaste  (600 g, Pack of 3) ",
@@ -2780,7 +2780,7 @@ SmallImages:[
   Quantity : ["150g","200g","300g","600g"],
   ExpiryDate : "Expiry Date 29 Jun 2022",
   ManufacturedDate :"Manufactured date 01 Jan 2022",
-  Image:"https://rukminim2.flixcart.com/image/416/416/kpu3frk0/toothpaste/j/b/i/1-strong-teeth-toothpaste-india-s-no-1-toothpaste-2x-stronger-original-imag3z3zehxtmvjg.jpeg?q=70",
+  Image:"https://rukminim2.flixcart.com/image/316/316/kpu3frk0/toothpaste/j/b/i/1-strong-teeth-toothpaste-india-s-no-1-toothpaste-2x-stronger-original-imag3z3zehxtmvjg.jpeg?q=70",
   Availableoffers : [
                     "Partner OfferNo min Order, Lowest Prices!",
                     "Bank Offer10% Instant Discount on IndusInd Bank Credit and Debit Cards",
@@ -2818,7 +2818,7 @@ SmallImages:[
  ],
 },
 {
-  _id: uuid(),
+  _id: 25,
   categoryName: "Grocery",
   quntity:"1",
   title: "Real Masala Pomegranate  (1 L)",
@@ -2869,7 +2869,7 @@ SmallImages:[
     ],
 },
 {
-  _id: uuid(),
+  _id: 26,
   categoryName: "Grocery",
   quntity:"1",
   title: "Dukes Kaju Kukkies Cookies  (400 g)",
@@ -2920,7 +2920,7 @@ SmallImages:[
     ],
 },
 {
-  _id: uuid(),
+  _id: 27,
   categoryName: "Grocery",
   quntity:"1",
   title: "Morelight Extra Power Detergent Powder 4 kg",
@@ -2961,7 +2961,7 @@ SmallImages:[
     ],
 },
 {
-  _id: uuid(),
+  _id: 28,
   categoryName: "Grocery",
   quntity:"1",
   title: "Dukes Eclairs Chocolate Candy  (2 x 220 g)",
@@ -3011,7 +3011,7 @@ SmallImages:[
     ],
 },
 {
-  _id: uuid(),
+  _id: 29,
   categoryName: "Grocery",
   quntity:"1",
   title: "Dukes Waffy Choco Wafer Rolls  (250 g)",
@@ -3061,7 +3061,7 @@ SmallImages:[
     ],
 },
 {
-  _id: uuid(),
+  _id: 30,
   categoryName: "Grocery",
   quntity:"1",
   title: "SET WET Cool, Charm and Swag Avatar Deodorant Spray - For Men  (450 ml, Pack of 3)",
@@ -3106,7 +3106,7 @@ SmallImages:[
 },
  //---fasion
  {
-  _id: uuid(),
+  _id: 31,
   categoryName: "Fashion",
   quntity:"1",
   title: "Casual Regular Sleeves Tie & Dye Women Multicolor Top",
@@ -3163,7 +3163,7 @@ RatingReviewData :[
      ],
 },
 {
-  _id: uuid(),
+  _id: 32,
   categoryName: "Fashion",
   quntity:"1",
   title: "Casual Regular Sleeves Printed Women Red Top",
@@ -3219,7 +3219,7 @@ SmallImages:[
      ],
 },
 {
-  _id: uuid(),
+  _id: 33,
   categoryName: "Fashion",
   quntity:"1",
   title: "Women Fit and Flare Yellow Dress",
@@ -3280,7 +3280,7 @@ SmallImages:[
      ],
 },
 {
-  _id: uuid(),
+  _id: 34,
   categoryName: "Fashion",
   quntity:"1",
   title: "Striped Men Polo Neck Blue T-Shirt",
@@ -3341,7 +3341,7 @@ SmallImages:[
      ],
 },
 {
-  _id: uuid(),
+  _id: 35,
   categoryName: "Fashion",
   quntity:"1",
   title: "Men Printed Cotton Blend Straight Kurta  (Yellow)",
@@ -3387,7 +3387,7 @@ SmallImages:[
     RatingReviewData :[],
 },
 {
-  _id: uuid(),
+  _id: 36,
   categoryName: "Fashion",
   quntity:"1",
   title: "Unstitched Cotton Kurta & Churidar Material Embroidered  (Unstitched)",
@@ -3429,7 +3429,7 @@ SmallImages:[
     RatingReviewData :[],
 },
 {
-  _id: uuid(),
+  _id: 37,
   categoryName: "Fashion",
   quntity:"1",
   title: "Unstitched Cotton Salwar Suit Material Embroidered  (Unstitched)",
@@ -3482,7 +3482,7 @@ RatingReviewData :[
      ],
 },
 {
-  _id: uuid(),
+  _id: 38,
   categoryName: "Fashion",
   quntity:"1",
   title: "Digital Print Semi Stitched Lehenga Choli  (Blue)",
@@ -3543,7 +3543,7 @@ RatingReviewData :[
      ],
 },
 {
-  _id: uuid(),
+  _id: 39,
   categoryName: "Fashion",
   quntity:"1",
   title: "Indi Boys Festive & Party, Wedding Sherwani and Churidar Set  (Blue Pack of 1)",
@@ -3603,7 +3603,7 @@ RatingReviewData :[
      ],
 },
 {
-  _id: uuid(),
+  _id: 40,
   categoryName: "Fashion",
   quntity:"1",
   title: "Floral Print, Geometric Print, Printed Banarasi Poly Silk Saree  (White, Red)",
@@ -3660,7 +3660,7 @@ RatingReviewData :[
 },
 //Electronics
 {
-  _id: uuid(),
+  _id: 41,
   categoryName: "Electronics",
   quntity:"1",
   title: "APPLE iPad (9th Gen) 64 GB ROM 10.2 inch with Wi-Fi Only (Space Grey)",
@@ -3824,7 +3824,7 @@ RatingReviewData :[
    ],
 },
 {
-  _id: uuid(),
+  _id: 42,
   categoryName: "Electronics",
   quntity:"1",
   title: "Mi 3i 20000 mAh Power Bank (Fast Charging, 18W)  (Black, Lithium Polymer)",
@@ -3923,7 +3923,7 @@ RatingReviewData :[
    ],
 },
 {
-  _id: uuid(),
+  _id: 43,
   categoryName: "Electronics",
   quntity:"1",
   title: "Dr. Morepen BP02 BP02 Bp Monitor  (White)",
@@ -4012,7 +4012,7 @@ RatingReviewData :[
    ],
 },
 {
-  _id: uuid(),
+  _id: 44,
   categoryName: "Electronics",
   quntity:"1",
   title: "APPLE Watch Series 3 GPS - MTF32HN/A 42 mm Space Grey Aluminium Case with Black Sport Band  (Black Strap, Regular)",
@@ -4172,7 +4172,7 @@ RatingReviewData :[
    ],
 },
 {
-  _id: uuid(),
+  _id: 45,
   categoryName: "Electronics",
   quntity:"1",
   title: "HP 100 Wired Optical Mouse  (USB 2.0, Black)",
@@ -4255,7 +4255,7 @@ RatingReviewData :[
    ],
   },
   {
-    _id: uuid(),
+    _id: 46,
     categoryName: "Electronics",
     quntity:"1",
     title: "HP V236w 64 GB Pen Drive  (Silver)",
@@ -4322,7 +4322,7 @@ RatingReviewData :[
      ],
     },
     {
-      _id: uuid(),
+      _id: 47,
       categoryName: "Electronics",
       quntity:"1",
       title: "Canon EOS 1500D DSLR Camera Body+ 18-55 mm IS II Lens  (Black)",
@@ -4490,7 +4490,7 @@ RatingReviewData :[
        ],
     },
     {
-      _id: uuid(),
+      _id: 48,
       categoryName: "Electronics",
       quntity:"1",
       title: "Lenovo IdeaPad 3 Core i3 10th Gen - (8 GB/256 GB SSD/Windows 11 Home) 15IML05 Thin and Light Laptop  (15.6 Inch, Platinum Grey, 1.7 kg, With MS Office)",
@@ -4652,7 +4652,7 @@ RatingReviewData :[
        ],
     },
     {
-      _id: uuid(),
+      _id: 49,
       categoryName: "Electronics",
       quntity:"1",
       title: "Mivi Play 5 W Portable Bluetooth Speaker  (Black, Mono Channel)",
@@ -4782,7 +4782,7 @@ RatingReviewData :[
        ],
     },
     {
-      _id: uuid(),
+      _id: 50,
       categoryName: "Electronics",
       quntity:"1",
       title: "boAt Airdopes 131 Bluetooth Headset  (Cherry Blossom, True Wireless)",
@@ -4886,7 +4886,7 @@ RatingReviewData :[
     },
      //Home
   {
-    _id: uuid(),
+    _id: 51,
     categoryName: "Home",
     quntity:"1",
     title: "LooMantha Rectangular Pack of 6 Table Placemat  (Multicolor, PVC)",
@@ -4977,7 +4977,7 @@ RatingReviewData :[
      ],
   },
   {
-    _id: uuid(),
+    _id: 52,
     categoryName: "Home",
     quntity:"1",
     title: "GTB Plant Container Set  (Pack of 5, Plastic)",
@@ -5041,7 +5041,7 @@ RatingReviewData :[
      ],
   },
   {
-    _id: uuid(),
+    _id: 53,
     categoryName: "Home",
     quntity:"1",
     title: "Adimanav 213.36 cm (7 ft) Polyester Door Curtain (Pack Of 3)  (Floral, Green, Off White)",
@@ -5104,7 +5104,7 @@ RatingReviewData :[
      ],
   },
   {
-    _id: uuid(),
+    _id: 54,
     categoryName: "Home",
     quntity:"1",
     title: "Flipkart SmartBuy Microfibre Stripes Cushion Pack of 5  (White)",
@@ -5187,7 +5187,7 @@ RatingReviewData :[
      ],
   },
   {
-    _id: uuid(),
+    _id: 55,
     categoryName: "Home",
     quntity:"1",
     title: "pooshu Red Study lamp Desk Light for School and College Students Table Lamp  (22 cm, Red)",
@@ -5265,7 +5265,7 @@ RatingReviewData :[
      ],
   },
   {
-    _id: uuid(),
+    _id: 56,
     categoryName: "Home",
     quntity:"1",
     title: "Sigaram Analog Multicolor Clock",
@@ -5353,11 +5353,11 @@ RatingReviewData :[
      ],
   },
   {
-    _id: uuid(),
+    _id: 57,
     categoryName: "Home",
     quntity:"1",
     title: "uberlyfe Jute Double Sofa Bed  (Finish Color - Grey Mechanism Type - Fold Out Delivery Condition - Pre-assembled)",
-    type:"Clock",
+    type:"Double Sofa Bed",
     costprice:"13,000",
     saleingprice: "7,964",
     extraOff : "500",
@@ -5474,11 +5474,11 @@ RatingReviewData :[
      ],
   },
   {
-    _id: uuid(),
+    _id: 58,
     categoryName: "Home",
     quntity:"1",
     title: "MILTON Executive 3 Containers Lunch Box  (1010 ml)",
-    type:"Clock",
+    type:"Lunch Box",
     costprice:"385",
     saleingprice: "304",
     extraOff : "0",
@@ -5549,7 +5549,7 @@ RatingReviewData :[
      ],
   },
   {
-    _id: uuid(),
+    _id: 59,
     categoryName: "Home",
     quntity:"1",
     title: "Starbucks Color Changing Cold Cups Plastic Tumbler  (709 ml, Pack of 5)",
@@ -5611,11 +5611,11 @@ RatingReviewData :[
      ],
   },
   {
-    _id: uuid(),
+    _id: 60,
     categoryName: "Home",
     quntity:"1",
     title: "IWS 144 TC Microfiber Double Geometric Bedsheet  (Pack of 1, Multicolor)",
-    type:"Clock",
+    type:"Bedsheet",
     costprice:"1,199",
     saleingprice: "249",
     extraOff : "0",
@@ -5703,7 +5703,7 @@ RatingReviewData :[
   },
    //Appliances
    {
-    _id: uuid(),
+    _id: 61,
     categoryName: "Appliances",
     quntity:"1",
     title: "AGARO Rapid 1000-Watt, 10-Litre Wet & Dry Vacuum Cleaner, with Blower Function Wet & Dry Vacuum Cleaner  (Red & Black)",
@@ -5788,7 +5788,7 @@ RatingReviewData :[
      ],
   },
   {
-    _id: uuid(),
+    _id: 62,
     categoryName: "Appliances",
     quntity:"1",
     title: "Whirlpool 6 kg With Hard water wash Fully Automatic Top Load Grey  (WM ROYAL 6.0 GENX GREY 5YMW)",
@@ -5930,7 +5930,7 @@ RatingReviewData :[
      ],
   },
   {
-    _id: uuid(),
+    _id: 63,
     categoryName: "Appliances",
     quntity:"1",
     title: "ONIDA 1 Ton 3 Star Split Inverter AC - White  (IR123IVR, Copper Condenser)",
@@ -6079,7 +6079,7 @@ RatingReviewData :[
      ],
   },
   {
-    _id: uuid(),
+    _id: 64,
     categoryName: "Appliances",
     quntity:"1",
     title: "Butterfly Plus Rapid 750 W Mixer Grinder (5 Jars, Ink Blue)#JustHere",
@@ -6183,7 +6183,7 @@ RatingReviewData :[
      ],
   },
   {
-    _id: uuid(),
+    _id: 65,
     categoryName: "Appliances",
     quntity:"1",
     title: "SAMSUNG 28 L Slim Fry Convection Microwave Oven  (CE1041DSB2, Black)",
@@ -6337,7 +6337,7 @@ RatingReviewData :[
      ],
   },
   {
-    _id: uuid(),
+    _id: 66,
     categoryName: "Appliances",
     quntity:"1",
     title: "BAJAJ 10 L Storage Water Geyser (Popular Plus 10 L, White)",
@@ -6476,7 +6476,7 @@ RatingReviewData :[
      ],
   },
   {
-    _id: uuid(),
+    _id: 67,
     categoryName: "Appliances",
     quntity:"1",
     title: "Sansui 102 cm (40 inch) Full HD LED Smart Android TV  (JSW40ASFHD)",
@@ -6635,7 +6635,7 @@ RatingReviewData :[
      ],
   },
   {
-    _id: uuid(),
+    _id: 68,
     categoryName: "Appliances",
     quntity:"1",
     title: "MOTOROLA ZX2 100 cm (40 inch) Full HD LED Smart Android TV with Dolby Atmos and Dolby Vision  (40SAFHDME)",
@@ -6807,7 +6807,7 @@ RatingReviewData :[
      ],
   },
   {
-    _id: uuid(),
+    _id: 69,
     categoryName: "Appliances",
     quntity:"1",
     title: "Thomson 9A Series 102 cm (40 inch) Full HD LED Smart Android TV  (40PATH7777)",
@@ -6989,7 +6989,7 @@ RatingReviewData :[
      ],
   },
   {
-    _id: uuid(),
+    _id: 70,
     categoryName: "Appliances",
     quntity:"1",
     title: "OnePlus U1S 164 cm (65 inch) Ultra HD (4K) LED Smart Android TV  (65UC1A00)",
@@ -7170,7 +7170,7 @@ RatingReviewData :[
   },
     //Beauty, Toys & More
     {
-      _id: uuid(),
+      _id: 71,
       categoryName:"Beauty, Toys & More",
       quntity:"1",
       title: "Lakme Absolute Perfect Radiance Skin Brightening Day Creme  (50 g)",
@@ -7233,7 +7233,7 @@ RatingReviewData :[
        ]
       },
       {
-        _id: uuid(),
+        _id: 72,
         categoryName:"Beauty, Toys & More",
         quntity:"1",
         title: "GARNIER Color Naturals Creme , Shade 1, Natural Black",
@@ -7306,7 +7306,7 @@ RatingReviewData :[
          ]
       },
       {
-          _id: uuid(),
+          _id: 73,
           categoryName:"Beauty, Toys & More",
           quntity:"1",
           title: "WOW SKIN SCIENCE Foaming Ubtan For Dry Skin Face Wash  (150 ml)",
@@ -7362,7 +7362,7 @@ RatingReviewData :[
            ]
       },
       {
-            _id: uuid(),
+            _id: 74,
             categoryName:"Beauty, Toys & More",
             quntity:"1",
             title: "MamaEarth Rice Water Shampoo With Rice Water & Keratin For Damaged, Dry and Frizzy Hair  (250 ml)",
@@ -7416,7 +7416,7 @@ RatingReviewData :[
              ]
       },
       {
-              _id: uuid(),
+              _id: 75,
               categoryName:"Beauty, Toys & More",
               quntity:"1",
               title: "FTAFAT 100% Best - Kids Puzzle Assembling Building Unbreakable 20+ Activities Kids Toy Set  (Multicolor)",
@@ -7477,7 +7477,7 @@ RatingReviewData :[
                ]
       },
       {
-        _id: uuid(),
+        _id: 76,
         categoryName:"Beauty, Toys & More",
         quntity:"1",
         title: "Nerf Disruptor Elite Blaster,6-Dart Rotating Drum,Slam Fire Guns & Darts  (Multicolor)",
@@ -7541,7 +7541,7 @@ RatingReviewData :[
          ]
       },
       {
-        _id: uuid(),
+        _id: 77,
         categoryName:"Beauty, Toys & More",
         quntity:"1",
         title: "Little Olive Tikes 4 Level Height Adjustable Scooter for Kids with LED Lights  (Blue)",
@@ -7604,7 +7604,7 @@ RatingReviewData :[
          ]
       },
       {
-        _id: uuid(),
+        _id: 78,
         categoryName:"Beauty, Toys & More",
         quntity:"1",
         title: "Learning How To Fly - Life Lessons for the Youth  (English, Paperback, Kalam Abdul A. P. J.)",
@@ -7657,7 +7657,7 @@ RatingReviewData :[
          ]
       },
       {
-        _id: uuid(),
+        _id: 79,
         categoryName:"Beauty, Toys & More",
         quntity:"1",
         title: "The Psychology of Money  (English, Paperback, Housel Morgan)",
@@ -7715,7 +7715,7 @@ RatingReviewData :[
          ]
       },
       {
-        _id: uuid(),
+        _id: 80,
         categoryName:"Beauty, Toys & More",
         quntity:"1",
         title: "Nea N95 Mask Washable Reusable Mask (White, Free Size, Pack of 25)",
