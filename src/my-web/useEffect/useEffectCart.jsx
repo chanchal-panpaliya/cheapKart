@@ -146,10 +146,6 @@ export async function handleRegistration(data){
 export const handleLogin = async ({e,email,password,setFormData,props}) => {
     e.preventDefault();
     const navigator = useNavigate();
-    
-    // if(email==="adarshbalika@gmail.com" || password==="adarshbalika"){
-    //     return true
-    // }
 
     const { data: { foundUser, encodedToken } } = await axios({
         method: 'post',
