@@ -35,7 +35,8 @@ const ProductDetails = () =>{
              }else{
                 SetProductData(result)
              }
-         })       
+         }) 
+         window.scrollTo({ behavior: 'smooth', top: '0px' });      
     },[])
 
 

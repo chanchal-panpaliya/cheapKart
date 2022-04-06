@@ -12,6 +12,7 @@ const CountDownTimer = () =>{
     return ()=>clearTimeout(timer);
   })
 
+
    const handleCountDown=()=>{
       let today = new Date();
       let tomorrow = new Date();
@@ -21,8 +22,9 @@ const CountDownTimer = () =>{
       let difference = tomorrow.getTime() - today.getTime();
         let Left={};
 
+
         if(difference<=0){
-           clearTimeout(timer);
+          clearTimeout(timer);
         }else{
 
           let seconds = Math.floor(difference / 1000);
@@ -42,16 +44,18 @@ const CountDownTimer = () =>{
            }
 
            if((days==0 && hours==0) && (minutes==0 && seconds==0)){
-            let name = localStorage.getItem("coupancode");
-            if(name!==""){
-             localStorage.setItem("coupancode","");
-            }
-          }
+               let name = localStorage.getItem("coupancode");
+               if(name!==""){
+                localStorage.setItem("coupancode","");
+               }
+           }
 
         }  
         return Left ;
    }
 
+
+   
     return(
         <div className='flex-row col-gap-1rem timer-container'>
             <label> <i class="fa-solid fa-clock"></i> </label>

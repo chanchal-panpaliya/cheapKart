@@ -10,16 +10,26 @@ const Pagination = ({ data, RenderComponent, pageLimit, dataLimit }) =>{
         window.scrollTo({ behavior: 'smooth', top: '0px' }); // scroll to top
       }, [currentPage]);
 
-
+   
       const getPaginationGroup = () => {
         let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
         return new Array(pageLimit).fill().map((item,index) => start + index + 1); 
-      };
+      }; 
 
 
       const getPaginatedData = () => {
-        const startIndex = currentPage * dataLimit - dataLimit; 
-        const endIndex = startIndex + dataLimit;
+
+        let startIndex =0
+        let endIndex = 0
+
+        if(data.length<=5){
+           startIndex = 0; 
+           endIndex = 5;
+        }else{
+           startIndex = currentPage * dataLimit - dataLimit; 
+           endIndex = startIndex + dataLimit;
+        }
+
         return data.slice(startIndex, endIndex);
       };
 
@@ -38,15 +48,19 @@ const Pagination = ({ data, RenderComponent, pageLimit, dataLimit }) =>{
       }
 
 
+    
+
   return(
     <div>   
      <div  className='diaplay-cart-list'> 
+     
+
       {getPaginatedData().map((item, index) => (
         <RenderComponent data={item} key={index} />
       ))}
      </div>
 
-    {
+     {
        data.length>5?
        <div className="pagination">
        <button onClick={goToPreviousPage} className= {currentPage === 1 ? 'prev disabled' : 'prev'}>prev</button>
@@ -57,7 +71,7 @@ const Pagination = ({ data, RenderComponent, pageLimit, dataLimit }) =>{
        ))}
         <button onClick={goToNextPage} className={currentPage === pages ? 'disabled next' : 'next'}>next</button>
      </div> : null
-     }
+     } 
 
   </div>
   )

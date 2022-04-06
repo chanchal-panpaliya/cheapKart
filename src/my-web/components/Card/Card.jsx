@@ -71,6 +71,7 @@ const Card_ProductList=(props)=>{
      let checkedcart = cartItems.find((item)=>{ return item.data._id === props.data._id })
      let checkedwishlist = wishlist.find((item)=>{ return item.data._id === props.data._id })
    
+    
     return(
         <> 
         {
@@ -109,6 +110,7 @@ const Card_ProductList=(props)=>{
                            </>
                           :null
                         }
+
                         {
                           props.data.categoryName === "Home" ?
                           <>
@@ -129,25 +131,30 @@ const Card_ProductList=(props)=>{
                           </>:null
                         }
                    
+                       
                         </div>
                         <Link to={"/productDetails/"+props.data._id} target="_blank" rel="noopener noreferrer" onClick={()=>getSingleSelectedData(props.data)} > 
                           <b> view more ... </b> 
                         </Link>
                       </div>
+                      
                       <div>
                         <div className="productlist_card-card-button">
-                          <button class={checkedcart?"button bg-cr-disable" :"button bg-cr-addtocart "} 
-                                  onClick={()=>{addToCart(props)}} 
-                                  disabled={checkedcart}> 
-                                  {checkedcart ? "Product Added" :"Add To Cart"}  
-                          </button>
-                          <button class={checkedwishlist?"button bg-cr-disable":"button bg-cr-addtowishlist "} 
-                                  onClick={()=>{ addToWishList(props) }} 
-                                  disabled={checkedwishlist}> 
-                                  {checkedwishlist?"Saved":"Add To Wishlist"} 
-                          </button>
+
+                       
+
+                        <button class={checkedcart?"button bg-cr-disable" :"button bg-cr-addtocart "} 
+                                onClick={()=>{addToCart(props)}} 
+                                disabled={checkedcart}> 
+                                 {checkedcart ? "Product Added" :"Add To Cart"}  
+                        </button>
+                        <button class={checkedwishlist?"button bg-cr-disable":"button bg-cr-addtowishlist "} 
+                                onClick={()=>{ addToWishList(props) }} 
+                                disabled={checkedwishlist}> 
+                                 {checkedwishlist?"Saved":"Add To Wishlist"} 
+                        </button>
                          </div>
-                      </div>
+                        </div>
                 </div>
            </div>
         }
@@ -163,7 +170,7 @@ const CardTOPOFFER=(props)=>{
    return(
        <>
          {
-          props.Loader === "Loader" ? 
+             props.Loader === "Loader" ? 
              <div className="product-card-loader" key={props.data._id}>
                <Loader/> 
              </div>
@@ -192,6 +199,7 @@ const CardTOPOFFER=(props)=>{
                                 onClick={()=>{ addToWishList(props) }} 
                                 disabled={checkedwishlist}>  
                         </button>
+
                         <button class={checkedcart?"fa-solid fa-basket-shopping ":"fa-solid fa-basket-shopping curser-pointer" } 
                                 onClick={()=>addToCart(props)} 
                                 disabled={checkedcart}>  
@@ -209,7 +217,7 @@ const CardWishList=(props)=>{
    return(
        <>
          {
-            props.Loader === "Loader" ? 
+             props.Loader === "Loader" ? 
              <div className="product-card-loader" key={props.data.data._id}>
                <Loader/> 
              </div>

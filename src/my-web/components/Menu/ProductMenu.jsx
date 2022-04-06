@@ -10,7 +10,6 @@ import CartContext from '../../context/cart/CartContext';
 
 const ProductMenu = () =>{
     const {menuselected,selectedMenu} = useContext(CartContext);
-    console.log("selectedMenu===>",selectedMenu)
     return(
         <div className='productmenu-container'>
         <div className='productMenu-container-flex'>

@@ -28,7 +28,7 @@ const Home =()=>{
 
 
    useEffect(()=>{
-
+      window.scrollTo({ behavior: 'smooth', top: '0px' });
       fetchAllCartData().then(function(result){
          setdata(result)       
       });

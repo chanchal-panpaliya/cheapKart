@@ -1,5 +1,5 @@
 //react
-import { useContext } from 'react';
+import { useContext,useEffect } from 'react';
 //css
 import "./AddToWishList.css";
 //component
@@ -14,7 +14,9 @@ import login_image from '../../img/login-image.png'
 
 const AddToWishList =() =>{
     const {wishlist} = useContext(CartContext);
-
+    useEffect(()=>{
+        window.scrollTo({ behavior: 'smooth', top: '0px' });
+    },[])
     return(
         <div>
             <Header/>

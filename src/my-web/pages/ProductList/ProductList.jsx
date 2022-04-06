@@ -40,6 +40,7 @@ const ProductList=()=>{
         setdata(newdata)
         setloader(false)
     });
+    window.scrollTo({ behavior: 'smooth', top: '0px' });
     },[selectedMenu])
 
 

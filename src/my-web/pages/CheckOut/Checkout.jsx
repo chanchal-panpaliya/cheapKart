@@ -1,6 +1,6 @@
 import './CheckOut.css';
 //react
-import { useContext } from 'react';
+import { useContext ,useEffect} from 'react';
 //component
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
@@ -11,7 +11,9 @@ import CartContext from '../../context/cart/CartContext';
 
 const Checkout=()=>{
     const {checkoutdata} = useContext(CartContext);
- 
+    useEffect(()=>{
+        window.scrollTo({ behavior: 'smooth', top: '0px' });
+    },[])
     return(
         <div>
         <Header/>

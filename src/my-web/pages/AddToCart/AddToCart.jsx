@@ -26,6 +26,7 @@ const [getcoupanDiscount,setgetcoupanDiscount]=useState(0);
 
 
 useEffect(()=>{
+    window.scrollTo({ behavior: 'smooth', top: '0px' });
     let time = setTimeout(()=>{
         const coupancode=
         localStorage.getItem("coupancode") == null

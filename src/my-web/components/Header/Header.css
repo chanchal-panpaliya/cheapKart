@@ -5,8 +5,9 @@
     padding: 0.438rem ;
     position: sticky;
     top: 0;
-    z-index: 3;
+    z-index: 4;
 }
+
 
 .header-container-flex{
     display: flex;
@@ -24,6 +25,7 @@
 }
 
 /*Logo*/
+
 .logoimage-size{
     width: 4.5rem;
 }
@@ -56,6 +58,7 @@
 }
 
 /*search*/
+
 .header-search{
     margin: auto;
     display: flex;
@@ -81,6 +84,7 @@
 }
 
 /*right-header*/
+
 .header-right-container{
     display: flex;
     gap: 2%;
@@ -183,7 +187,7 @@
     z-index: 3;
     width: 30rem;
     position: absolute;
-    top: 40px; /*used px here only bz UI -px working fine compared to rem */
+    top: 40px;
   }
   
   .searchList {
@@ -226,6 +230,7 @@
 @media (max-width: 400px){
     .searchResults{
         width: 25vh;
+        /* top:6.5rem; */
     }
 }  
 
