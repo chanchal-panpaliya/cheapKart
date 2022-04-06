@@ -7,7 +7,7 @@ const CountDownTimer = () =>{
 
   useEffect(() => {
     timer = setInterval(() => {
-      settimeleft( handleCountDown() )
+      settimeleft( handleCountDown())
     }, 1000);
     return ()=>clearTimeout(timer);
   })
@@ -22,8 +22,7 @@ const CountDownTimer = () =>{
         let Left={};
 
         if(difference<=0){
-          clearTimeout(timer);
-          localStorage.setItem("coupancode","");
+           clearTimeout(timer);
         }else{
 
           let seconds = Math.floor(difference / 1000);
@@ -41,6 +40,14 @@ const CountDownTimer = () =>{
               minutes: minutes,
               seconds: seconds
            }
+
+           if((days==0 && hours==0) && (minutes==0 && seconds==0)){
+            let name = localStorage.getItem("coupancode");
+            if(name!==""){
+             localStorage.setItem("coupancode","");
+            }
+          }
+
         }  
         return Left ;
    }
