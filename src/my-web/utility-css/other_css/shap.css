@@ -50,7 +50,7 @@
  /*--------------------------------------------------------------*/ 
  .top-left-horizontal-shape {border-style: solid;height: 0px;width: 0px;position: absolute;
     border-width: 1rem 3em 1em 0px;right: 0;top: 0;transform: rotate(356deg);
-    border-color: rgba(255,255,255,0) var(--black) rgba(255,255,255,0) rgba(255,255,255,0);
+    border-color: rgba(255,255,255,0) var(--color-black) rgba(255,255,255,0) rgba(255,255,255,0);
 }
 
 .top-left-vertical-shape {border-style: solid;height: 0px;width: 0px;position: absolute;
