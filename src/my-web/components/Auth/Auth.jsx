@@ -79,6 +79,7 @@ const handleLoginLocal =()=>{
         localStorage.setItem("login", JSON.stringify(data));
         setError("")
         props.onClose()
+        window.location.reload();
         navigator("/") 
     }else{
         setError("username and password not match with testCredentials")
