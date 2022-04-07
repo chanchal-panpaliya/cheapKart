@@ -34,21 +34,25 @@ const Header =() =>{
                 setlogin(true)
             }
 
-            // if(logoutclick){
-            //        localStorage.removeItem('login')
-            //        navigator("/") 
-            // }
-
         },0)
         return ()=>clearTimeout(time)
     })
     
+
     useEffect(()=>{
         fetchAllCartData().then(function(result){
             setalldata(result)  
         });
           
      },[])
+
+     const handleLogout=()=>{
+        if (localStorage.getItem('login')!=null) { 
+            localStorage.removeItem('login')  
+            window.location.reload();
+            navigator("/") 
+        }
+     }
 
      const handleChange =(e)=>{
         setTitle(e.target.value);
@@ -112,11 +116,7 @@ const Header =() =>{
                             { islogin ? <Link to="/profile"> Profile </Link> : null}
                             {
                                 islogin ? 
-                                 <button className='logout-button' onClick={()=>{
-                                    localStorage.removeItem('login');
-                                    window. location. reload(false);
-                                     navigator("/")
-                                 }}> logout </button>
+                                 <button className='logout-button' onClick={handleLogout}> logout </button>
                                  : 
                                  <a href="#" onClick={(e)=>setflagAuth_SignUp(true)} > Sign Up </a>
                             }
