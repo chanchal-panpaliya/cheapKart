@@ -3,7 +3,7 @@
 <b> About </b>
 - cheapKart is an eCommerce app for all categories.
 <br/>
-![cheapkart](![cheapkart](https://user-images.githubusercontent.com/28673856/162251146-e0e829f4-0a0b-4b16-898f-2a241b36a35c.png)
+![cheapkart](https://user-images.githubusercontent.com/28673856/162251146-e0e829f4-0a0b-4b16-898f-2a241b36a35c.png)
 
 <b> Preview </b>
 low quality video -
