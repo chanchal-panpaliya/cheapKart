@@ -37,9 +37,9 @@ https://user-images.githubusercontent.com/28673856/162247850-e25a3c6c-e7f0-489c-
 <b> Things I want to improve/explore further </b>
 -Adding a payment gateway like Razorpay
 
-Images -
-![home_responsive](https://user-images.githubusercontent.com/28673856/162248626-655d2e5c-21c1-4a04-bc82-c8bd497cb344.png)
+<b> Some Screen -</b>
 
+![home_responsive](https://user-images.githubusercontent.com/28673856/162248626-655d2e5c-21c1-4a04-bc82-c8bd497cb344.png)
 ![mobile_cheapkart](https://user-images.githubusercontent.com/28673856/162250601-9c99950c-e6c0-4990-9833-0d9a69a36288.png)
 ![mobile_cheapkart5](https://user-images.githubusercontent.com/28673856/162250646-ee6f5e6b-007f-4060-8cd6-15d2cf378d6e.png)
 ![mobile_cheapkart6](https://user-images.githubusercontent.com/28673856/162250673-3002b7c0-122d-4aef-9d0d-8e0763384533.png)
