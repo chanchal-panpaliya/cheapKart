@@ -63,9 +63,9 @@ const Home =()=>{
                <div className='slider-box'>
                   <div className='slider-box-flex-col'>
                      <div className='slider-box-flex-row'>
-                        <div> Deals of the Day - <CountDownTimer/> </div>
+                        <div> <b> Deals of the Day </b> - <CountDownTimer/> </div>
                         <div> 
-                           <Link to={'/product'} onClick={(e)=>menuselected(topoffer.length>0?topoffer[0].categoryName:"")}> view more </Link> 
+                           <Link to={'/product'} onClick={(e)=>menuselected(topoffer.length>0?topoffer[0].categoryName:"")}> <b>view more</b> </Link> 
                         </div>
                      </div>
                      <div className='row-1'>                   
