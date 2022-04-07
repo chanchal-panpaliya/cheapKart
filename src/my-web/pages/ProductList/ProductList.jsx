@@ -118,8 +118,10 @@ const ProductList=()=>{
                          <img src={top_offer_img} className="top-offer-img"/>
                      </div>
                      <div className='typography-padding-top-right-bottom-left top-offer-cart-display'>
-                     { 
+                     {  
+                       loader? <Loader/> :
                         data.length>0?
+
                             data.map((slide,index)=>{
                                 return(
                                     <CardTOPOFFER data={slide} key={index}/>
