@@ -34,11 +34,11 @@ const Header =() =>{
                 setlogin(true)
             }
 
-            if(logoutclick){
-                   localStorage.removeItem('login')
-                //    window.location.reload(false)
-                   navigator("/") 
-            }
+            // if(logoutclick){
+            //        localStorage.removeItem('login')
+            //        navigator("/") 
+            // }
+
         },0)
         return ()=>clearTimeout(time)
     })
@@ -112,7 +112,11 @@ const Header =() =>{
                             { islogin ? <Link to="/profile"> Profile </Link> : null}
                             {
                                 islogin ? 
-                                 <button className='logout-button' onClick={()=>{setlogoutclick(true)}}> logout </button>
+                                 <button className='logout-button' onClick={()=>{
+                                    localStorage.removeItem('login');
+                                    window. location. reload(false);
+                                     navigator("/")
+                                 }}> logout </button>
                                  : 
                                  <a href="#" onClick={(e)=>setflagAuth_SignUp(true)} > Sign Up </a>
                             }
