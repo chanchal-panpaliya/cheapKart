@@ -78,8 +78,8 @@ const handleLoginLocal =()=>{
         }]
         localStorage.setItem("login", JSON.stringify(data));
         setError("")
-        props.onClose()
         window.location.reload();
+        props.onClose()
         navigator("/") 
     }else{
         setError("username and password not match with testCredentials")
@@ -154,7 +154,6 @@ const Registration=(props)=>{
     }
 
 
-
     const handleSubmit=(e)=>{
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -170,7 +169,6 @@ const Registration=(props)=>{
 
     }  
     
- 
 
     return(
     <div className='flex-col'>
@@ -219,7 +217,7 @@ const Registration=(props)=>{
                 
         </form>  
 
-             <a onClick={props.Lopen} > Already have account? </a>
+             <a onClick={props.Lopen} className="flex-row flex-justify-content-center flex-align-item-center"> Already have account? </a>
 
         </div>
     )
@@ -235,7 +233,7 @@ const ForgotPassword=(props)=>{
     return(
         <div className='flex-col'>
              <h4> ForgotPassword </h4>
-             <form> 
+             <section> 
                 <div className="flex-row  col-gap-2rem textField-container">  
                     <input type="email" name="email" value={emailId} placeholder="johndoe@gmail.com" autocomplete="off" className="text-input" onChange={(e)=>setEmailId(e.target.value)} required/>
                     <label className="text-placeholder"> Email Id </label>                                                
@@ -257,14 +255,11 @@ const ForgotPassword=(props)=>{
                         <button className={'button button-login'} type="submit"> Forgot Password  </button>
                 )}
 
-            </form>
-
-
+            </section>
             <div className='flex-row flex-justify-content-flex-space-between typology-padding-top'>
                 <a  onClick={props.Lopen}> Login </a>
                 <a  onClick={props.Ropen}> Registartion </a>
             </div>
-
         </div>
     )
 }

@@ -59,8 +59,9 @@ const renderTotalAmount=()=>{
         return ((sale_cost-extraoff)*quntity) + amount}, 0) + 75  
 
     let discounttotal = gettotalamount - (gettotalamount * (getcoupanDiscount/100))
+
     return(
-       <div> {discounttotal}</div>        
+       <div> ₹{Math.round(discounttotal)}</div>        
     )
 }
 
@@ -74,7 +75,7 @@ const renderSubAmount=()=>{
         return ((sale_cost-extraoff)*quntity) + amount}, 0)
         
         return(
-            <div> {getsubamount} </div>
+            <div> ₹{getsubamount} </div>
         )
 }
 
@@ -96,7 +97,7 @@ const handlecheckout=()=>{
          Total: gettotalamount + 75,
          Coupancode:getcoupancode,
          Discount:getcoupanDiscount,
-         Finaltotal:discounttotal
+         Finaltotal:Math.round(discounttotal)
      }
    
      getcheckoutdata(data) 
@@ -134,8 +135,8 @@ const handlecheckout=()=>{
                                             <img src={item.data.Image}/>
                                                 <div>
                                                     <p>{item.data.title}</p>
-                                                    <small> Price : {item.data.saleingprice} </small>
-                                                    <small> ExtraOff: {item.data.extraOff} </small>
+                                                    <small> Price : ₹{item.data.saleingprice} </small>
+                                                    <small> ExtraOff: ₹{item.data.extraOff} </small>
                                                     <br/>
                                                     <div className='flex-row col-gap-2rem'> 
                                                         <button className={checkedwishlist?'':'text-color-primary'} onClick={()=>{addToWishList(item);removeItem(item.data._id);}} disabled={checkedwishlist}> move to wishlist </button>
@@ -162,12 +163,12 @@ const handlecheckout=()=>{
                                     <tr> 
                                         <td> Subtotal </td>
                                         <td>  
-                                            {renderSubAmount()}
+                                             {renderSubAmount()}
                                         </td>
                                     </tr>
                                     <tr> 
                                         <td> Delivery Charges </td>
-                                        <td> 75  </td>
+                                        <td> ₹75  </td>
                                     </tr>
                                     {
                                     getcoupancode!==""?
@@ -182,6 +183,7 @@ const handlecheckout=()=>{
                                     <tr> 
                                         <td> Total </td>
                                         <td> 
+                                            
                                             {
                                                renderTotalAmount()  
                                             }

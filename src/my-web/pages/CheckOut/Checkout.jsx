@@ -77,8 +77,8 @@ const Checkout=()=>{
                                             <img className='table-img' src={item.data.Image}/>
                                                 <div>
                                                     <p>{item.data.title}</p>
-                                                    <small> Price : {item.data.saleingprice} </small>
-                                                    <small> ExtraOff: {item.data.extraOff} </small>
+                                                    <small> Price : ₹{item.data.saleingprice} </small>
+                                                    <small> ExtraOff: ₹{item.data.extraOff} </small>
                                                     <small> Quntuty : {item.data.quntity}</small>
                                                 </div>
                                             </div>
@@ -92,7 +92,7 @@ const Checkout=()=>{
                     <div className="table">
                         <div className='row-table'>
                             <div className='column-table'> <b> Rs.SubAmount </b> </div>
-                            <div className='column-table'> {checkoutdata.Subamount}</div>
+                            <div className='column-table'> ₹{checkoutdata.Subamount}</div>
                         </div>
                         <div className='row-table'>
                             <div className='column-table'> <b> Coupancode </b> </div>
@@ -104,11 +104,11 @@ const Checkout=()=>{
                         </div>
                         <div className='row-table'>
                             <div className='column-table'> <b>Delivery </b> </div>
-                            <div className='column-table'> Rs.{checkoutdata.Delivery}</div>
+                            <div className='column-table'> ₹{checkoutdata.Delivery}</div>
                         </div> 
                         <div className='row-table'>
                             <div className='column-table'> <b> Total </b> </div>
-                            <div className='column-table'> Rs.{checkoutdata.Finaltotal} </div>
+                            <div className='column-table'> ₹{checkoutdata.Finaltotal} </div>
                         </div>   
                     </div>
 

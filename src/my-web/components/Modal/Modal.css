@@ -87,6 +87,18 @@
   cursor: pointer;
 }
 
+.button-no{
+ background-color: var(--heighlight-color-red);
+ padding: 0.5rem;
+ color: var(--color-white);
+}
+
+.button-yes{
+  background-color: var(--heighlight-color-green);
+  padding: 0.5rem;
+  color: var(--color-white);
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .modal-container{

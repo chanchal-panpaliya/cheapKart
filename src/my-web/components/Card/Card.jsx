@@ -78,10 +78,10 @@ const Card_ProductList=(props)=>{
      let checkedcart = cartItems.find((item)=>{ return item.data._id === props.data._id })
      let checkedwishlist = wishlist.find((item)=>{ return item.data._id === props.data._id })
     return(
-        <> 
+        <div>  
         {
             props.Loader === "Loader" ? 
-            <div className="product-card-loader" key={props.data._id}>
+            <div className="product-card-loader">
               <Loader/> 
             </div>
            : 
@@ -169,7 +169,7 @@ const Card_ProductList=(props)=>{
                 </div>
            </div>
         }
-        </>
+        </div>
     )
 }
 

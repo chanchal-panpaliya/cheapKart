@@ -45,7 +45,7 @@ export const CouponCodeModal=({modalClose})=>{
          if(getinput === randomtext){
             let getcode = CODE.filter((item)=>{ if(item.count === count){return item}})
             let randomcodename = getcode[0].code[Math.floor(Math.random() * getcode[0].code.length)]
-             settextmsg("congratulations !!! Your Coupan Code is  "+randomcodename )
+             settextmsg("CONGRATULATIONS !!! Your Coupan Code is  "+randomcodename )
              localStorage.setItem("coupancode", randomcodename);
              setcount(0)
          }else{
@@ -65,27 +65,38 @@ export const CouponCodeModal=({modalClose})=>{
             <div className='modal-right-flex-row'>
                 <div className="flex-col row-gap-2rem flex-justify-content-center flex-align-item-center">
                     <h3> Apply coupan code and get discount </h3>
-                    <ol>
-                        <li> Click the below button to generate a random number. </li>
-                        <li>If you enter a random number in the textbox, if it matches, you will get your coupan code. If not, then you failed.</li>
-                        <li> You have only 3 attempts. </li>
-                    </ol>
+   
                     <button className="button-coupan-code" 
                             onClick={()=>{setrandomtext((Math.random() + 1).toString(36).substring(7))}}> 
-                            click here 
+                            click here !
                     </button>
-                    <div className="random-number-box"> 
-                        {randomtext}
-                    </div>
+                    {
+                        randomtext!=="" ? 
+                        <div className="random-number-box"> 
+                            {randomtext}
+                        </div>
+                        :null
+                    }
+                    
                     <div className="flex-row  col-gap-2rem textField-container">  
                        <input type="text"  value={getinput} onChange={(e)=>{setinput(e.target.value)}} className="text-input"/>
                        <label className="text-placeholder"> Enter random number </label>                                                
                     </div>
+
+                    <ol>
+                        <li> Click the above button "click here". </li>
+                        <li> After that, fill in the above text box with random text.</li>
+                        <li> Click on "apply for code"</li>
+                        <li> If the text matches,then you will get a coupan code.</li>
+                        <li> Note : A coupon code will be automatically applied. </li>
+                        <li> You have only 3 attempts. </li>
+                    </ol>
+
                      <div> {textmsg} {count>0 && count<3?<span> try again! attepted count remaining {count}</span>:null}</div> 
                         {
-                            getinput&& randomtext &&(<button className={count===0?"button-coupan-code-disable":"button-coupan-code"} onClick={handleApplyCode} disabled={count===0}> apply for code </button>)
+                            getinput&& randomtext &&(<button className={count===0?"button-coupan-code-disable":"button-coupan-code"} onClick={handleApplyCode} disabled={count===0}> Apply for code </button>)
                         }
-                </div> 
+                    </div> 
             </div> 
         </div>
         <i className='material-icons modal-close' onClick={modalClose}> x </i>

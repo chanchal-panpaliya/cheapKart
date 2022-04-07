@@ -12,7 +12,10 @@ import './Header.css';
 import CartContext from '../../context/cart/CartContext';
 import {fetchAllCartData,fetchProductDetailsData} from '../../useEffect/useEffectCart';
 
+
 const Header =() =>{
+    const {cartItems,wishlist,getSingleSelectedData} = useContext(CartContext);
+
 
     let [flagAuth_SignUp,setflagAuth_SignUp]=useState(false);
     let [flagAuth_SignIn,setflagAuth_SignIn]=useState(false);
@@ -20,24 +23,11 @@ const Header =() =>{
     const [getTite,setTitle]=useState("");
     const [alldata,setalldata] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
-    const {cartItems,wishlist,getSingleSelectedData} = useContext(CartContext);
     const [islogin,setlogin]=useState(false);
     const [logoutclick,setlogoutclick]=useState(false);
     const [auth_data,Set_auth_data]=useState([]);
     const navigator = useNavigate()
-     
-    useEffect(()=>{
-        let time = setTimeout(()=>{
-            
-            if(localStorage.getItem("login") != null ){
-                Set_auth_data(JSON.parse(localStorage.getItem("login")))
-                setlogin(true)
-            }
-
-        },0)
-        return ()=>clearTimeout(time)
-    })
-    
+ 
 
     useEffect(()=>{
         fetchAllCartData().then(function(result){
@@ -46,7 +36,18 @@ const Header =() =>{
           
      },[])
 
-     const handleLogout=()=>{
+         
+     useEffect(()=>{
+        let time = setTimeout(()=>{
+            if(localStorage.getItem("login") != null ){
+                Set_auth_data(JSON.parse(localStorage.getItem("login")))
+                setlogin(true)
+            }
+        },0)
+        return ()=>clearTimeout(time)
+    })
+
+     const handleLogout=(e)=>{
         if (localStorage.getItem('login')!=null) { 
             localStorage.removeItem('login')  
             window.location.reload();
@@ -69,9 +70,6 @@ const Header =() =>{
          setSearchResults([])
          setTitle('')
       }
-
-
- 
 
     return(
      <div className='header-container'>
@@ -99,7 +97,7 @@ const Header =() =>{
                             getTite!==""?
                              searchResults.length !== 0 && <> 
                                 <div className='searchResults'>
-                                      {searchResults.map(item => <p className="searchList" onClick={()=>openProductDetailsPage(item)}>{item.title}</p>)}
+                                      {searchResults.map((item,index) => <p key={index} className="searchList" onClick={()=>openProductDetailsPage(item)}>{item.title}</p>)}
                                 </div></>
                             : null
                         }
@@ -165,13 +163,6 @@ const Header =() =>{
                     
               </div>
         </div>
-
-   {/*/  for code review person -  here i'm tried to made one dialog (modal). 
-    / only changing a data without close modal component /
-    / not used router for modal - bz header is outsider component - router not work here/
-    here i'm passing a data as a component for routing feature.
-    date 7-4-22 : initially i was new to react.now i know what i did mistake .i will update code. 
-    */}
 
         {flagAuth_SignUp?
             <AuthModal 

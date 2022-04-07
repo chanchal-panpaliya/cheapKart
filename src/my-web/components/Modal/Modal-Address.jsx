@@ -41,6 +41,7 @@ return(
         <div className='modal-right-side'>
             <div className='modal-right-flex-row'>
                 <section className="table-checkout"> 
+                  <h3> Add Address </h3>
                     <div className="row-table-checkout">
                         <div className="column-table-checkout">
                             <div className="flex-row  col-gap-2rem textField-container">  
@@ -99,7 +100,7 @@ return(
                     </div>
                     {
                         FirstName && LastName && Emailid && MobileNumber && Address && State && City && ZipPostal && (
-                            <button onClick={handleAddAddress}> Add Address </button>
+                            <button className="button-coupan-code" onClick={handleAddAddress}> Add Address </button>
                         )
                     }
                     
@@ -150,6 +151,7 @@ return(
         <div className='modal-right-side'>
             <div className='modal-right-flex-row'>
                 <section className="table-checkout"> 
+                  <h3> Edit Address </h3>
                     <div className="row-table-checkout">
                         <div className="column-table-checkout">
                             <div className="flex-row  col-gap-2rem textField-container">  
@@ -208,7 +210,7 @@ return(
                     </div>
                     {
                         FirstName && LastName && Emailid && MobileNumber && Address && State && City && ZipPostal && (
-                            <button onClick={handleEditAddress}> Edit Address </button>
+                            <button className="button-coupan-code" onClick={handleEditAddress}> Edit Address </button>
                         )
                     }
                     
@@ -235,12 +237,12 @@ export const Modal_Confirm =({data,modalClose})=>{
         <div className='modal-right-side'>
             <div className='modal-right-flex-row'>
                 <div className="flex-col">
+               
                     <section> Do you want to delete this address permeantly?  </section>
-                    <section className="flex-row col-gap-1rem flex-justify-content-center flex-align-item-center">  
-                        <button 
-                           className="button button-outline-primary button-onhover-fillbackground"
+                    <section className="flex-row col-gap-2rem flex-justify-content-center flex-align-item-center typology-padding-top">  
+                        <button className="button-yes"
                            onClick={handleDeletedAddress}> Yes </button>
-                        <button className="button button-outline-primary button-onhover-fillbackground" onClick={modalClose}> No </button>
+                        <button className="button-no" onClick={modalClose}> No </button>
                     </section>
                 </div>
             </div> 

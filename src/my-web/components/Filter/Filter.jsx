@@ -4,7 +4,8 @@ import { useContext ,useEffect,useState } from 'react';
 import './Filter.css';
 //context
 import CartContext from '../../context/cart/CartContext';
-import { render } from '@testing-library/react';
+//component
+import Rating from '../Rating/Rating';
 
 
 
@@ -110,7 +111,7 @@ export const Filter=(props)=>{
             <input type="radio" id="input-5" name="radio-rating" checked={rating === 5} value="5"
               onChange={(e) => filterdispatch({ type: "RATING", value: e.target.value })}
             />
-            <span>5</span>
+            <span>  <Rating cardtype="product_wishlist" value={5} reviewText={""} /> </span>
           </label>
         </li>
         <li>
@@ -119,7 +120,7 @@ export const Filter=(props)=>{
               type="radio" id="input-4" name="radio-rating" checked={rating === 4} value="4"
               onChange={(e) => filterdispatch({ type: "RATING", value: e.target.value })}
             />
-            <span>4</span>
+            <span><Rating cardtype="product_wishlist" value={4} reviewText={""} /></span>
           </label>
         </li>
         <li>
@@ -127,7 +128,7 @@ export const Filter=(props)=>{
             <input type="radio" id="input-3" name="radio-rating" checked={rating === 3} value="3"
               onChange={(e) => filterdispatch({ type: "RATING", value: e.target.value })}
             />
-            <span>3</span>
+            <span> <Rating cardtype="product_wishlist" value={3} reviewText={""} /> </span>
           </label>
         </li>
         <li>
@@ -135,7 +136,7 @@ export const Filter=(props)=>{
             <input type="radio" id="input-2" name="radio-rating" checked={rating === 2} value="2"
               onChange={(e) => filterdispatch({ type: "RATING", value: e.target.value })}
             />
-            <span>2</span>
+            <span> <Rating cardtype="product_wishlist" value={2} reviewText={""} /> </span>
           </label>
         </li>
         <li>
@@ -143,7 +144,7 @@ export const Filter=(props)=>{
             <input type="radio" id="input-1" name="radio-rating" value="1" checked={rating === 1}
               onChange={(e) => filterdispatch({ type: "RATING", value: e.target.value })}
             />
-            <span>1</span>
+            <span> <Rating cardtype="product_wishlist" value={1} reviewText={""} /> </span>
           </label>
         </li>
       </ul>
@@ -548,7 +549,7 @@ export const Filter=(props)=>{
             {render_clearProduct()}    
         </div>
         <div className='flex-row flex-space-between typography-padding-top-bottom'>
-            sort by price- 
+             <small><b> SORT BY PRICE-</b>  </small> 
                     <button onClick={() => filterdispatch({ type: "LOW_TO_HIGH" })}> Asc - Dec </button>
                     <button onClick={() => filterdispatch({ type: "HIGH_TO_LOW" })}> Dec - Asc </button>
         </div>     
@@ -560,8 +561,6 @@ export const Filter=(props)=>{
           {render_discount()}
           {render_rating()}
           {render_extraOFF()}
-          
-
           {
             props.filterselectedMenu === "Mobiles" ?
               <div> 
