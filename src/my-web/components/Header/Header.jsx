@@ -36,7 +36,7 @@ const Header =() =>{
 
             if(logoutclick){
                    localStorage.removeItem('login')
-                   window.location.reload(false)
+                //    window.location.reload(false)
                    navigator("/") 
             }
         },0)
