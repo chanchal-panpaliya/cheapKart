@@ -65,7 +65,7 @@ return(
                         </div>
                         <div className="column-table-checkout">
                             <div className="flex-row  col-gap-2rem textField-container">  
-                                <input type="number" name="Mobile Number"  placeholder="8600444543" className="text-input" value={MobileNumber} onChange={(e)=>{setMobileNumber(e.target.value)}} required/>
+                                <input type="number" name="Mobile Number"  placeholder="8600444543" pattern="[789][0-9]{9}" className="text-input" value={MobileNumber} onChange={(e)=>{setMobileNumber(e.target.value)}} required/>
                                 <label className="text-placeholder"> Mobile Number </label>                                                
                             </div>
                         </div>
@@ -93,7 +93,7 @@ return(
                         </div>
                         <div className="column-table-checkout">
                             <div className="flex-row  col-gap-2rem textField-container">  
-                                <input type="number" name="Zip/Postal"  placeholder="411002" className="text-input" value={ZipPostal} onChange={(e)=>{setZipPostal(e.target.value)}} required/>
+                                <input type="number" name="Zip/Postal" min="0" max="6" placeholder="411002" className="text-input" value={ZipPostal} onChange={(e)=>{setZipPostal(e.target.value)}} required/>
                                 <label className="text-placeholder"> Zip/Postal </label>                                                
                             </div>
                         </div>
@@ -175,7 +175,7 @@ return(
                         </div>
                         <div className="column-table-checkout">
                             <div className="flex-row  col-gap-2rem textField-container">  
-                                <input type="number" name="Mobile Number"  placeholder="8600444543" className="text-input" value={MobileNumber} onChange={(e)=>{setMobileNumber(e.target.value)}} required/>
+                                <input type="number" name="Mobile Number" max="10"  placeholder="8600444543" pattern="[789][0-9]{9}" className="text-input" value={MobileNumber} onChange={(e)=>{setMobileNumber(e.target.value)}} required/>
                                 <label className="text-placeholder"> Mobile Number </label>                                                
                             </div>
                         </div>
@@ -203,7 +203,7 @@ return(
                         </div>
                         <div className="column-table-checkout">
                             <div className="flex-row  col-gap-2rem textField-container">  
-                                <input type="number" name="Zip/Postal"  placeholder="411002" className="text-input" value={ZipPostal} onChange={(e)=>{setZipPostal(e.target.value)}} required/>
+                                <input type="number" name="Zip/Postal" min="0" max="6"  placeholder="411002" className="text-input" value={ZipPostal} onChange={(e)=>{setZipPostal(e.target.value)}} required/>
                                 <label className="text-placeholder"> Zip/Postal </label>                                                
                             </div>
                         </div>
