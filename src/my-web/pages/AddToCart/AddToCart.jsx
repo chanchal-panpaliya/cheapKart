@@ -87,13 +87,13 @@ const handlecheckout=()=>{
         let extraoff = Number(item.data.extraOff);
         return ((sale_cost-extraoff)*quntity) + amount}, 0)
 
-    let discounttotal = gettotalamount - (gettotalamount * (getcoupanDiscount/100))
+    let discounttotal = gettotalamount - (gettotalamount * (getcoupanDiscount/100)) + 75
 
      let data = {
          Items : cartItems,
          Subamount:gettotalamount,
          Delivery:75,
-         Total: gettotalamount+75,
+         Total: gettotalamount + 75,
          Coupancode:getcoupancode,
          Discount:getcoupanDiscount,
          Finaltotal:discounttotal

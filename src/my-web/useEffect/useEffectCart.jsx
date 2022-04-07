@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+//context
 
 //all data
 export async function fetchAllCartData() {
@@ -144,16 +144,16 @@ export async function handleRegistration(data){
 
 //login
 export const handleLogin = async ({e,email,password,setFormData,props}) => {
-    e.preventDefault();
-    const navigator = useNavigate();
-
-    const { data: { foundUser, encodedToken } } = await axios({
-        method: 'post',
-        url: `/api/auth/login`,
-        data: {
-            email, password
-        }
-    })
+    // e.preventDefault();
+    // const {toastdispatch} = useContext(CartContext);
+    // const navigator = useNavigate();
+    // const { data: { foundUser, encodedToken } } = await axios({
+    //     method: 'post',
+    //     url: `/api/auth/login`,
+    //     data: {
+    //         email, password
+    //     }
+    // })
 }
 
 

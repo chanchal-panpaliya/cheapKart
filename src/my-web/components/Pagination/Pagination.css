@@ -1,40 +1,40 @@
 .pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paginationItem {
+  background: var(--color-white);
+  border: 2px solid var(--heighlight-color-grey);
+  border-radius: 50%;
+  height: 1rem;
+  width: 1rem;
+  position: relative;
+  margin: 0 0.313rem;
+  cursor: pointer;
+}
   
-  .paginationItem {
-    background: var(--color-white);
-    border: 2px solid var(--heighlight-color-grey);
-    border-radius: 50%;
-    height: 1rem;
-    width: 1rem;
-    position: relative;
-    margin: 0 0.313rem;
-    cursor: pointer;
-  }
-    
-  .prev,
-  .next {
-    background: var(--color-white);
-    border: none;
-    padding: 0.625rem;
-    color: var(--primary-color);
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
-    margin: 0 0.625rem;
-    cursor: pointer;
-  }
-  
-  .paginationItem.active {
-    border: 1px solid var(--backgroundcolor3);
-    color: var(--backgroundcolor3);
-    pointer-events: none;
-  }
-  
-  .prev.disabled,
-  .next.disabled {
-    pointer-events: none;
-    box-shadow: none;
-    color: var(--color-grey-dark);
-  }
+.prev,
+.next {
+  background: var(--color-white);
+  border: none;
+  padding: 0.625rem;
+  color: var(--primary-color);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  margin: 0 0.625rem;
+  cursor: pointer;
+}
+
+.paginationItem.active {
+  border: 1px solid var(--backgroundcolor3);
+  color: var(--backgroundcolor3);
+  pointer-events: none;
+}
+
+.prev.disabled,
+.next.disabled {
+  pointer-events: none;
+  box-shadow: none;
+  color: var(--color-grey-dark);
+}

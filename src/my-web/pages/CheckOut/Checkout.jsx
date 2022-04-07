@@ -1,6 +1,6 @@
 import './CheckOut.css';
 //react
-import { useContext ,useEffect} from 'react';
+import { useContext ,useEffect ,useState} from 'react';
 //component
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
@@ -10,10 +10,52 @@ import CartContext from '../../context/cart/CartContext';
 
 
 const Checkout=()=>{
-    const {checkoutdata} = useContext(CartContext);
+    const {checkoutdata,addressItem,billingItem,getbillingItem} = useContext(CartContext);
+
+    const [FirstName,SetFirstName]=useState("");
+    const [LastName,SetLastName]=useState("");
+    const [EmailId,SetEmailId]=useState("");
+
+
+  
+        const[BillerName,SetBillerName]=useState("");
+        const[BillerCounty,SetBillerCountry]=useState("");
+        const[BillerAddress,SetBillerAddress]=useState("");
+        const[BillerCity,SetBillerCity]=useState("");
+        const[BillerMobileNumber,SetBillerMobileNumber]=useState("");
+        const[BillerState,SetBillerState]=useState("");
+        const[BillerZipPostal,SetBillerZipPostal]=useState("")
+     
+
+    
+
     useEffect(()=>{
         window.scrollTo({ behavior: 'smooth', top: '0px' });
+        if(localStorage.getItem("login")!==null){
+             let getuserinfo = JSON.parse(localStorage.getItem("login"))
+             SetFirstName(getuserinfo[0].FirstName) 
+             SetLastName(getuserinfo[0].LastName)  
+             SetEmailId(getuserinfo[0].email)  
+        }
+        
     },[])
+
+    useEffect(()=>{
+       let time = setTimeout(()=>{
+        if(billingItem!==""){
+            SetBillerName(billingItem.FirstName)
+            SetBillerAddress(billingItem.Address)
+            SetBillerCity(billingItem.City)
+            SetBillerMobileNumber(billingItem.MobileNumber)
+            SetBillerState(billingItem.State)
+            SetBillerZipPostal(billingItem.ZipPostal)
+        }
+       },0)
+       return ()=>{clearTimeout(time)}
+    })
+
+   
+
     return(
         <div>
         <Header/>
@@ -80,17 +122,17 @@ const Checkout=()=>{
                <section className='flex-col row-gap-2rem'>
                    <article> 
                         <h4> Customer-Info </h4>
-                        <form className="table-checkout"> 
+                        <section className="table-checkout"> 
                                 <div className="row-table-checkout">
                                     <div className="column-table-checkout">
                                         <div className="flex-row  col-gap-2rem textField-container">  
-                                            <input type="text" name="firstName"  placeholder="John" className="text-input"  required/>
+                                            <input type="text" name="firstName" value={FirstName} onChange={(e)=>SetFirstName(e.target.value)}  placeholder="John" className="text-input"  required/>
                                             <label className="text-placeholder"> Enter First Name </label>                                                
                                         </div>
                                     </div>
                                     <div className="column-table-checkout">
                                     <div className="flex-row  col-gap-2rem textField-container">  
-                                            <input type="text" name="lastName"  placeholder="Snow" className="text-input"  required/>
+                                            <input type="text" name="lastName" value={LastName} onChange={(e)=>{SetLastName(e.target.value)}} placeholder="Snow" className="text-input"  required/>
                                             <label className="text-placeholder"> Enter Last Name </label>                                                
                                         </div>
                                     </div>
@@ -98,46 +140,15 @@ const Checkout=()=>{
                                 <div className="row-table-checkout">
                                     <div className="column-table-checkout">
                                         <div className="flex-row  col-gap-2rem textField-container">  
-                                            <input type="email" name="email-id"  placeholder="JohnSnow@gmail.com" className="text-input"  required/>
+                                            <input type="email" name="email-id" value={EmailId} onChange={(e)=>{SetEmailId(e.target.value)}} placeholder="JohnSnow@gmail.com" className="text-input"  required/>
                                             <label className="text-placeholder"> Email-id </label>                                                
                                         </div>
                                     </div>
                                     <div className="column-table-checkout">
-                                    <div className="flex-row  col-gap-2rem textField-container">  
-                                            <input type="number" name="Mobile Number"  placeholder="8600444543" className="text-input"  required/>
-                                            <label className="text-placeholder"> Mobile Number </label>                                                
-                                        </div>
+
                                     </div>
-                                </div>
-                                <div className="row-table-checkout">
-                                    <div className="column-table-checkout">
-                                        <div className="flex-row  col-gap-2rem textField-container">  
-                                            <input type="text" name="Address"  placeholder="shivaji nagar pune" className="text-input"  required/>
-                                            <label className="text-placeholder"> Address </label>                                                
-                                        </div>
-                                    </div>
-                                    <div className="column-table-checkout">
-                                        <div className="flex-row  col-gap-2rem textField-container">  
-                                            <input type="text" name="State"  placeholder="maharashtra" className="text-input"  required/>
-                                            <label className="text-placeholder"> State </label>                                                
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row-table-checkout">
-                                    <div className="column-table-checkout">
-                                        <div className="flex-row  col-gap-2rem textField-container">  
-                                            <input type="text" name="City"  placeholder="pune" className="text-input"  required/>
-                                            <label className="text-placeholder"> City </label>                                                
-                                        </div>
-                                    </div>
-                                    <div className="column-table-checkout">
-                                        <div className="flex-row  col-gap-2rem textField-container">  
-                                            <input type="number" name="Zip/Postal"  placeholder="411002" className="text-input"  required/>
-                                            <label className="text-placeholder"> Zip/Postal </label>                                                
-                                        </div>
-                                    </div>
-                                </div>
-                        </form>
+                                </div> 
+                        </section>
                    </article>
                    <article>
                         <h4> Payment Info </h4>
@@ -196,22 +207,34 @@ const Checkout=()=>{
                         <form className="table-checkout"> 
                                 <div className="row-table-checkout">
                                     <div className="column-table-checkout">
-                                        <label>
-                                            <input type="checkbox" name='billing address'/>
-                                            Billing Address is same as shipping addres
-                                        </label>
+                                        {
+                                            addressItem.length>0 ?
+                                            addressItem.map((item,index)=>{
+                                                let key=1;
+                                                key = key + index;
+                                                return(
+                                                    <label>
+                                                        <input type="radio" name="address" onChange={()=>getbillingItem(item)}/>
+                                                        Address {key}
+                                                    </label>
+                                                )
+                                            })
+                                            :
+
+                                            null
+                                        }
                                     </div>
                                 </div>
                                 <div className="row-table-checkout">
                                     <div className="column-table-checkout">
                                         <div className="flex-row  col-gap-2rem textField-container">  
-                                            <input type="text" name="creditcardnumber"  placeholder="Billing Name" className="text-input"  required/>
+                                            <input type="text" value={BillerName} onChange={(e)=>{SetBillerName(e.target.value)}} name="creditcardnumber"  placeholder="Billing Name" className="text-input"  required/>
                                             <label className="text-placeholder"> Billing Name </label>                                                
                                         </div>
                                     </div>
                                     <div className="column-table-checkout">
                                         <div className="flex-row  col-gap-2rem textField-container">  
-                                            <input type="text" name="Country"  placeholder="Country" className="text-input"  required/>
+                                            <input type="text" value={BillerCounty} onChange={(e)=>{SetBillerCountry(e.target.value)}} name="Country"  placeholder="Country" className="text-input"  required/>
                                             <label className="text-placeholder"> Country </label>                                                
                                         </div>
                                     </div>
@@ -219,13 +242,13 @@ const Checkout=()=>{
                                 <div className="row-table-checkout">
                                     <div className="column-table-checkout">
                                         <div className="flex-row  col-gap-2rem textField-container">  
-                                            <input type="text" name="Address"  placeholder="shivaji nagar pune" className="text-input"  required/>
+                                            <input type="text" name="Address" value={BillerAddress} onChange={(e)=>{SetBillerAddress(e.target.value)}} placeholder="shivaji nagar pune" className="text-input"  required/>
                                             <label className="text-placeholder"> Address </label>                                                
                                         </div>
                                     </div>
                                     <div className="column-table-checkout">
                                         <div className="flex-row  col-gap-2rem textField-container">  
-                                            <input type="text" name="State"  placeholder="maharashtra" className="text-input"  required/>
+                                            <input type="text" name="State" value={BillerState} onChange={(e)=>{SetBillerState(e.target.value)}}  placeholder="maharashtra" className="text-input"  required/>
                                             <label className="text-placeholder"> State </label>                                                
                                         </div>
                                     </div>
@@ -233,14 +256,22 @@ const Checkout=()=>{
                                 <div className="row-table-checkout">
                                     <div className="column-table-checkout">
                                         <div className="flex-row  col-gap-2rem textField-container">  
-                                            <input type="text" name="City"  placeholder="pune" className="text-input"  required/>
+                                            <input type="text" name="City" value={BillerCity} onChange={(e)=>{SetBillerCity(e.target.value)}}  placeholder="pune" className="text-input"  required/>
                                             <label className="text-placeholder"> City </label>                                                
                                         </div>
                                     </div>
                                     <div className="column-table-checkout">
                                         <div className="flex-row  col-gap-2rem textField-container">  
-                                            <input type="number" name="Zip/Postal"  placeholder="411002" className="text-input"  required/>
+                                            <input type="number" name="Zip/Postal" value={BillerZipPostal} onChange={(e)=>{SetBillerZipPostal(e.target.value)}} placeholder="411002" className="text-input"  required/>
                                             <label className="text-placeholder"> Zip/Postal </label>                                                
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row-table-checkout">
+                                    <div className="column-table-checkout">
+                                        <div className="flex-row  col-gap-2rem textField-container">  
+                                            <input type="text" name="City" value={BillerMobileNumber} onChange={(e)=>{SetBillerMobileNumber(e.target.value)}} placeholder="pune" className="text-input"  required/>
+                                            <label className="text-placeholder"> Mobile Number </label>                                                
                                         </div>
                                     </div>
                                 </div>

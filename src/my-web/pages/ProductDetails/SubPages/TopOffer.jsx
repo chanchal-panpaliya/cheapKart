@@ -50,16 +50,22 @@ const TopOffer_ProductDetails=(props)=>{
                 </div>            
                 {/* button */}
                 <div className='pd-buttons'>
-                    <button class={checkcart?"button bg-cr-disable" :"button bg-cr-addtocart "} 
-                                    onClick={()=>{addToCart(props)}} 
-                                    disabled={checkcart}> 
-                                    {checkcart ? "Product Added" :"Add To Cart"}  
-                    </button>
-                    <button class={checkwishlist?"button bg-cr-disable":"button bg-cr-addtowishlist "} 
-                                    onClick={()=>{ addToWishList(props) }} 
-                                    disabled={checkwishlist}> 
-                                    {checkwishlist?"Saved":"Add To Wishlist"} 
-                    </button>
+                {
+                    localStorage.getItem("login") != null?
+                    <>
+                      <button class={checkcart?"button bg-cr-disable" :"button bg-cr-addtocart "} 
+                                onClick={()=>{addToCart(props)}} 
+                                disabled={checkcart}> 
+                                 {checkcart ? "Product Added" :"Add To Cart"}  
+                      </button>
+                      <button class={checkwishlist?"button bg-cr-disable":"button bg-cr-addtowishlist "} 
+                                        onClick={()=>{ addToWishList(props) }} 
+                                        disabled={checkwishlist}> 
+                                        {checkwishlist?"Saved":"Add To Wishlist"} 
+                       </button>
+                    </>:
+                    null
+                }
                 </div>
             </div>
             <div className='pd-details-container'>

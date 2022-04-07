@@ -9,6 +9,7 @@ import ProductList from './my-web/pages/ProductList/ProductList';
 import ProductDetails from './my-web/pages/ProductDetails/ProductDetails';
 import Checkout from './my-web/pages/CheckOut/Checkout';
 import PageNotFound from './my-web/pages/404error/pagenotfound';
+import Profile from './my-web/pages/Profile/Profile';
 //Toast
 import { Toast } from './my-web/components/Toast/Toast';
 //constext
@@ -18,18 +19,32 @@ import CartContext from './my-web/context/cart/CartContext';
 
 function App() {
   const {toastList} = useContext(CartContext);
+  
   return (
     <div className="container">
       <div>
         <Router>
          <Routes>
                <Route exact path="/" element={<Home/>}/>
-               <Route path="/addtocart" element={<AddToCart/>} />
-               <Route path="/addtowishlist" element={<AddToWishList/>} />
                <Route path="/product" element={<ProductList/>}/>
                <Route path="/productDetails/:id" element={<ProductDetails/>}/>
-               <Route path="/checkout" element={<Checkout/>}/>
                <Route path="*" element={<PageNotFound/>}/>
+               {
+                 localStorage.getItem("login") != null?
+                 <>
+                    <Route path="/addtocart" element={<AddToCart/>} />
+                    <Route path="/addtowishlist" element={<AddToWishList/>} />
+                    <Route path="/checkout" element={<Checkout/>}/>
+                    <Route path="/profile" element={<Profile/>}/>
+                 </>:
+                 <>
+                    <Route path="/addtocart" element={<Home/>} />
+                    <Route path="/addtowishlist" element={<Home/>} />
+                    <Route path="/checkout" element={<Home/>}/>
+                    <Route path="/profile" element={<Home/>}/>
+                 </>
+               }
+               
          </Routes>
         </Router>  
         <Toast data={toastList} />

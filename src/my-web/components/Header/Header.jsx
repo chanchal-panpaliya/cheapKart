@@ -21,18 +21,35 @@ const Header =() =>{
     const [alldata,setalldata] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
     const {cartItems,wishlist,getSingleSelectedData} = useContext(CartContext);
-    const navigate = useNavigate();
-    const [getid_product,setid_product] = useState("");
+    const [islogin,setlogin]=useState(false);
+    const [logoutclick,setlogoutclick]=useState(false);
+    const [auth_data,Set_auth_data]=useState([]);
+    const navigator = useNavigate()
      
-    
+    useEffect(()=>{
+        let time = setTimeout(()=>{
+            
+            if(localStorage.getItem("login") != null ){
+                Set_auth_data(JSON.parse(localStorage.getItem("login")))
+                setlogin(true)
+            }
+
+            if(logoutclick){
+                   localStorage.removeItem('login')
+                   window.location.reload(false)
+                   navigator("/") 
+            }
+        },0)
+        return ()=>clearTimeout(time)
+    })
     
     useEffect(()=>{
         fetchAllCartData().then(function(result){
             setalldata(result)  
         });
+          
      },[])
 
-  
      const handleChange =(e)=>{
         setTitle(e.target.value);
         let filterdatabytitle = alldata.filter((item)=>{
@@ -48,6 +65,9 @@ const Header =() =>{
          setSearchResults([])
          setTitle('')
       }
+
+
+ 
 
     return(
      <div className='header-container'>
@@ -86,35 +106,59 @@ const Header =() =>{
               {/* /Login/ */}
               <div className='header-right-container'>
                   <div className='header-login-container'>
-                        <button className='header-button-login'> Login </button>
+                        <button className='header-button-login'> {islogin?"Logout":"Login"}  </button>
                         <div class="dropdown-login-content">
-                            <a href="#" onClick={(e)=>setflagAuth_SignUp(true)} > 
-                                Sign Up
-                            </a>
+                            { islogin ? auth_data.map((item)=>{return <b> Hi! {item.FirstName}</b>}) : null}
+                            { islogin ? <Link to="/profile"> Profile </Link> : null}
+                            {
+                                islogin ? 
+                                 <button className='logout-button' onClick={()=>{setlogoutclick(true)}}> logout </button>
+                                 : 
+                                 <a href="#" onClick={(e)=>setflagAuth_SignUp(true)} > Sign Up </a>
+                            }
                         </div>
                   </div>
                   <div className='header-more-container'>
                         <button className='header-button-more'> More </button>
                         <div class="dropdown-more-content">
-                            <Link to="/addtowishlist"> Wish List ({wishlist.length}) </Link>
+                           {
+                               islogin? <Link to="/addtowishlist"> Wish List ({wishlist.length}) </Link> : <Link to="/"> Wish List (0) </Link>
+                           } 
                         </div>
                   </div>
                   <div>
-                     <Link to="/addtocart"> 
-                        <button className='header-button-cart'> 
-                        {cartItems.length>0?
-                          <div className='itemcount'>
-                              <span>
-                                  {cartItems.length}
-                              </span>
-                          </div>:""} 
-                        <i class="fa-solid fa-cart-shopping"></i>
-                          <b> Cart </b>
-                        </button>
-                        </Link>
+                      {
+                          islogin?
+                          <Link to="/addtocart"> 
+                          <button className='header-button-cart'> 
+                          {cartItems.length>0?
+                            <div className='itemcount'>
+                                <span>
+                                    {cartItems.length}
+                                </span>
+                            </div>:""} 
+                          <i class="fa-solid fa-cart-shopping"></i>
+                            <b> Cart </b>
+                          </button>
+                          </Link>
+                          :
+                          <Link to="/"> 
+                          <button className='header-button-cart'> 
+                          {cartItems.length>0?
+                            <div className='itemcount'>
+                                <span>
+                                    0
+                                </span>
+                            </div>:""} 
+                          <i class="fa-solid fa-cart-shopping"></i>
+                            <b> Cart </b>
+                          </button>
+                          </Link>
+                      }
                   </div>
               </div>
               <div className='header-right-end'>
+                    
               </div>
         </div>
 
@@ -122,8 +166,7 @@ const Header =() =>{
     / only changing a data without close modal component /
     / not used router for modal - bz header is outsider component - router not work here/
     here i'm passing a data as a component for routing feature.
-    date 4-4-22 : initially i was new to react.now i know what i did mistake .i will update code. 
-
+    date 7-4-22 : initially i was new to react.now i know what i did mistake .i will update code. 
     */}
 
         {flagAuth_SignUp?

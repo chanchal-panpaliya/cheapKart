@@ -46,6 +46,9 @@ const CardProduct1=(props)=>{
                     </Link>
                     <div className="flex-row col-gap-2rem flex-justify-content-end product-card-bottom">
 
+                     {
+                       localStorage.getItem("login") != null?
+                       <>
                         <button class={checkedwishlist?"fa-solid fa-heart":"fa-solid fa-heart curser-pointer"} 
                                 onClick={()=>{ addToWishList(props) }} 
                                 disabled={checkedwishlist}>  
@@ -55,6 +58,11 @@ const CardProduct1=(props)=>{
                                 onClick={()=>addToCart(props)} 
                                 disabled={checkedcart}>  
                         </button>
+                       </>
+                       :
+                       null
+                     }
+                       
                     
                   </div>
              </div>
@@ -67,11 +75,8 @@ const CardProduct1=(props)=>{
 
 const Card_ProductList=(props)=>{
     const {addToCart,addToWishList,getSingleSelectedData,cartItems,wishlist} = useContext(CartContext)
- 
      let checkedcart = cartItems.find((item)=>{ return item.data._id === props.data._id })
      let checkedwishlist = wishlist.find((item)=>{ return item.data._id === props.data._id })
-   
-    
     return(
         <> 
         {
@@ -141,18 +146,24 @@ const Card_ProductList=(props)=>{
                       <div>
                         <div className="productlist_card-card-button">
 
-                       
+                        {
+                           localStorage.getItem("login") != null?
+                           <>
+                            <button class={checkedcart?"button bg-cr-disable" :"button bg-cr-addtocart "} 
+                                  onClick={()=>{addToCart(props)}} 
+                                  disabled={checkedcart}> 
+                                  {checkedcart ? "Product Added" :"Add To Cart"}  
+                            </button>
+                            <button class={checkedwishlist?"button bg-cr-disable":"button bg-cr-addtowishlist "} 
+                                  onClick={()=>{ addToWishList(props) }} 
+                                  disabled={checkedwishlist}> 
+                                  {checkedwishlist?"Saved":"Add To Wishlist"} 
+                            </button>
+                           </>
+                           :
+                          null
+                        }
 
-                        <button class={checkedcart?"button bg-cr-disable" :"button bg-cr-addtocart "} 
-                                onClick={()=>{addToCart(props)}} 
-                                disabled={checkedcart}> 
-                                 {checkedcart ? "Product Added" :"Add To Cart"}  
-                        </button>
-                        <button class={checkedwishlist?"button bg-cr-disable":"button bg-cr-addtowishlist "} 
-                                onClick={()=>{ addToWishList(props) }} 
-                                disabled={checkedwishlist}> 
-                                 {checkedwishlist?"Saved":"Add To Wishlist"} 
-                        </button>
                          </div>
                         </div>
                 </div>
@@ -195,7 +206,10 @@ const CardTOPOFFER=(props)=>{
                  </div>
                  </Link>
                  <div className="flex-row col-gap-2rem flex-justify-content-end product-card-bottom">
-                        <button class={checkedwishlist?"fa-solid fa-heart":"fa-solid fa-heart curser-pointer"} 
+                   {
+                     localStorage.getItem("login") != null?
+                     <>
+                       <button class={checkedwishlist?"fa-solid fa-heart":"fa-solid fa-heart curser-pointer"} 
                                 onClick={()=>{ addToWishList(props) }} 
                                 disabled={checkedwishlist}>  
                         </button>
@@ -204,6 +218,11 @@ const CardTOPOFFER=(props)=>{
                                 onClick={()=>addToCart(props)} 
                                 disabled={checkedcart}>  
                         </button>
+                     </>
+                     :
+                     null
+                   }
+                        
                 </div>
             </div>
          }
@@ -243,13 +262,19 @@ const CardWishList=(props)=>{
                   </div>
                  </Link>
                  <div className="flex-row col-gap-2rem flex-justify-content-end product-card-bottom">
-
+                    {
+                      localStorage.getItem("login") != null?
+                      <>
                         <button class={checkedcart?"fa-solid fa-basket-shopping ":"fa-solid fa-basket-shopping curser-pointer" } 
                                 onClick={()=>{addToCart(props.data);removeWishList(props.data.data._id)}} 
                                 disabled={checkedcart}>  
                         </button>
 
                       <button class="fa-solid fa-xmark curser-pointer" onClick={()=>removeWishList(props.data.data._id)}></button>
+                      </>
+                      :
+                      null
+                    }  
                 </div>
             </div>
          }

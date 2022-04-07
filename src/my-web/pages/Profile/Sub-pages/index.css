@@ -1,0 +1,26 @@
+.address-button-remove{
+   background: var(--heighlight-color-red);
+   color: var(--color-white);
+   padding: 0.5rem;
+   margin-left: 2rem;
+}
+
+
+.address-button-add{
+    background: var(--primary-color);
+    color: var(--color-white);
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.address-button-edit{
+    background: var(--secondary-color);
+    color: var(--color-white);
+    padding: 0.5rem;
+    margin-left: 2rem;
+}
+
+.address-fun-button{
+    display: flex;
+    column-gap: 2rem;
+}

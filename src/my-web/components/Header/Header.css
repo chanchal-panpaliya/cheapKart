@@ -201,36 +201,17 @@
   }
     
 /**/
-
-@media (max-width: 300px){
-    .header-container-flex{
-        justify-content: center;
-        row-gap: 1rem;
-    }
-    .header-search{
-        display: flex
-    }
-
-    .header-search-input{
-         width: -webkit-fill-available;
-    }
-    .header-left-end , .header-right-end{
-        width: auto;
-    }
-    .header-right-container{
-        justify-content: center;
-    }
-
-    .searchResults{
-        width: 20vh;
-    }
-  }
+.logout-button{
+    padding: 0.5rem;
+    background-color: var(--secondary-color);
+    color: var(--color-white);
+}
+/*/
 
 /* Extra small devices (phones, 600px and down) */
 @media (max-width: 400px){
     .searchResults{
         width: 25vh;
-        /* top:6.5rem; */
     }
 }  
 

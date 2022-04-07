@@ -1,12 +1,14 @@
 //react
-import axios from "axios";
-import { useState ,useRef } from 'react';
+import { useState ,useRef,useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 //css
 import './Auth.css';
 //img
 import loginImg from '../../img/login-image.png';
 //api
 import { handleRegistration ,handleLogin} from '../../useEffect/useEffectCart';
+//context
+import CartContext from '../../context/cart/CartContext';
 
 
 const AuthModal=(props)=>{
@@ -47,6 +49,9 @@ const Login=(props)=>{
     const [formData, setFormData] = useState(formInitialState);
     const { email, password, rememberMe } = formData;
     const [hideshowpassword,sethideshowpassword]=useState(false);
+    const navigator = useNavigate();
+    const [error, setError] = useState("");
+
 
     const handleInput = (e) =>
     setFormData((prevFormData) => ({
@@ -61,10 +66,30 @@ const Login=(props)=>{
     }));
 
 
+const handleLoginLocal =()=>{
+    //local login
+    if(email === "adarshbalika@gmail.com" && password==="adarshbalika"){
+        let data = [{
+            id:1,
+            FirstName:"Adarsh",
+            LastName:"Balika",
+            email:"adarshbalika@gmail.com",
+            password:"adarshbalika"
+        }]
+        localStorage.setItem("login", JSON.stringify(data));
+        setError("")
+        props.onClose()
+        navigator("/") 
+    }else{
+        setError("username and password not match with testCredentials")
+    }
+}
+
+
     return(
         <div className='flex-col'>
             <h4>  Login </h4>
-            <form onSubmit={(e)=>handleLogin({e,email,password,setFormData})}>
+            <section>
                     <div className="flex-row  col-gap-2rem textField-container">  
                         <input type="email" name="email" value={email} placeholder="johndoe@gmail.com" autocomplete="off" className="text-input" 
                         onChange={handleInput} required/>
@@ -85,14 +110,16 @@ const Login=(props)=>{
                     </div>
 
                     {email && password && (
-                        <button type='submit' className={'button button-login'} onClick={props.onClose}> Login </button>
+                        <button type='submit' className={'button button-login'} onClick={handleLoginLocal}> Login with credentials</button>
                     )}
+
                     
-            </form> 
+                    
+            </section> 
                <br/><br/>
               <button type='button' onClick={() =>  setFormData(testCredentials)} className={'button button-login'}>  Use test credentials </button>
                
-         
+              {error}
             <div className='flex-row flex-justify-content-flex-space-between typology-padding-top'>
                 <a  onClick={props.FPopen}> forgot password ? </a>
                 <a  onClick={props.Ropen}> Registartion </a>

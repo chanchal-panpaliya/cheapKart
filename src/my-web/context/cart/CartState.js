@@ -5,6 +5,7 @@ import ToastReducer from '../Toast/ToastReducer';
 import FilterReducer from "../Filterdata/FilterReducer";
 import { checkout_reducer } from "../checkout/checkout";
 import {MenuReducer,SingleProductData} from "../menu/MenuReducer";
+import { AddressReducer } from "../address/addressReducer";
 
 const CartState =({ children })=>{
 
@@ -12,8 +13,6 @@ const cartItems=
     localStorage.getItem("cartItems") == null
       ? []
       : JSON.parse(localStorage.getItem("cartItems"))
-
-
 
 const wishlist =
     localStorage.getItem("wishlist") == null
@@ -24,6 +23,11 @@ const checkoutdata =
       localStorage.getItem("checkoutdata") == null
         ? ""
         : JSON.parse(localStorage.getItem("checkoutdata"))
+
+const addressItem =
+        localStorage.getItem("address") == null
+          ? ""
+          : JSON.parse(localStorage.getItem("address"))
 
 
     // add cart
@@ -43,13 +47,18 @@ const checkoutdata =
     const [singledata,singledatadispatch] = useReducer(SingleProductData,{getsingledata:""})
     //chcekout data
     const [checkout,checkoutdispatch]=useReducer(checkout_reducer,{checkoutdata})
+    //address management
+    const [address,addressdispatch]=useReducer(AddressReducer,{addressItem,billingItem:[]});
 
    //useeffect
    useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
-    localStorage.setItem("wishlist", JSON.stringify(state.wishlist));
-    localStorage.setItem("checkoutdata", JSON.stringify(checkout.checkoutdata));
-  }, [state.cartItems,state.wishlist,checkout.checkoutdata]);
+     if(localStorage.getItem("login") != null){
+        localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+        localStorage.setItem("wishlist", JSON.stringify(state.wishlist));
+        localStorage.setItem("checkoutdata", JSON.stringify(checkout.checkoutdata));
+        localStorage.setItem("address", JSON.stringify(address.addressItem));
+     }
+  }, [state.cartItems,state.wishlist,checkout.checkoutdata,address.addressItem]);
 
 
     //singledata
@@ -107,6 +116,27 @@ const checkoutdata =
     checkoutdispatch({type:'CHECKOUT_DATA',payload:item})
    }
 
+   //add address
+   const addAddress=(item)=>{
+    addressdispatch({type:'ADD_ADDRESS',payload:item})
+    toastdispatch({type:'SUCCESS',payload:"Address Added"})
+   }
+   //edit
+   const editAddress=(item)=>{
+     addressdispatch({type:'Edit_ADDRESS',payload:item}) 
+     toastdispatch({type:'INFO',payload:"Address EDITED"})
+   }
+   //delete
+   const deleteAddress=(id)=>{
+    addressdispatch({type:'Delete_ADDRESS',payload:id}) 
+    toastdispatch({type:'DANGER',payload:"Address removed"})
+  }
+
+  //selected
+  const getbillingItem=(item)=>{
+    addressdispatch({type:'Billing_Address',payload:item})
+  }
+
     return(
         <CartContext.Provider value={{
             showcart : state.showCart,
@@ -117,6 +147,8 @@ const checkoutdata =
             selectedMenu:menu.selectedMenu,
             getsingledata:singledata.getsingledata,
             checkoutdata:checkout.checkoutdata,
+            addressItem:address.addressItem,
+            billingItem:address.billingItem,
             filter,
             //
             filterdispatch,
@@ -132,7 +164,13 @@ const checkoutdata =
             //
             getSingleSelectedData,
             //
-            getcheckoutdata
+            getcheckoutdata,
+            //
+            addAddress,
+            editAddress,
+            deleteAddress,
+            //
+            getbillingItem
         
         }}>
             { children }

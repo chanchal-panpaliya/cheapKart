@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease-in-out;
-  z-index: 3;
+  z-index: 4;
 }
 
 .modal-container{
@@ -50,7 +50,7 @@
 
 .modal-close{
   position: absolute;
-  top: -1rem;
+  top: 0;
   right: 0;
   color: var(--primary-color);
   cursor: pointer;
@@ -81,6 +81,10 @@
   color: var(--font-color);
   width: fit-content;
   padding: 1rem;
+}
+
+.modal-close-modal{
+  cursor: pointer;
 }
 
 /* Extra small devices (phones, 600px and down) */

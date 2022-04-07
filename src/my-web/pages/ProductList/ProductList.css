@@ -43,6 +43,11 @@
 
 .bottom-filter{
     display: none;
+    /* position: fixed;
+    bottom: 1;
+    background-color: var(--color-white);
+    width:-webkit-fill-available;
+    padding: 1rem; */
 }
 
 .bottom-filter-button{
@@ -53,6 +58,7 @@
 
 
 /*----------------*/
+
 .top-offer-img{
     width: 100%;
     height: 100%;
