@@ -15,20 +15,21 @@ https://user-images.githubusercontent.com/28673856/162247850-e25a3c6c-e7f0-489c-
 <b> Features </b>
 
 1. Authentication using local storage  (Login, Logout , Signup form) 
-2. Landing page with featured categories
-3. Product Listing Page
-4. Sort and filter products
-5. Cart Management (Add to cart, +/- items in cart, remove from cart, add to wishlist from cart)
-6. Wishlist Management (Add / remove from the wishlist, move items to cart)
-7. Search for an item 
-8. Checkout page 
-9. User Profile Page
-10. Address management
-11. Single Product Page
-12. Apply Coupon
-13. Pagination on product listing page
-14. Order Summary of the ordered items
-15. Share Cart 
+{email : "adarshbalika@gmail.com" , password:"adarshbalika" }
+3. Landing page with featured categories
+4. Product Listing Page
+5. Sort and filter products
+6. Cart Management (Add to cart, +/- items in cart, remove from cart, add to wishlist from cart)
+7. Wishlist Management (Add / remove from the wishlist, move items to cart)
+8. Search for an item 
+9. Checkout page 
+10. User Profile Page
+11. Address management
+12. Single Product Page
+13. Apply Coupon
+14. Pagination on product listing page
+15. Order Summary of the ordered items
+16. Share Cart 
 
 <b> Additional Things </b>
 - Fully responsive
