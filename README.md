@@ -1,7 +1,11 @@
 <h1> cheapKart </h1>
 <hr/>
-<br/>
-![image](https://user-images.githubusercontent.com/28673856/167381016-e1faec25-78bb-4bda-b686-a3bedc04b7a3.png)
+<b
+
+https://user-images.githubusercontent.com/28673856/167382081-63fde769-0f46-43d6-bc48-30ecdc5bddc3.mp4
+
+r/>
+
 <br/>
 <b> About </b>
 - cheapKart is an eCommerce app for all categories.
