@@ -110,6 +110,9 @@ const ProductList=()=>{
    const ListTopOffer =()=>{
        return(
         <div className='product-container'>
+            <div className='display-filter'>
+                <Filter layout={""} originaldata={data} filterselectedMenu={selectedMenu} filterListdata={finalFilteredProducts}/> 
+            </div>
           <div> 
             <div className='display-cart'> 
                 <div className='display-topoffer-container'>
@@ -120,18 +123,22 @@ const ProductList=()=>{
                      <div className='typography-padding-top-right-bottom-left top-offer-cart-display'>
                      {  
                        loader? <Loader/> :
-                        data.length>0?
+                       finalFilteredProducts.length>0?
 
-                            data.map((slide,index)=>{
+                            finalFilteredProducts.map((slide,index)=>{
                                 return(
                                     <CardTOPOFFER data={slide} key={index}/>
                                 )
                             }) 
-                        : <div> empty </div>   
+                        : <div> no data </div>   
                     }
                      </div>
                 </div>
             </div>
+        </div>
+        <div className='bottom-filter'>
+             <button onClick={(e)=>SetOpenBottomFilter(!openbottomfilter)} className='bottom-filter-button'> Filter </button>
+             {openbottomfilter?<div> <Filter layout={"mobile"} originaldata={data} filterselectedMenu={selectedMenu} filterListdata={finalFilteredProducts}/> </div> : null}
         </div>
     </div>
     )
