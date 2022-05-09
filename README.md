@@ -1,8 +1,11 @@
 <h1> cheapKart </h1>
 <hr/>
+<br/>
+![image](https://user-images.githubusercontent.com/28673856/167381016-e1faec25-78bb-4bda-b686-a3bedc04b7a3.png)
+<br/>
 <b> About </b>
 - cheapKart is an eCommerce app for all categories.
-<br/>
+<br/><br/>
 <b> Tech Stack </b>
 -React.js and Mockbee 
 
