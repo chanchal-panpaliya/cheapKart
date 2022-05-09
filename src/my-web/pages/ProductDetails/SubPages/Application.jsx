@@ -11,7 +11,7 @@ import { Modal } from '../../../components/Modal/Modal';
 //context
 import CartContext from '../../../context/cart/CartContext';
 //api
-import { fetchAllApplicationData } from "../../../useEffect/useEffectCart";
+import { fetchAllApplicationData , addToCartHandler,addToWishlistHandler} from "../../../useEffect/useEffectCart";
 
 const Application_ProductDetails = (props) =>{
     const { addToCart,addToWishList,menuselected,getSingleSelectedData ,getsingledata,cartItems,wishlist} = useContext(CartContext);
@@ -51,15 +51,17 @@ return(
             {/* button */}
             <div className='pd-buttons'>
                 {
-                    localStorage.getItem("login") != null?
+                    localStorage.getItem("token") != null?
                     <>
                       <button class={checkcart?"button bg-cr-disable" :"button bg-cr-addtocart "} 
-                                onClick={()=>{addToCart(props)}} 
+                      
+                                onClick={(e)=>{addToCartHandler(e,props,addToCart)}} 
                                 disabled={checkcart}> 
+
                                  {checkcart ? "Product Added" :"Add To Cart"}  
                       </button>
                       <button class={checkwishlist?"button bg-cr-disable":"button bg-cr-addtowishlist "} 
-                                        onClick={()=>{ addToWishList(props) }} 
+                                        onClick={(e)=>{ addToWishlistHandler(e,props,addToWishList); }} 
                                         disabled={checkwishlist}> 
                                         {checkwishlist?"Saved":"Add To Wishlist"} 
                        </button>

@@ -26,10 +26,12 @@ const Header =() =>{
     const [islogin,setlogin]=useState(false);
     const [logoutclick,setlogoutclick]=useState(false);
     const [auth_data,Set_auth_data]=useState([]);
+    const [token,settoken]=useState("");
     const navigator = useNavigate()
  
 
     useEffect(()=>{
+
         fetchAllCartData().then(function(result){
             setalldata(result)  
         });
@@ -38,18 +40,23 @@ const Header =() =>{
 
          
      useEffect(()=>{
-        let time = setTimeout(()=>{
-            if(localStorage.getItem("login") != null ){
-                Set_auth_data(JSON.parse(localStorage.getItem("login")))
+         let time = setTimeout(()=>{
+            if(localStorage.getItem("token") != null ){
+                settoken(localStorage.getItem("token"))
+                Set_auth_data(JSON.parse(localStorage.getItem("user")))
                 setlogin(true)
             }
-        },0)
-        return ()=>clearTimeout(time)
+         },0)
+         return ()=>clearTimeout(time)
     })
 
+
      const handleLogout=(e)=>{
-        if (localStorage.getItem('login')!=null) { 
-            localStorage.removeItem('login')  
+        if (localStorage.getItem('token')!= null) { 
+                localStorage.removeItem("cartItems")
+                localStorage.removeItem("token")
+                localStorage.removeItem("user")
+                localStorage.removeItem("wishlist")
             window.location.reload();
             navigator("/") 
         }
@@ -108,15 +115,17 @@ const Header =() =>{
               {/* /Login/ */}
               <div className='header-right-container'>
                   <div className='header-login-container'>
-                        <button className='header-button-login'> {islogin?"Logout":"Login"}  </button>
+                        <button className='header-button-login'> {localStorage.getItem("token") != null?"Logout":"Login"}  </button>
                         <div class="dropdown-login-content">
-                            { islogin ? auth_data.map((item)=>{return <b> Hi! {item.FirstName}</b>}) : null}
-                            { islogin ? <Link to="/profile"> Profile </Link> : null}
+                            { localStorage.getItem("token") != null ?  <b> Hi! {auth_data.firstName || auth_data.firstname}</b> : null}
+                            { localStorage.getItem("token") != null ? <Link to="/profile"> Profile </Link> : null}
                             {
-                                islogin ? 
+                                localStorage.getItem("token") != null ? 
                                  <button className='logout-button' onClick={handleLogout}> logout </button>
                                  : 
-                                 <a href="#" onClick={(e)=>setflagAuth_SignUp(true)} > Sign Up </a>
+                                 <a href="#" onClick={(e)=>setflagAuth_SignIn(true)} className="flex-row flex-justify-content-center flex-align-item-center"> 
+                                   <b> Login </b> 
+                                 </a>
                             }
                         </div>
                   </div>
@@ -124,13 +133,13 @@ const Header =() =>{
                         <button className='header-button-more'> More </button>
                         <div class="dropdown-more-content">
                            {
-                               islogin? <Link to="/addtowishlist"> Wish List ({wishlist.length}) </Link> : <Link to="/"> Wish List (0) </Link>
+                               localStorage.getItem("token") != null? <Link to="/addtowishlist"> Wish List ({wishlist.length}) </Link> : <Link to="/"> Wish List (0) </Link>
                            } 
                         </div>
                   </div>
                   <div>
                       {
-                          islogin?
+                          localStorage.getItem("token") != null?
                           <Link to="/addtocart"> 
                           <button className='header-button-cart'> 
                           {cartItems.length>0?

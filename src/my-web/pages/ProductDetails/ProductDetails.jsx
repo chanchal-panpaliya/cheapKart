@@ -28,16 +28,21 @@ const ProductDetails = () =>{
      const [productData,SetProductData] = useState([]);
 
     useEffect(()=>{
-       let selectedProduct = JSON.parse(localStorage.getItem('DATA_SELECTED'));
+    
+    let time5 = setTimeout(()=>{
+        let selectedProduct = JSON.parse(localStorage.getItem('DATA_SELECTED'));
         fetchProductDetailsData(id).then(function(result){
              if(result=== null){
                 SetProductData(selectedProduct)  
              }else{
                 SetProductData(result)
              }
-         }) 
-         window.scrollTo({ behavior: 'smooth', top: '0px' });      
-    },[])
+         })
+    },0)    
+        
+    return()=>clearTimeout(time5)
+  
+    },[productData])
 
 
     return(

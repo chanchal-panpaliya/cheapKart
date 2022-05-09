@@ -3,28 +3,31 @@ import './timer.css';
 
 const CountDownTimer = () =>{
    let [timeleft,settimeleft] = useState({})
-    let timer ;
+    let clocktimer ;
 
   useEffect(() => {
-    timer = setInterval(() => {
+    clocktimer = setInterval(() => {
       settimeleft( handleCountDown())
     }, 1000);
-    return ()=>clearTimeout(timer);
-  })
+    return ()=>clearTimeout(clocktimer);
+  },[timeleft])
+
 
 
    const handleCountDown=()=>{
+   
       let today = new Date();
       let tomorrow = new Date();
       tomorrow.setDate(tomorrow.getDate() + 1); 
       tomorrow.setHours(0,0,0,0); 
 
       let difference = tomorrow.getTime() - today.getTime();
-        let Left={};
 
+        let Left={};
+        
 
         if(difference<=0){
-          clearTimeout(timer);
+          clearTimeout(clocktimer);
         }else{
 
           let seconds = Math.floor(difference / 1000);

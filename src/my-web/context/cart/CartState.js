@@ -6,16 +6,18 @@ import FilterReducer from "../Filterdata/FilterReducer";
 import { checkout_reducer } from "../checkout/checkout";
 import {MenuReducer,SingleProductData} from "../menu/MenuReducer";
 import { AddressReducer } from "../address/addressReducer";
+//services
+import { getcart,getwishlist } from "my-web/useEffect/useEffectCart";
 
 const CartState =({ children })=>{
 
 const cartItems=
-    localStorage.getItem("cartItems") == null
+    localStorage.getItem("cartItems") == null || localStorage.getItem("cartItems") == "undefined"
       ? []
       : JSON.parse(localStorage.getItem("cartItems"))
 
 const wishlist =
-    localStorage.getItem("wishlist") == null
+    localStorage.getItem("wishlist") == null || localStorage.getItem("wishlist") == "undefined"
       ? []
       : JSON.parse(localStorage.getItem("wishlist"))
 
@@ -28,7 +30,6 @@ const addressItem =
         localStorage.getItem("address") == null
           ? ""
           : JSON.parse(localStorage.getItem("address"))
-
 
     // add cart
     const [state,dispatch] = useReducer(CartReducer,{ cartItems , wishlist})
@@ -52,15 +53,22 @@ const addressItem =
 
    //useeffect
    useEffect(() => {
-     if(localStorage.getItem("login") != null){
-        localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
-        localStorage.setItem("wishlist", JSON.stringify(state.wishlist));
-        localStorage.setItem("checkoutdata", JSON.stringify(checkout.checkoutdata));
-        localStorage.setItem("address", JSON.stringify(address.addressItem));
+     if(localStorage.getItem("token") != null){
+
+         getcart().then((res)=>{
+                     localStorage.setItem("cartItems", JSON.stringify(res));
+         })
+
+         getwishlist().then((res)=>{
+                 localStorage.setItem("wishlist", JSON.stringify(res));
+         })
+
+         localStorage.setItem("checkoutdata", JSON.stringify(checkout.checkoutdata));
+         localStorage.setItem("address", JSON.stringify(address.addressItem));
      }
-  }, [state.cartItems,state.wishlist,checkout.checkoutdata,address.addressItem]);
+  },[state.cartItems,state.wishlist,checkout.checkoutdata,address.addressItem]);
 
-
+ 
     //singledata
     const getSingleSelectedData=(data)=>{
         singledatadispatch({type:"DATA_SELECTED",payload:data})

@@ -28,7 +28,9 @@ const Home =()=>{
 
 
    useEffect(()=>{
-      window.scrollTo({ behavior: 'smooth', top: '0px' });
+   
+     let time3 = setTimeout(()=>{
+
       fetchAllCartData().then(function(result){
          setdata(result)       
       });
@@ -47,11 +49,13 @@ const Home =()=>{
       fetchAllApplicationData().then(function(result){
          setapplicationData(result)
       })
+     },0) 
+     
+     return ()=>clearTimeout(time3)
 
-   },[])
+   },[topoffer,mobiledata,applicationData])
+   
 
-   
-   
     return(
         <div>
             <Header/>

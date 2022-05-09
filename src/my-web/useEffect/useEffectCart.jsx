@@ -1,5 +1,6 @@
-
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 //context
 
 //all data
@@ -127,27 +128,170 @@ export async function fetchProductDetailsData(id) {
         console.log(error);
     }
 }
-
 //registration
-export async function handleRegistration(data){
-    
+export const handleRegistration = async (e,email,password,firstname,lastname,termsAndConditions,navigator,props,setError) =>{
+    e.preventDefault();
     try {
-        console.log(data)
+         await axios.post("/api/auth/signup",{
+            email,password,firstname,lastname,termsAndConditions
+         }).then((res) => {
+            if(res.status === 200 || res.status === 201){
+                localStorage.setItem("token", res.data.encodedToken );
+                localStorage.setItem("user", JSON.stringify(res.data.createdUser));
+                setError("Registered successfully")
+                props.onClose()
+                navigator('/')
+            }
 
-         await axios.post("/api/auth/signup",data).then((res) => console.log(res));
-
+         }).catch((error)=>{
+                     if(error.response.status === 422){
+                        setError("email id already exist")
+                        let time = setTimeout(()=>{
+                            setError("")
+                          },1000)
+                          return()=>clearTimeout(time)
+                     }
+         });
+               
           } catch (error) {
-              console.log(error)
-           
+              console.log(error.status)
+              setError("Not able to registered !! check ")
+              let time = setTimeout(()=>{
+                setError("")
+              },1000)
+              return()=>clearTimeout(time)
         }
 }
 
 //login
-export const handleLogin = async ({e,email,password,setFormData,props}) => {
+export const handleLogin = async (e,email,password,navigator,props,setError) => {
+    e.preventDefault();
+    try {
+        await axios.post("/api/auth/login",{
+            email,password 
+        }).then((res)=>{
+            if(res.status === 200){
+                if(res.data){
+                    localStorage.setItem("token", res.data.encodedToken );
+                    localStorage.setItem("user", JSON.stringify(res.data.foundUser));
+                    props.onClose()
+                    navigator('/')
+                } 
+            }else{
+                setError("login Failed ! please try again") 
+            }
+         });
+      } catch (error) {
+          console.log("error",error)
+          setError("login Failed ! please try again")
+      }
+};
 
+//cart
+export const addToCartHandler = async (e,props,addToCart) => {
+    e.preventDefault();
+    let token = localStorage.getItem('token'); 
+    try {
+        await axios.post(`/api/user/cart`,{ product: props },
+            		{ headers: { Accept: "*/*", authorization: token,},}).then((res)=>{
+                        addToCart(props)
+         });
+      } catch (error) {
+          console.log("error",error)
+      }
+};
+
+//get cart data
+export const getcart= async()=> {
+    try {
+       let data = [];
+       let token = localStorage.getItem('token');
+
+       data = await axios.get("/api/user/cart",{ headers: { Accept: "*/*", authorization: token,},}).then(res=> res.data.cart)
+       
+       return data
+      }catch (error) {
+        console.log(error);
+    }
 }
 
+//update cart
+export const updateProductQty = async (e,id,Quntityfun,str) => {
+    e.preventDefault();
+    let token = localStorage.getItem('token'); 
+    try {
+        await axios.post(`/api/user/cart/${id}`,{ action: { type: str,},},
+            		{ headers: { Accept: "*/*", authorization: token,},}).then((res)=>{
+                        Quntityfun(id);
+                       
+         });
+      } catch (error) {
+          console.log("error",error)
+      }
+}
 
+//cart delete id
+export const removeFromCart = async(e,id,removeItem)=>{
+    e.preventDefault();
+    let token = localStorage.getItem('token');
+    try {
+       await axios.delete(`api/user/cart/${id}`, {
+            headers: {
+                authorization: token,
+            },
+        }).then((res)=>{
+            removeItem(id)
+        });
+    
 
+    } catch (error) {
+        console.log("Error in cart service", error);
+    }
+}
+
+//wishlist get
+export const getwishlist= async()=> {
+    try {
+       let data = [];
+       let token = localStorage.getItem('token');
+
+       data = await axios.get("/api/user/wishlist",{ headers: { Accept: "*/*", authorization: token,},}).then(res=> res.data.wishlist)
+       
+       return data
+      }catch (error) {
+        console.log(error);
+    }
+}
+
+//add wishlist
+export const addToWishlistHandler = async (e,props,addToWishList) =>{
+    e.preventDefault();
+    let token = localStorage.getItem('token'); 
+    try {
+        await axios.post(`/api/user/wishlist`,{ product: props },
+            		{ headers: { Accept: "*/*", authorization: token,},}).then((res)=>{
+                        addToWishList(props)
+         });
+      } catch (error) {
+          console.log("error",error)
+      }
+}
+
+//remove wishlist
+export const removeFromWishlist = async(e,id,removeWishList)=>{
+    e.preventDefault();
+    let token = localStorage.getItem('token');
+    try {
+       await axios.delete(`api/user/wishlist/${id}`, {
+            headers: {
+                authorization: token,
+            },
+        }).then((res)=>{
+            removeWishList(id)
+        });
+    } catch (error) {
+        console.log("Error in cart service", error);
+    }
+}
 
 

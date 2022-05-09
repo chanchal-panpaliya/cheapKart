@@ -29,9 +29,10 @@ const CartReducer=(state,action)=>{
             let updatecart = state.cartItems.map((item,index)=>{
                  
                     return {
-                        "data" : { ...item.data, quntity : item.data._id === action.payload ? Number(item.data.quntity) + 1 : item.data.quntity }
+                        "data" : { ...item.data, quntity : item.data._id === action.payload ? Number(item.data.quntity) + 1 : Number(item.data.quntity) }
                     } 
             })
+         
             return{...state,cartItems:updatecart}
         }
 

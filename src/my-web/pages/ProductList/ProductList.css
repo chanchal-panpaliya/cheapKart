@@ -123,7 +123,7 @@
             padding: 1rem;
         }
         .top-offer-cart-display{
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             grid-column-gap: 5rem;
             grid-row-gap: 5rem;
         }
@@ -163,7 +163,7 @@
         padding: 1rem;
     }
     .top-offer-cart-display{
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         grid-column-gap: 5rem;
         grid-row-gap: 5rem;
        }

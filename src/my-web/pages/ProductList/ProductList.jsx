@@ -130,7 +130,7 @@ const ProductList=()=>{
                                     <CardTOPOFFER data={slide} key={index}/>
                                 )
                             }) 
-                        : <div> no data </div>   
+                        : <div> empty </div>   
                     }
                      </div>
                 </div>

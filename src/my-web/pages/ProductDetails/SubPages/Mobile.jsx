@@ -9,7 +9,7 @@ import Rating from "../../../components/Rating/Rating";
 import SliderCard from "../../../components/SliderCard/SliderCard";
 import { Modal } from '../../../components/Modal/Modal';
 //api
-import { fetchAllMobileData } from "../../../useEffect/useEffectCart";
+import { fetchAllMobileData ,addToCartHandler,addToWishlistHandler} from "../../../useEffect/useEffectCart";
 //context
 import CartContext from '../../../context/cart/CartContext';
 
@@ -48,15 +48,16 @@ const Mobile_ProductDetails =(props)=>{
             {/* button */}
             <div className='pd-buttons'>
             {
-                    localStorage.getItem("login") != null?
+                    localStorage.getItem("token") != null?
                     <>
                       <button class={checkcart?"button bg-cr-disable" :"button bg-cr-addtocart "} 
-                                onClick={()=>{addToCart(props)}} 
+                        
+                                onClick={(e)=>{addToCartHandler(e,props,addToCart)}}
                                 disabled={checkcart}> 
                                  {checkcart ? "Product Added" :"Add To Cart"}  
                       </button>
                       <button class={checkwishlist?"button bg-cr-disable":"button bg-cr-addtowishlist "} 
-                                        onClick={()=>{ addToWishList(props) }} 
+                                        onClick={(e)=>{ addToWishlistHandler(e,props,addToWishList); }}
                                         disabled={checkwishlist}> 
                                         {checkwishlist?"Saved":"Add To Wishlist"} 
                        </button>

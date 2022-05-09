@@ -4,7 +4,6 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import CartState from './my-web/context/cart/CartState';
-
 // Call make Server
 makeServer();
 

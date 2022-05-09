@@ -27,15 +27,13 @@ const Checkout=()=>{
         const[BillerZipPostal,SetBillerZipPostal]=useState("")
      
 
-    
-
     useEffect(()=>{
         window.scrollTo({ behavior: 'smooth', top: '0px' });
-        if(localStorage.getItem("login")!==null){
-             let getuserinfo = JSON.parse(localStorage.getItem("login"))
-             SetFirstName(getuserinfo[0].FirstName) 
-             SetLastName(getuserinfo[0].LastName)  
-             SetEmailId(getuserinfo[0].email)  
+        if(localStorage.getItem("user")!==null){
+             let getuserinfo = JSON.parse(localStorage.getItem("user"))
+             SetFirstName(getuserinfo.firstName || getuserinfo.firstname) 
+             SetLastName(getuserinfo.lastName || getuserinfo.lastname)  
+             SetEmailId(getuserinfo.email)  
         }
         
     },[])

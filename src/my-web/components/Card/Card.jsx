@@ -8,15 +8,19 @@ import Rating from '../Rating/Rating';
 import Loader from '../Loader/Loader';
 //context
 import CartContext from '../../context/cart/CartContext';
+//service
+import {addToCartHandler,addToWishlistHandler,removeFromWishlist} from '../../useEffect/useEffectCart';
 
 
 
 const CardProduct1=(props)=>{
      const {addToCart,addToWishList,getSingleSelectedData,wishlist,cartItems} = useContext(CartContext)
 
+
         let checkedcart = cartItems.length>0 ? cartItems.find((item)=>{ return item.data._id === props.data._id }) : false
         let checkedwishlist = wishlist.length>0 ? wishlist.find((item)=>{ return item.data._id === props.data._id }) : false
-   
+        let check = localStorage.getItem("token") != null ? true : false
+
     return(
         <>
           {
@@ -26,7 +30,7 @@ const CardProduct1=(props)=>{
               </div>
              : 
              <div className="product-card flex-col" key={props.data._id}>
-                 <Link to={"/productDetails/"+props.data._id} target="_blank" rel="noopener noreferrer" onClick={()=>getSingleSelectedData(props.data)} > 
+                 <Link to={"/productDetails/"+props.data._id} onClick={()=>{getSingleSelectedData(props.data);  window.scrollTo({ behavior: 'smooth', top: '0px' });}} > 
                       <div className="discount-shape">
                           <div className="discount-shape-text">
                                 {props.data.percentOff}%
@@ -47,15 +51,15 @@ const CardProduct1=(props)=>{
                     <div className="flex-row col-gap-2rem flex-justify-content-end product-card-bottom">
 
                      {
-                       localStorage.getItem("login") != null?
+                       check?
                        <>
                         <button class={checkedwishlist?"fa-solid fa-heart":"fa-solid fa-heart curser-pointer"} 
-                                onClick={()=>{ addToWishList(props) }} 
+                                onClick={(e)=>{ addToWishlistHandler(e,props,addToWishList) }} 
                                 disabled={checkedwishlist}>  
                         </button>
 
                         <button class={checkedcart?"fa-solid fa-basket-shopping ":"fa-solid fa-basket-shopping curser-pointer" } 
-                                onClick={()=>addToCart(props)} 
+                                  onClick={(e)=>{ addToCartHandler(e,props,addToCart) }} 
                                 disabled={checkedcart}>  
                         </button>
                        </>
@@ -138,7 +142,7 @@ const Card_ProductList=(props)=>{
                    
                        
                         </div>
-                        <Link to={"/productDetails/"+props.data._id} target="_blank" rel="noopener noreferrer" onClick={()=>getSingleSelectedData(props.data)} > 
+                        <Link to={"/productDetails/"+props.data._id} onClick={()=>{getSingleSelectedData(props.data);window.scrollTo({ behavior: 'smooth', top: '0px' });}} > 
                           <b> view more ... </b> 
                         </Link>
                       </div>
@@ -147,15 +151,15 @@ const Card_ProductList=(props)=>{
                         <div className="productlist_card-card-button">
 
                         {
-                           localStorage.getItem("login") != null?
+                           localStorage.getItem("token") != null?
                            <>
                             <button class={checkedcart?"button bg-cr-disable" :"button bg-cr-addtocart "} 
-                                  onClick={()=>{addToCart(props)}} 
+                                  onClick={(e)=>{ addToCartHandler(e,props,addToCart) }}  
                                   disabled={checkedcart}> 
                                   {checkedcart ? "Product Added" :"Add To Cart"}  
                             </button>
                             <button class={checkedwishlist?"button bg-cr-disable":"button bg-cr-addtowishlist "} 
-                                  onClick={()=>{ addToWishList(props) }} 
+                                  onClick={(e)=>{ addToWishlistHandler(e,props,addToWishList) }} 
                                   disabled={checkedwishlist}> 
                                   {checkedwishlist?"Saved":"Add To Wishlist"} 
                             </button>
@@ -207,15 +211,15 @@ const CardTOPOFFER=(props)=>{
                  </Link>
                  <div className="flex-row col-gap-2rem flex-justify-content-end product-card-bottom">
                    {
-                     localStorage.getItem("login") != null?
+                     localStorage.getItem("token") != null?
                      <>
                        <button class={checkedwishlist?"fa-solid fa-heart":"fa-solid fa-heart curser-pointer"} 
-                                onClick={()=>{ addToWishList(props) }} 
+                                onClick={(e)=>{ addToWishlistHandler(e,props,addToWishList) }} 
                                 disabled={checkedwishlist}>  
                         </button>
 
                         <button class={checkedcart?"fa-solid fa-basket-shopping ":"fa-solid fa-basket-shopping curser-pointer" } 
-                                onClick={()=>addToCart(props)} 
+                                onClick={(e)=>{ addToCartHandler(e,props,addToCart) }} 
                                 disabled={checkedcart}>  
                         </button>
                      </>
@@ -263,14 +267,15 @@ const CardWishList=(props)=>{
                  </Link>
                  <div className="flex-row col-gap-2rem flex-justify-content-end product-card-bottom">
                     {
-                      localStorage.getItem("login") != null?
+                      localStorage.getItem("token") != null?
                       <>
                         <button class={checkedcart?"fa-solid fa-basket-shopping ":"fa-solid fa-basket-shopping curser-pointer" } 
-                                onClick={()=>{addToCart(props.data);removeWishList(props.data.data._id)}} 
+                                onClick={()=>{
+                                  addToCartHandler(e,props.data,addToCart) 
+                                  removeWishList(props.data.data._id)}} 
                                 disabled={checkedcart}>  
                         </button>
-
-                      <button class="fa-solid fa-xmark curser-pointer" onClick={()=>removeWishList(props.data.data._id)}></button>
+                      <button class="fa-solid fa-xmark curser-pointer" onClick={(e)=>removeFromWishlist(e,props.data.data._id,removeWishList)}></button>
                       </>
                       :
                       null

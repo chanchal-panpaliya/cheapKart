@@ -11,7 +11,7 @@ import "../../Home/Home.css";
 //context
 import CartContext from '../../../context/cart/CartContext';
 //api
-import { fetchAllElectronicsData } from "../../../useEffect/useEffectCart";
+import { fetchAllElectronicsData ,addToCartHandler,addToWishlistHandler} from "../../../useEffect/useEffectCart";
 
 
 const Electronics_ProductDetails =(props)=>{
@@ -48,15 +48,16 @@ return(
                 {/* button */}
                 <div className='pd-buttons'>
                     {
-                        localStorage.getItem("login") != null?
+                        localStorage.getItem("token") != null?
                         <>
                         <button class={checkcart?"button bg-cr-disable" :"button bg-cr-addtocart "} 
-                                    onClick={()=>{addToCart(props)}} 
+                                 
+                                    onClick={(e)=>{addToCartHandler(e,props,addToCart)}} 
                                     disabled={checkcart}> 
                                     {checkcart ? "Product Added" :"Add To Cart"}  
                         </button>
                         <button class={checkwishlist?"button bg-cr-disable":"button bg-cr-addtowishlist "} 
-                                            onClick={()=>{ addToWishList(props) }} 
+                                            onClick={(e)=>{ addToWishlistHandler(e,props,addToWishList); }}
                                             disabled={checkwishlist}> 
                                             {checkwishlist?"Saved":"Add To Wishlist"} 
                         </button>

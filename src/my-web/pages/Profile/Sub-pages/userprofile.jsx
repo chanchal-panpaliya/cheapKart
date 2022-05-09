@@ -7,8 +7,8 @@ const UserProfile = () =>{
 
     useEffect(()=>{
 
-        if(localStorage.getItem("login") != null){
-            setuserdata(JSON.parse(localStorage.getItem("login")))
+        if(localStorage.getItem("user") != null){
+            setuserdata(JSON.parse(localStorage.getItem("user")))
         }
   
       },[setuserdata]) 
@@ -17,27 +17,30 @@ const UserProfile = () =>{
  return(
      <div>
             <div className="table">
-                       {
-                           userdata.map((item,index)=>{
-                               return(
-                                   <>
-                                    <div className='row-table'>
+
+                                   <div className='row-table'>
                                         <div className='column-table'> <b> FirstName </b> </div>
-                                        <div className='column-table'> {item.FirstName}</div>
+                                        <div className='column-table'> {userdata.firstName || userdata.firstname}</div>
                                     </div>
                                     <div className='row-table'>
                                         <div className='column-table'> <b> LastName </b> </div>
-                                        <div className='column-table'> {item.LastName}</div>
+                                        <div className='column-table'> {userdata.lastName || userdata.lastname}</div>
                                     </div>  
                                     <div className='row-table'>
                                         <div className='column-table'> <b> Email-id </b> </div>
-                                        <div className='column-table'> {item.email}</div>
+                                        <div className='column-table'> {userdata.email}</div>
                                     </div>
+
+                       {/* {
+                           userdata.map((item,index)=>{
+                               return(
+                                   <>
+                                    
                                    </>
                                )
                            })
 
-                       }
+                       } */}
 
         </div>
      </div>

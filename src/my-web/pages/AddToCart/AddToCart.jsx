@@ -16,6 +16,8 @@ import './AddToCart.css';
 import login_image from '../../img/login-image.png'
 //constant
 import { CouponCODE } from '../../constant/copancode';
+//api call
+import {updateProductQty,removeFromCart,addToWishlistHandler} from '../../useEffect/useEffectCart';
 
 
 const AddToCart = () =>{
@@ -139,16 +141,26 @@ const handlecheckout=()=>{
                                                     <small> ExtraOff: ₹{item.data.extraOff} </small>
                                                     <br/>
                                                     <div className='flex-row col-gap-2rem'> 
-                                                        <button className={checkedwishlist?'':'text-color-primary'} onClick={()=>{addToWishList(item);removeItem(item.data._id);}} disabled={checkedwishlist}> move to wishlist </button>
-                                                        <button className='text-color-red' onClick={()=>removeItem(item.data._id)}> remove </button>
+                                                        <button className={checkedwishlist?'':'text-color-primary'} 
+                                                        onClick={(e)=>{
+                                                            addToWishlistHandler(e,item,addToWishList);
+                                                            removeFromCart(e,item.data._id,removeItem);
+                                                        }} 
+                                                            disabled={checkedwishlist}
+                                                        > 
+                                                               move to wishlist 
+                                                        </button>
+                                                        <button className='text-color-red' onClick={(e)=>removeFromCart(e,item.data._id,removeItem)} > remove </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>   
-                                            <button onClick={()=>IncrementQuntity(item.data._id)}> + </button>
+                                            <button onClick={(e)=>updateProductQty(e,item.data._id,IncrementQuntity,"increment")}> + </button>
                                             <input type="number" placeholder={Number(item.data.quntity)} disabled/>
-                                            <button onClick={()=>DecreamentQuntity(item.data._id)}> - </button> 
+                                            <button 
+                                                 onClick={(e)=>updateProductQty(e,item.data._id,DecreamentQuntity,"decrement")}
+                                             > - </button> 
                                         </td>
                                         <td>  {(Number(price)-Number(item.data.extraOff))*Number(item.data.quntity)}  </td>
                                     </tr>

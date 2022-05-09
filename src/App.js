@@ -30,7 +30,7 @@ function App() {
                <Route path="/productDetails/:id" element={<ProductDetails/>}/>
                <Route path="*" element={<PageNotFound/>}/>
                {
-                 localStorage.getItem("login") != null?
+                 localStorage.getItem("token") != null?
                  <>
                     <Route path="/addtocart" element={<AddToCart/>} />
                     <Route path="/addtowishlist" element={<AddToWishList/>} />

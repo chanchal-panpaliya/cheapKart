@@ -34,14 +34,14 @@ const AuthModal=(props)=>{
 
 
 const testCredentials = {
-    email: 'adarshbalika@gmail.com',
-    password: 'adarshbalika',
+    email: "johndoe@gmail.com",
+    password: "johnDoe123",
     rememberMe: true,
   };
 
   const formInitialState = {
-    email: '',
-    password: '',
+    email: "",
+    password: "",
     rememberMe: false,
   };
 
@@ -51,7 +51,6 @@ const Login=(props)=>{
     const [hideshowpassword,sethideshowpassword]=useState(false);
     const navigator = useNavigate();
     const [error, setError] = useState("");
-
 
     const handleInput = (e) =>
     setFormData((prevFormData) => ({
@@ -66,31 +65,10 @@ const Login=(props)=>{
     }));
 
 
-const handleLoginLocal =()=>{
-    //local login
-    if(email === "adarshbalika@gmail.com" && password==="adarshbalika"){
-        let data = [{
-            id:1,
-            FirstName:"Adarsh",
-            LastName:"Balika",
-            email:"adarshbalika@gmail.com",
-            password:"adarshbalika"
-        }]
-        localStorage.setItem("login", JSON.stringify(data));
-        setError("")
-        window.location.reload();
-        props.onClose()
-        navigator("/") 
-    }else{
-        setError("username and password not match with testCredentials")
-    }
-}
-
-
     return(
         <div className='flex-col'>
             <h4>  Login </h4>
-            <section>
+            <form onSubmit={(e)=>handleLogin(e,email,password,navigator,props,setError)}>
                     <div className="flex-row  col-gap-2rem textField-container">  
                         <input type="email" name="email" value={email} placeholder="johndoe@gmail.com" autocomplete="off" className="text-input" 
                         onChange={handleInput} required/>
@@ -111,27 +89,24 @@ const handleLoginLocal =()=>{
                     </div>
 
                     {email && password && (
-                        <button type='submit' className={'button button-login'} onClick={handleLoginLocal}> Login with credentials</button>
+                        <button type='submit' className={'button button-login'}> Login </button>
                     )}
 
-                    
-                    
-            </section> 
+                 </form> 
                <br/><br/>
               <button type='button' onClick={() =>  setFormData(testCredentials)} className={'button button-login'}>  Use test credentials </button>
-               
               {error}
             <div className='flex-row flex-justify-content-flex-space-between typology-padding-top'>
                 <a  onClick={props.FPopen}> forgot password ? </a>
                 <a  onClick={props.Ropen}> Registartion </a>
             </div>
            
-
         </div>
     )
 }
 
 const Registration=(props)=>{
+    const navigator = useNavigate();
     const [firstname,setName] = useState("");
     const [emailId, setEmailId] = useState("");
     const [password, setPassword] = useState("");
@@ -154,26 +129,10 @@ const Registration=(props)=>{
     }
 
 
-    const handleSubmit=(e)=>{
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const data = {};
-
-        for (let x of formData) {
-          data[x[0]] = x[1];
-        }
-       
-        handleRegistration(data).then(function(result){
-            console.log(result)       
-         });   
-
-    }  
-    
-
     return(
     <div className='flex-col'>
         <h4> Registration </h4>
-          <form onSubmit={handleSubmit}> 
+          <form onSubmit={(e)=>handleRegistration(e,emailId,password,firstname,lastname,termsAndConditions,navigator,props,setError)}> 
             <div className="flex-row  col-gap-2rem textField-container">  
                 <input type="text" name="firstName" value={firstname} placeholder="John" className="text-input" onChange={(e)=>{setName(e.target.value)}} required/>
                 <label className="text-placeholder"> Enter First Name </label>                                                

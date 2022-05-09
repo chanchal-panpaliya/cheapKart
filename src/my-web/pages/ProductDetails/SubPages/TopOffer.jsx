@@ -10,7 +10,7 @@ import Rating from "../../../components/Rating/Rating";
 import SliderCard from "../../../components/SliderCard/SliderCard";
 import { Modal } from '../../../components/Modal/Modal';
 //api call
-import { fetchAllTopOfferData } from "../../../useEffect/useEffectCart";
+import { fetchAllTopOfferData ,addToCartHandler,addToWishlistHandler} from "../../../useEffect/useEffectCart";
 //context
 import CartContext from '../../../context/cart/CartContext';
 
@@ -19,9 +19,10 @@ const TopOffer_ProductDetails=(props)=>{
     const { addToCart,addToWishList,menuselected,cartItems,wishlist} = useContext(CartContext);
     const [showmodal,set_showmodal]=useState(false);
     let [slider_data_list,setslider_data_list]=useState([]);
-
-    let checkcart = cartItems.length>0 && cartItems.find((item)=>{ return item.data._id === props.data._id })
-    let checkwishlist = wishlist.length>0 && wishlist.find((item)=>{ return item.data._id === props.data._id })
+ 
+   
+    let checkcart = cartItems.length>0 ? cartItems.find((item)=>{return item.data._id === props.data._id }) : false
+    let checkwishlist = wishlist.length>0 ? wishlist.find((item)=>{ return item.data._id === props.data._id }) : false
 
    useEffect(()=>{
        fetchAllTopOfferData().then(function(result){
@@ -51,15 +52,16 @@ const TopOffer_ProductDetails=(props)=>{
                 {/* button */}
                 <div className='pd-buttons'>
                 {
-                    localStorage.getItem("login") != null?
+                    localStorage.getItem("token") != null?
                     <>
                       <button class={checkcart?"button bg-cr-disable" :"button bg-cr-addtocart "} 
-                                onClick={()=>{addToCart(props)}} 
+                               
+                                onClick={(e)=>{addToCartHandler(e,props,addToCart)}}
                                 disabled={checkcart}> 
                                  {checkcart ? "Product Added" :"Add To Cart"}  
                       </button>
                       <button class={checkwishlist?"button bg-cr-disable":"button bg-cr-addtowishlist "} 
-                                        onClick={()=>{ addToWishList(props) }} 
+                                        onClick={(e)=>{ addToWishlistHandler(e,props,addToWishList); }}
                                         disabled={checkwishlist}> 
                                         {checkwishlist?"Saved":"Add To Wishlist"} 
                        </button>
