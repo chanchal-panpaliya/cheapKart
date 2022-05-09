@@ -3,12 +3,6 @@
 <b> About </b>
 - cheapKart is an eCommerce app for all categories.
 <br/>
-![cheapkart](https://user-images.githubusercontent.com/28673856/162251146-e0e829f4-0a0b-4b16-898f-2a241b36a35c.png)
-
-<b> Preview </b>
-low quality video -
-https://user-images.githubusercontent.com/28673856/162247850-e25a3c6c-e7f0-489c-82ca-26640217d20a.mp4
-<br/>
 <b> Tech Stack </b>
 -React.js and Mockbee 
 
