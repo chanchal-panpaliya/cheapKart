@@ -1,19 +1,10 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-
-//context
 
 //all data
 export async function fetchAllCartData() {
     try {
        let data = [];
-       data = await axios.get("/api/products/").then(res=> res.data.products)
-       const items = JSON.parse(localStorage.getItem('Allproduct'));
-     
-      if (items === null ) {
-         localStorage.setItem('Allproduct', JSON.stringify(data));
-      }
-       
+       data = await axios.get("/api/products/").then(res=> res.data.products)       
        return data
       }catch (error) {
         console.log(error);
@@ -129,7 +120,7 @@ export async function fetchProductDetailsData(id) {
     }
 }
 //registration
-export const handleRegistration = async (e,email,password,firstname,lastname,termsAndConditions,navigator,props,setError) =>{
+export const handleRegistration = async (e,email,password,firstname,lastname,termsAndConditions,navigator,props,setError,toastdispatch) =>{
     e.preventDefault();
     try {
          await axios.post("/api/auth/signup",{
@@ -138,14 +129,14 @@ export const handleRegistration = async (e,email,password,firstname,lastname,ter
             if(res.status === 200 || res.status === 201){
                 localStorage.setItem("token", res.data.encodedToken );
                 localStorage.setItem("user", JSON.stringify(res.data.createdUser));
-                setError("Registered successfully")
+                toastdispatch({type:'SUCCESS',payload:"Registered successfully"})
                 props.onClose()
                 navigator('/')
             }
 
          }).catch((error)=>{
                      if(error.response.status === 422){
-                        setError("email id already exist")
+                        toastdispatch({type:'WARNING',payload:"email id already exist"})
                         let time = setTimeout(()=>{
                             setError("")
                           },1000)
@@ -154,8 +145,8 @@ export const handleRegistration = async (e,email,password,firstname,lastname,ter
          });
                
           } catch (error) {
-              console.log(error.status)
-              setError("Not able to registered !! check ")
+              setError("")
+              toastdispatch({type:'DANGER',payload:"Not able to registered , try again"})
               let time = setTimeout(()=>{
                 setError("")
               },1000)
@@ -164,7 +155,7 @@ export const handleRegistration = async (e,email,password,firstname,lastname,ter
 }
 
 //login
-export const handleLogin = async (e,email,password,navigator,props,setError) => {
+export const handleLogin = async (e,email,password,navigator,props,setError,toastdispatch) => {
     e.preventDefault();
     try {
         await axios.post("/api/auth/login",{
@@ -174,27 +165,34 @@ export const handleLogin = async (e,email,password,navigator,props,setError) => 
                 if(res.data){
                     localStorage.setItem("token", res.data.encodedToken );
                     localStorage.setItem("user", JSON.stringify(res.data.foundUser));
+                    toastdispatch({type:'SUCCESS',payload:"LOGIN SUCCESSFUL"})
                     props.onClose()
                     navigator('/')
                 } 
             }else{
                 setError("login Failed ! please try again") 
+                toastdispatch({type:'DANGER',payload:"login Failed ! please try again"})
             }
          });
       } catch (error) {
-          console.log("error",error)
+          toastdispatch({type:'DANGER',payload:"login Failed ! please try again"})
           setError("login Failed ! please try again")
       }
 };
 
 //cart
-export const addToCartHandler = async (e,props,addToCart) => {
+export const addToCartHandler = async (e,props,addToCart,toastdispatch) => {
     e.preventDefault();
     let token = localStorage.getItem('token'); 
     try {
         await axios.post(`/api/user/cart`,{ product: props },
             		{ headers: { Accept: "*/*", authorization: token,},}).then((res)=>{
-                        addToCart(props)
+                        if(res.status===201){
+                            toastdispatch({type:'SUCCESS',payload:"Product Added To Cart"})
+                            addToCart(res.data.cart)
+                        }else{
+                            toastdispatch({type:'DANGER',payload:"ERROR!!!"})
+                        }
          });
       } catch (error) {
           console.log("error",error)
@@ -206,9 +204,7 @@ export const getcart= async()=> {
     try {
        let data = [];
        let token = localStorage.getItem('token');
-
        data = await axios.get("/api/user/cart",{ headers: { Accept: "*/*", authorization: token,},}).then(res=> res.data.cart)
-       
        return data
       }catch (error) {
         console.log(error);
@@ -216,13 +212,19 @@ export const getcart= async()=> {
 }
 
 //update cart
-export const updateProductQty = async (e,id,Quntityfun,str) => {
+    export const updateProductQty = async (e,id,addToCart,str,toastdispatch) => {    
     e.preventDefault();
     let token = localStorage.getItem('token'); 
     try {
         await axios.post(`/api/user/cart/${id}`,{ action: { type: str,},},
             		{ headers: { Accept: "*/*", authorization: token,},}).then((res)=>{
-                        Quntityfun(id);
+                    if(res.status===200){
+                        toastdispatch({type:'SUCCESS',payload:str+" by 1"})
+                        addToCart(res.data.cart)
+                    }else{
+                        toastdispatch({type:'DANGER',payload:"ERROR!!!"})
+                    }
+                       
                        
          });
       } catch (error) {
@@ -231,7 +233,7 @@ export const updateProductQty = async (e,id,Quntityfun,str) => {
 }
 
 //cart delete id
-export const removeFromCart = async(e,id,removeItem)=>{
+export const removeFromCart = async(e,id,addToCart,toastdispatch)=>{
     e.preventDefault();
     let token = localStorage.getItem('token');
     try {
@@ -240,7 +242,12 @@ export const removeFromCart = async(e,id,removeItem)=>{
                 authorization: token,
             },
         }).then((res)=>{
-            removeItem(id)
+            if(res.status===200){
+                toastdispatch({type:'DANGER',payload:"Product Remove From Cart"})
+                addToCart(res.data.cart)
+            }else{
+                toastdispatch({type:'DANGER',payload:"ERROR!!!"})
+            }
         });
     
 
@@ -264,13 +271,19 @@ export const getwishlist= async()=> {
 }
 
 //add wishlist
-export const addToWishlistHandler = async (e,props,addToWishList) =>{
+export const addToWishlistHandler = async (e,props,addToWishList,toastdispatch) =>{
     e.preventDefault();
     let token = localStorage.getItem('token'); 
     try {
         await axios.post(`/api/user/wishlist`,{ product: props },
             		{ headers: { Accept: "*/*", authorization: token,},}).then((res)=>{
-                        addToWishList(props)
+                    if(res.status===201){
+                        toastdispatch({type:'SUCCESS',payload:"Product Added To Wishlist"})
+                        addToWishList(res.data.wishlist)
+                    }else{
+                        toastdispatch({type:'DANGER',payload:"ERROR!!!"})
+                    }
+                       
          });
       } catch (error) {
           console.log("error",error)
@@ -278,7 +291,7 @@ export const addToWishlistHandler = async (e,props,addToWishList) =>{
 }
 
 //remove wishlist
-export const removeFromWishlist = async(e,id,removeWishList)=>{
+export const removeFromWishlist = async(e,id,removeWishList,toastdispatch)=>{
     e.preventDefault();
     let token = localStorage.getItem('token');
     try {
@@ -287,7 +300,12 @@ export const removeFromWishlist = async(e,id,removeWishList)=>{
                 authorization: token,
             },
         }).then((res)=>{
-            removeWishList(id)
+            if(res.status===200){
+                toastdispatch({type:'DANGER',payload:"Product Removed From Wishlist"})
+                removeWishList(res.data.wishlist)
+            }else{
+                toastdispatch({type:'DANGER',payload:"ERROR!!!"})
+            }
         });
     } catch (error) {
         console.log("Error in cart service", error);

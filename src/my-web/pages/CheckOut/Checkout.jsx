@@ -1,23 +1,30 @@
 import './CheckOut.css';
 //react
 import { useContext ,useEffect ,useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 //component
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
+//modal
+import { Modal_Address_Add } from "../../components/Modal/Modal-Address";
+import {Modal_OrderSummary} from "../../components/Modal/Modal";
+//img
+import Plus from '../../img/logo512.png';
 //context
 import CartContext from '../../context/cart/CartContext';
 
 
 const Checkout=()=>{
-    const {checkoutdata,addressItem,billingItem,getbillingItem} = useContext(CartContext);
-
+    const navigate = useNavigate();
+    const {checkoutdata,addressItem,billingItem,getbillingItem,getordersummary} = useContext(CartContext);
     const [FirstName,SetFirstName]=useState("");
     const [LastName,SetLastName]=useState("");
     const [EmailId,SetEmailId]=useState("");
+    const [openmodal,setopenmodal]=useState(false)
+    const [ordermodal,setordermodal]=useState(false)
+    const [orderdata,setorderdata]=useState([])
 
-
-  
         const[BillerName,SetBillerName]=useState("");
         const[BillerCounty,SetBillerCountry]=useState("");
         const[BillerAddress,SetBillerAddress]=useState("");
@@ -41,7 +48,8 @@ const Checkout=()=>{
     useEffect(()=>{
        let time = setTimeout(()=>{
         if(billingItem!==""){
-            SetBillerName(billingItem.FirstName)
+            let fullname = billingItem.FirstName!==undefined ? `${billingItem.FirstName} ${billingItem.LastName}` : ""
+            SetBillerName(fullname)
             SetBillerAddress(billingItem.Address)
             SetBillerCity(billingItem.City)
             SetBillerMobileNumber(billingItem.MobileNumber)
@@ -52,7 +60,70 @@ const Checkout=()=>{
        return ()=>{clearTimeout(time)}
     })
 
-   
+   //payment
+   const initializeRazorpay = () => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+
+      document.body.appendChild(script);
+    });
+  };
+
+  const makePayment = async () => {
+    const res = await initializeRazorpay();
+
+    if (!res) {
+      alert("Razorpay SDK Failed to load");
+      return;
+    }
+
+    const options = {
+      key: "rzp_test_JTpMiaE4ZqOyY7", // Enter the Key ID generated from the Dashboard
+      key_id: "rzp_test_JTpMiaE4ZqOyY7",
+      key_secret: "dj5fTAWTojnXCzQSNlIKjnQm",
+      name: "cheapkart",
+      currency: "INR",
+      amount: checkoutdata.Finaltotal * 100,
+      description: "Thankyou for shopping with us",
+      "image": Plus,
+      handler: function (response) {
+
+          let data = {
+            paymentId: response.razorpay_payment_id,
+            cartItems: checkoutdata,
+            amount: checkoutdata.Finaltotal,
+            address : {
+                BillerName : BillerName ,
+                BillerCounty : BillerCounty,
+                BillerAddress : BillerAddress ,
+                BillerCity : BillerCity,
+                BillerMobileNumber : BillerMobileNumber ,
+                BillerState : BillerState,
+                BillerZipPostal : BillerZipPostal
+            }
+          }
+           setorderdata(data)
+           getordersummary(data)
+           setordermodal(!ordermodal)
+      },
+      prefill: {
+        name: `${BillerName}`,
+        email: `${EmailId}`,
+        contact: `${BillerMobileNumber}`,
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
 
     return(
         <div>
@@ -77,13 +148,12 @@ const Checkout=()=>{
                                                     <p>{item.data.title}</p>
                                                     <small> Price : ₹{item.data.saleingprice} </small>
                                                     <small> ExtraOff: ₹{item.data.extraOff} </small>
-                                                    <small> Quntuty : {item.data.quntity}</small>
+                                                    <small> Quantity : {item.qty}</small>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 )})
-                            
                             }
                     </div>
                     <h4> Price </h4>
@@ -149,59 +219,11 @@ const Checkout=()=>{
                         </section>
                    </article>
                    <article>
-                        <h4> Payment Info </h4>
-                        <form className="table-checkout"> 
-                                <div className="row-table-checkout">
-                                    <div className="column-table-checkout">
-                                        <label>
-                                            <input type="radio" name='pay'/>
-                                            Test Gateway
-                                        </label>
-                                    </div>
-                                    <div className="column-table-checkout">
-                                        <label>
-                                            <input type="radio" name='pay'/>
-                                            Credit card
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className="row-table-checkout">
-                                    <div className="column-table-checkout">
-                                        <div className="flex-row  col-gap-2rem textField-container">  
-                                            <input type="number" name="creditcardnumber"  placeholder="0000111100001111" className="text-input"  required/>
-                                            <label className="text-placeholder"> credit card number </label>                                                
-                                        </div>
-                                    </div>
-                                    <div className="column-table-checkout">
-                                        <div className="flex-row  col-gap-2rem textField-container">  
-                                            <input type="number" name="Mobile Number"  placeholder="Billing zip Code" className="text-input"  required/>
-                                            <label className="text-placeholder"> Billing zip Code </label>                                                
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row-table-checkout">
-                                    <div className="column-table-checkout ">
-                                        <label> Month </label>
-                                        <select> 
-                                                <option value="JAN">  JAN </option>
-                                        </select>
-                                       
-                                        <label> Year </label>
-                                        <select> 
-                                                <option value="JAN">  2022 </option>
-                                        </select>  
-                                    </div>
-                                    <div className="column-table-checkout">
-                                        <div className="flex-row  col-gap-2rem textField-container">  
-                                            <input type="number" name="CVC"  placeholder="CVC" className="text-input"  required/>
-                                            <label className="text-placeholder"> CVC </label>                                                
-                                        </div> 
-                                    </div>
-                                </div>
-                        </form>
-                   </article>
-                   <article>
-                        <h4> Billing Address  </h4>
+                        <div className="flex-row flex-space-between flex-align-item-center">
+                            <h4> Billing Address  </h4>
+                            <button className="address-button-add" onClick={()=>setopenmodal(!openmodal)}> Add Address </button>
+                        </div>
+
                         <form className="table-checkout"> 
                                 <div className="row-table-checkout">
                                     <div className="column-table-checkout">
@@ -218,7 +240,6 @@ const Checkout=()=>{
                                                 )
                                             })
                                             :
-
                                             null
                                         }
                                     </div>
@@ -275,11 +296,29 @@ const Checkout=()=>{
                                 </div>
                         </form>
                    </article>
-                   <Button> Complete Checkout and Pay</Button>
+
+                   {
+                       BillerName && BillerCounty && BillerAddress && BillerState && BillerCity && BillerZipPostal && BillerMobileNumber && (
+                            <Button handleClick={makePayment}> Complete Checkout and Pay</Button>
+                       )
+                   }
+
+                   {
+                       !BillerName && !BillerCounty && !BillerAddress && !BillerState && !BillerCity && !BillerZipPostal && !BillerMobileNumber && (
+                            <button className="address-button-add" disabled> Complete Checkout and Pay</button>
+                       )
+                   }
+                   
                </section>
                
             </div>                   
         <Footer/>
+        {
+             openmodal ? <Modal_Address_Add modalClose={()=>setopenmodal(false)}/> : null
+        }
+        {
+            ordermodal? <Modal_OrderSummary data={orderdata} modalClose={()=>setordermodal(false)}/> : null
+        }
     </div>
     )
 }

@@ -9,4 +9,9 @@ export const submenulist = [
         route : "address",
         Icon : "label_outline",
     },
+    { 
+        name : "Order" ,
+        route : "order",
+        Icon : "label_outline",
+    },
 ]

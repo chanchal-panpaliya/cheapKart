@@ -14,8 +14,7 @@ import {fetchAllCartData,fetchProductDetailsData} from '../../useEffect/useEffec
 
 
 const Header =() =>{
-    const {cartItems,wishlist,getSingleSelectedData} = useContext(CartContext);
-
+    const {cartItems,wishlist,getSingleSelectedData,toastdispatch} = useContext(CartContext);
 
     let [flagAuth_SignUp,setflagAuth_SignUp]=useState(false);
     let [flagAuth_SignIn,setflagAuth_SignIn]=useState(false);
@@ -31,11 +30,9 @@ const Header =() =>{
  
 
     useEffect(()=>{
-
         fetchAllCartData().then(function(result){
             setalldata(result)  
-        });
-          
+        }); 
      },[])
 
          
@@ -57,7 +54,8 @@ const Header =() =>{
                 localStorage.removeItem("token")
                 localStorage.removeItem("user")
                 localStorage.removeItem("wishlist")
-            window.location.reload();
+                toastdispatch({type:'DANGER',payload:"LOGOUT SUCCESSFUL"})
+                window.location.reload();
             navigator("/") 
         }
      }
@@ -73,7 +71,7 @@ const Header =() =>{
      const openProductDetailsPage = (item) => {
          getSingleSelectedData(item)
          let selectedProduct = JSON.parse(localStorage.getItem('DATA_SELECTED'));
-          window.open(window.location.origin+`/productDetails/${selectedProduct._id}`, '_blank', 'noopener,noreferrer')
+         navigator(`/productDetails/${selectedProduct._id}`)
          setSearchResults([])
          setTitle('')
       }
@@ -118,7 +116,9 @@ const Header =() =>{
                         <button className='header-button-login'> {localStorage.getItem("token") != null?"Logout":"Login"}  </button>
                         <div class="dropdown-login-content">
                             { localStorage.getItem("token") != null ?  <b> Hi! {auth_data.firstName || auth_data.firstname}</b> : null}
-                            { localStorage.getItem("token") != null ? <Link to="/profile"> Profile </Link> : null}
+                            { localStorage.getItem("token") != null ? 
+                            <Link to="/profile" onClick={()=>{localStorage.setItem("route","profile")}}> Profile </Link> 
+                            : null}
                             {
                                 localStorage.getItem("token") != null ? 
                                  <button className='logout-button' onClick={handleLogout}> logout </button>

@@ -7,6 +7,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import UserProfile from "./Sub-pages/userprofile";
 import Address from "./Sub-pages/address";
+import Order from "./Sub-pages/order";
 //constant
 import {submenulist} from "./constant";
 //css
@@ -41,6 +42,7 @@ const Profile=()=>{
             <nav className="navbar"> 
               {route==="profile"?<h3> User Profile Details </h3>:null}
               {route==="address"?<h3> Address Details</h3>:null}
+              {route==="order"?<h3> Order Details</h3>:null}
             <button className="button-profile" onClick={()=>setside_toggle(!side_toggle)}> open </button> 
             </nav>
             
@@ -67,6 +69,7 @@ const Profile=()=>{
               <main id="main">
                 {route === "profile" && <UserProfile/>}
                 {route === "address" && <Address/>}
+                {route === "order" && <Order/>}
               </main>
            </div> 
     <Footer/>

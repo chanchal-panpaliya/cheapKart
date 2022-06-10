@@ -3,7 +3,7 @@ import CartContext from './CartContext';
 import CartReducer from  './CartReducer';
 import ToastReducer from '../Toast/ToastReducer';
 import FilterReducer from "../Filterdata/FilterReducer";
-import { checkout_reducer } from "../checkout/checkout";
+import { checkout_reducer ,ordersummary_reducer} from "../checkout/checkout";
 import {MenuReducer,SingleProductData} from "../menu/MenuReducer";
 import { AddressReducer } from "../address/addressReducer";
 //services
@@ -21,16 +21,6 @@ const wishlist =
       ? []
       : JSON.parse(localStorage.getItem("wishlist"))
 
-const checkoutdata =
-      localStorage.getItem("checkoutdata") == null
-        ? ""
-        : JSON.parse(localStorage.getItem("checkoutdata"))
-
-const addressItem =
-        localStorage.getItem("address") == null
-          ? ""
-          : JSON.parse(localStorage.getItem("address"))
-
     // add cart
     const [state,dispatch] = useReducer(CartReducer,{ cartItems , wishlist})
     //toast
@@ -47,26 +37,24 @@ const addressItem =
     //getsingle data
     const [singledata,singledatadispatch] = useReducer(SingleProductData,{getsingledata:""})
     //chcekout data
-    const [checkout,checkoutdispatch]=useReducer(checkout_reducer,{checkoutdata})
+    const [checkout,checkoutdispatch]=useReducer(checkout_reducer,{checkoutdata:""})
+    //order summary
+    const [order,orderdispatch]=useReducer(ordersummary_reducer,{ordersummarydata:[]})
     //address management
-    const [address,addressdispatch]=useReducer(AddressReducer,{addressItem,billingItem:[]});
+    const [address,addressdispatch]=useReducer(AddressReducer,{addressItem:"",billingItem:[]});
 
    //useeffect
    useEffect(() => {
      if(localStorage.getItem("token") != null){
-
          getcart().then((res)=>{
-                     localStorage.setItem("cartItems", JSON.stringify(res));
+                     state.cartItems = res
          })
 
          getwishlist().then((res)=>{
-                 localStorage.setItem("wishlist", JSON.stringify(res));
+                 state.wishlist = res 
          })
-
-         localStorage.setItem("checkoutdata", JSON.stringify(checkout.checkoutdata));
-         localStorage.setItem("address", JSON.stringify(address.addressItem));
      }
-  },[state.cartItems,state.wishlist,checkout.checkoutdata,address.addressItem]);
+  },[state.cartItems,state.wishlist,checkout.checkoutdata,address.addressItem,order.ordersummarydata]);
 
  
     //singledata
@@ -81,7 +69,6 @@ const addressItem =
     //addtocart
     const addToCart = (item) =>{
        dispatch({type:'ADD_TO_CART',payload:item})
-       toastdispatch({type:'SUCCESS',payload:"Product Added To Cart"})
     }
 
     //remove cart
@@ -105,13 +92,11 @@ const addressItem =
    //addtowishlist
    const addToWishList = (item) =>{
     dispatch({type:'ADD_TO_WISHLIST',payload:item})
-    toastdispatch({type:'SUCCESS',payload:"Product Added To Wishlist"})
    }
 
    //remove wishlist
    const removeWishList = (id) =>{
     dispatch({type:'REMOVE_WISHLIST',payload:id})
-    toastdispatch({type:'DANGER',payload:"Product Removed From Wishlist"})
    }
 
    //toast
@@ -122,6 +107,11 @@ const addressItem =
    //checkoutdispatch
    const getcheckoutdata = (item)=>{
     checkoutdispatch({type:'CHECKOUT_DATA',payload:item})
+   }
+
+   //order summary
+   const getordersummary=(item)=>{
+      orderdispatch({type:'ORDER_DATA',payload:item})
    }
 
    //add address
@@ -157,9 +147,12 @@ const addressItem =
             checkoutdata:checkout.checkoutdata,
             addressItem:address.addressItem,
             billingItem:address.billingItem,
+            ordersummarydata : order.ordersummarydata,
             filter,
             //
             filterdispatch,
+            toast,
+            toastdispatch,
             // 
             addToCart ,
             removeItem ,
@@ -173,6 +166,7 @@ const addressItem =
             getSingleSelectedData,
             //
             getcheckoutdata,
+            getordersummary,
             //
             addAddress,
             editAddress,

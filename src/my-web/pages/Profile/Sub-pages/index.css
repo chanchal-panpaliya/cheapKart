@@ -24,3 +24,11 @@
     display: flex;
     column-gap: 2rem;
 }
+
+/*order-summary-flex*/
+
+.order-summary-flex{
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 2rem;
+}

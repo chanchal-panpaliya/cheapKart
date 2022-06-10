@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 
 const Grocery_ProductDetails =(props)=>{
-    const { addToCart,addToWishList,menuselected,cartItems,wishlist} = useContext(CartContext);
+    const { addToCart,addToWishList,menuselected,cartItems,wishlist,toastdispatch} = useContext(CartContext);
     let [slider_data_list,setslider_data_list]=useState([]);
 
     let checkcart = cartItems.length>0 && cartItems.find((item)=>{ return item.data._id === props.data._id })
@@ -46,12 +46,12 @@ const Grocery_ProductDetails =(props)=>{
                         <>
                         <button class={checkcart?"button bg-cr-disable" :"button bg-cr-addtocart "} 
                                    
-                                    onClick={(e)=>{addToCartHandler(e,props,addToCart)}}
+                                    onClick={(e)=>{addToCartHandler(e,props,addToCart,toastdispatch)}}
                                     disabled={checkcart}> 
                                     {checkcart ? "Product Added" :"Add To Cart"}  
                         </button>
                         <button class={checkwishlist?"button bg-cr-disable":"button bg-cr-addtowishlist "} 
-                                            onClick={(e)=>{ addToWishlistHandler(e,props,addToWishList); }}
+                                            onClick={(e)=>{ addToWishlistHandler(e,props,addToWishList,toastdispatch); }}
                                             disabled={checkwishlist}> 
                                             {checkwishlist?"Saved":"Add To Wishlist"} 
                         </button>

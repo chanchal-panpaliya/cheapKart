@@ -99,6 +99,29 @@
   color: var(--color-white);
 }
 
+/*--order*/
+
+.modal-success-img{
+  width: 50%;
+}
+
+.modal-right-flex-col-order{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 2rem;
+}
+
+.modal-order-img{
+  width: 80%;
+}
+
+.print-receipt{
+  color: var(--color-yellowish-orange);
+  cursor: pointer;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .modal-container{

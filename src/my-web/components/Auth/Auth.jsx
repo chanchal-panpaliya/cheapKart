@@ -8,8 +8,7 @@ import loginImg from '../../img/login-image.png';
 //api
 import { handleRegistration ,handleLogin} from '../../useEffect/useEffectCart';
 //context
-import CartContext from '../../context/cart/CartContext';
-
+import CartContext from 'my-web/context/cart/CartContext';
 
 const AuthModal=(props)=>{
   
@@ -46,12 +45,13 @@ const testCredentials = {
   };
 
 const Login=(props)=>{
+    let {toastdispatch} = useContext(CartContext);
     const [formData, setFormData] = useState(formInitialState);
     const { email, password, rememberMe } = formData;
     const [hideshowpassword,sethideshowpassword]=useState(false);
     const navigator = useNavigate();
     const [error, setError] = useState("");
-
+    
     const handleInput = (e) =>
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -68,7 +68,7 @@ const Login=(props)=>{
     return(
         <div className='flex-col'>
             <h4>  Login </h4>
-            <form onSubmit={(e)=>handleLogin(e,email,password,navigator,props,setError)}>
+            <form onSubmit={(e)=>handleLogin(e,email,password,navigator,props,setError,toastdispatch)}>
                     <div className="flex-row  col-gap-2rem textField-container">  
                         <input type="email" name="email" value={email} placeholder="johndoe@gmail.com" autocomplete="off" className="text-input" 
                         onChange={handleInput} required/>
@@ -106,6 +106,7 @@ const Login=(props)=>{
 }
 
 const Registration=(props)=>{
+    let {toastdispatch} = useContext(CartContext);
     const navigator = useNavigate();
     const [firstname,setName] = useState("");
     const [emailId, setEmailId] = useState("");
@@ -132,7 +133,7 @@ const Registration=(props)=>{
     return(
     <div className='flex-col'>
         <h4> Registration </h4>
-          <form onSubmit={(e)=>handleRegistration(e,emailId,password,firstname,lastname,termsAndConditions,navigator,props,setError)}> 
+          <form onSubmit={(e)=>handleRegistration(e,emailId,password,firstname,lastname,termsAndConditions,navigator,props,setError,toastdispatch)}> 
             <div className="flex-row  col-gap-2rem textField-container">  
                 <input type="text" name="firstName" value={firstname} placeholder="John" className="text-input" onChange={(e)=>{setName(e.target.value)}} required/>
                 <label className="text-placeholder"> Enter First Name </label>                                                

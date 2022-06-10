@@ -10,6 +10,7 @@ import ProductDetails from './my-web/pages/ProductDetails/ProductDetails';
 import Checkout from './my-web/pages/CheckOut/Checkout';
 import PageNotFound from './my-web/pages/404error/pagenotfound';
 import Profile from './my-web/pages/Profile/Profile';
+// import OrderSummary from 'my-web/pages/CheckOut/OrderSummary';
 //Toast
 import { Toast } from './my-web/components/Toast/Toast';
 //constext
@@ -36,6 +37,7 @@ function App() {
                     <Route path="/addtowishlist" element={<AddToWishList/>} />
                     <Route path="/checkout" element={<Checkout/>}/>
                     <Route path="/profile" element={<Profile/>}/>
+                    {/* <Route path="/ordersummary" element={<OrderSummary/>}/> */}
                  </>:
                  <>
                     <Route path="/addtocart" element={<Home/>} />

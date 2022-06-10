@@ -15,7 +15,7 @@ import { fetchAllElectronicsData ,addToCartHandler,addToWishlistHandler} from ".
 
 
 const Electronics_ProductDetails =(props)=>{
-    const { addToCart,addToWishList,menuselected,cartItems,wishlist} = useContext(CartContext);
+    const { addToCart,addToWishList,menuselected,cartItems,wishlist,toastdispatch} = useContext(CartContext);
     const [showmodal,set_showmodal]=useState(false);
     let [slider_data_list,setslider_data_list]=useState([]);
 
@@ -52,12 +52,12 @@ return(
                         <>
                         <button class={checkcart?"button bg-cr-disable" :"button bg-cr-addtocart "} 
                                  
-                                    onClick={(e)=>{addToCartHandler(e,props,addToCart)}} 
+                                    onClick={(e)=>{addToCartHandler(e,props,addToCart,toastdispatch)}} 
                                     disabled={checkcart}> 
                                     {checkcart ? "Product Added" :"Add To Cart"}  
                         </button>
                         <button class={checkwishlist?"button bg-cr-disable":"button bg-cr-addtowishlist "} 
-                                            onClick={(e)=>{ addToWishlistHandler(e,props,addToWishList); }}
+                                            onClick={(e)=>{ addToWishlistHandler(e,props,addToWishList,toastdispatch); }}
                                             disabled={checkwishlist}> 
                                             {checkwishlist?"Saved":"Add To Wishlist"} 
                         </button>

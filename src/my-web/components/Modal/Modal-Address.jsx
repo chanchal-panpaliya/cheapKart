@@ -3,24 +3,53 @@ import { v4 as uuid } from "uuid";
 import "./Modal.css";
 import CartContext from "../../context/cart/CartContext";
 
+const testCredentials = {
+    FirstName: "Chanchal",
+    LastName : "Panpaliya",
+    Emailid : "chanchal.panpaliya@gmail.com",
+    MobileNumber : 8600615437,
+    Address : "Ruston colony , Chinchwad ",
+    State:"Maharashtra",
+    City:"Pune",
+    ZipPostal:444033
+  };
+
+  const formInitialState = {
+    FirstName: "" ,
+    LastName : "",
+    Emailid : "",
+    MobileNumber : "",
+    Address : "",
+    State:"",
+    City:"",
+    ZipPostal:""
+  };
 
 export const Modal_Address_Add=({modalClose})=>{
 
     let {addAddress} = useContext(CartContext);
+    
+    const [formData, setFormData] = useState(formInitialState);
+    const { FirstName,LastName,Emailid,MobileNumber,Address,State,City,ZipPostal } = formData;
 
-    const [FirstName,setFirstName]=useState("");
-    const [LastName,setLastName]=useState("");
-    const [Emailid,setEmailid]=useState("");
-    const [MobileNumber,setMobileNumber]=useState("");
-    const [Address,setAddress]=useState("");
-    const [State,setState]=useState("");
-    const [City,setCity]=useState("");
-    const [ZipPostal,setZipPostal]=useState("");
+    const handleInput = (e) =>
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [e.target.name]: e.target.value,
+    }));
 
+    // const [FirstName,setFirstName]=useState("");
+    // const [LastName,setLastName]=useState("");
+    // const [Emailid,setEmailid]=useState("");
+    // const [MobileNumber,setMobileNumber]=useState("");
+    // const [Address,setAddress]=useState("");
+    // const [State,setState]=useState("");
+    // const [City,setCity]=useState("");
+    // const [ZipPostal,setZipPostal]=useState("");
 
     const handleAddAddress =()=>{
         let data = {
-            userid:1,
+            // userid:1,
             id:uuid(),
             FirstName: FirstName ,
             LastName : LastName,
@@ -41,17 +70,20 @@ return(
         <div className='modal-right-side'>
             <div className='modal-right-flex-row'>
                 <section className="table-checkout"> 
-                  <h3> Add Address </h3>
+                  <div className="flex-row flex-space-between flex-align-item-center">
+                    <h3> Add Address </h3>  
+                    <button className="address-button-edit" onClick={()=>setFormData(testCredentials)}> test data </button>
+                  </div>
                     <div className="row-table-checkout">
                         <div className="column-table-checkout">
                             <div className="flex-row  col-gap-2rem textField-container">  
-                                <input type="text" name="firstName"  placeholder="John" className="text-input" value={FirstName} onChange={(e)=>{setFirstName(e.target.value)}} required/>
+                                <input type="text" name="FirstName"  placeholder="John" className="text-input" value={FirstName} onChange={handleInput} required/>
                                 <label className="text-placeholder"> Enter First Name </label>                                                
                             </div>
                         </div>
                         <div className="column-table-checkout">
                             <div className="flex-row  col-gap-2rem textField-container">  
-                                <input type="text" name="lastName"  placeholder="Snow" className="text-input" value={LastName} onChange={(e)=>{setLastName(e.target.value)}}  required/>
+                                <input type="text" name="LastName"  placeholder="Snow" className="text-input" value={LastName} onChange={handleInput}  required/>
                                 <label className="text-placeholder"> Enter Last Name </label>                                                
                             </div>
                         </div>
@@ -59,13 +91,13 @@ return(
                     <div className="row-table-checkout">
                         <div className="column-table-checkout">
                             <div className="flex-row  col-gap-2rem textField-container">  
-                                <input type="email" name="email-id"  placeholder="JohnSnow@gmail.com" className="text-input" value={Emailid} onChange={(e)=>{setEmailid(e.target.value)}}  required/>
+                                <input type="email" name="Emailid"  placeholder="JohnSnow@gmail.com" className="text-input" value={Emailid} onChange={handleInput}  required/>
                                 <label className="text-placeholder"> Email-id </label>                                                
                             </div>
                         </div>
                         <div className="column-table-checkout">
                             <div className="flex-row  col-gap-2rem textField-container">  
-                                <input type="number" name="Mobile Number"  placeholder="8600444543" pattern="[789][0-9]{9}" className="text-input" value={MobileNumber} onChange={(e)=>{setMobileNumber(e.target.value)}} required/>
+                                <input type="number" name="MobileNumber"  placeholder="8600444543" pattern="[789][0-9]{9}" className="text-input" value={MobileNumber} onChange={handleInput} required/>
                                 <label className="text-placeholder"> Mobile Number </label>                                                
                             </div>
                         </div>
@@ -73,13 +105,13 @@ return(
                     <div className="row-table-checkout">
                         <div className="column-table-checkout">
                             <div className="flex-row  col-gap-2rem textField-container">  
-                                <input type="text" name="Address"  placeholder="shivaji nagar pune" className="text-input" value={Address} onChange={(e)=>{setAddress(e.target.value)}} required/>
+                                <input type="text" name="Address"  placeholder="shivaji nagar pune" className="text-input" value={Address} onChange={handleInput} required/>
                                 <label className="text-placeholder"> Address </label>                                                
                             </div>
                         </div>
                         <div className="column-table-checkout">
                             <div className="flex-row  col-gap-2rem textField-container">  
-                                <input type="text" name="State"  placeholder="maharashtra" className="text-input" value={State} onChange={(e)=>{setState(e.target.value)}} required/>
+                                <input type="text" name="State"  placeholder="maharashtra" className="text-input" value={State} onChange={handleInput} required/>
                                 <label className="text-placeholder"> State </label>                                                
                             </div>
                         </div>
@@ -87,13 +119,13 @@ return(
                     <div className="row-table-checkout">
                         <div className="column-table-checkout">
                             <div className="flex-row  col-gap-2rem textField-container">  
-                                <input type="text" name="City"  placeholder="pune" className="text-input" value={City} onChange={(e)=>{setCity(e.target.value)}} required/>
+                                <input type="text" name="City"  placeholder="pune" className="text-input" value={City} onChange={handleInput} required/>
                                 <label className="text-placeholder"> City </label>                                                
                             </div>
                         </div>
                         <div className="column-table-checkout">
                             <div className="flex-row  col-gap-2rem textField-container">  
-                                <input type="number" name="Zip/Postal" min="0" max="6" placeholder="411002" className="text-input" value={ZipPostal} onChange={(e)=>{setZipPostal(e.target.value)}} required/>
+                                <input type="number" name="ZipPostal" min="0" max="6" placeholder="411002" className="text-input" value={ZipPostal} onChange={handleInput} required/>
                                 <label className="text-placeholder"> Zip/Postal </label>                                                
                             </div>
                         </div>

@@ -14,7 +14,6 @@ const Address =()=>{
   return(
       <div>
            <button className="address-button-add" onClick={()=>setopenmodal(!openmodal)}> Add Address </button>
-            
                    <div className="flex-col row-gap-2rem">
                        {
                           addressItem.length>0 ? addressItem.map((item,index)=>{

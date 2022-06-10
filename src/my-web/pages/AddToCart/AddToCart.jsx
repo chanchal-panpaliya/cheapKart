@@ -21,7 +21,7 @@ import {updateProductQty,removeFromCart,addToWishlistHandler} from '../../useEff
 
 
 const AddToCart = () =>{
-const {cartItems,removeItem,IncrementQuntity,DecreamentQuntity,addToWishList,wishlist,getcheckoutdata} = useContext(CartContext);
+const {cartItems,removeItem,IncrementQuntity,DecreamentQuntity,addToWishList,wishlist,getcheckoutdata,addToCart,toastdispatch} = useContext(CartContext);
 const [openmodal,setopenmodal]=useState(false)
 const [getcoupancode,setcoupancode]=useState("");
 const [getcoupanDiscount,setgetcoupanDiscount]=useState(0);
@@ -56,7 +56,7 @@ const renderTotalAmount=()=>{
    let gettotalamount =  cartItems.length>0 && cartItems.reduce((amount, item) =>{
         let price = item.data.saleingprice.replace(/\,(\d\d)$/, ".$1").replace(',','');
         let sale_cost  = Number(price);
-        let quntity = Number(item.data.quntity);
+        let quntity = Number(item.qty);
         let extraoff = Number(item.data.extraOff);
         return ((sale_cost-extraoff)*quntity) + amount}, 0) + 75  
 
@@ -68,10 +68,10 @@ const renderTotalAmount=()=>{
 }
 
 const renderSubAmount=()=>{
-    let getsubamount = cartItems.length>0 && cartItems.reduce((amount, item) =>{
+        let getsubamount = cartItems.length>0 && cartItems.reduce((amount, item) =>{
         let price = item.data.saleingprice.replace(/\,(\d\d)$/, ".$1").replace(',','');
         let sale_cost  = Number(price);
-        let quntity = Number(item.data.quntity);
+        let quntity = Number(item.qty);
         let extraoff = Number(item.data.extraOff);
 
         return ((sale_cost-extraoff)*quntity) + amount}, 0)
@@ -86,7 +86,7 @@ const handlecheckout=()=>{
     let gettotalamount =  cartItems.length>0 && cartItems.reduce((amount, item) =>{
         let price = item.data.saleingprice.replace(/\,(\d\d)$/, ".$1").replace(',','');
         let sale_cost  = Number(price);
-        let quntity = Number(item.data.quntity);
+        let quntity = Number(item.qty);
         let extraoff = Number(item.data.extraOff);
         return ((sale_cost-extraoff)*quntity) + amount}, 0)
 
@@ -143,26 +143,33 @@ const handlecheckout=()=>{
                                                     <div className='flex-row col-gap-2rem'> 
                                                         <button className={checkedwishlist?'':'text-color-primary'} 
                                                         onClick={(e)=>{
-                                                            addToWishlistHandler(e,item,addToWishList);
-                                                            removeFromCart(e,item.data._id,removeItem);
+                                                            addToWishlistHandler(e,item,addToWishList,toastdispatch);
+                                                            removeFromCart(e,item.data._id,addToCart,toastdispatch);
+                                                            
                                                         }} 
                                                             disabled={checkedwishlist}
                                                         > 
                                                                move to wishlist 
                                                         </button>
-                                                        <button className='text-color-red' onClick={(e)=>removeFromCart(e,item.data._id,removeItem)} > remove </button>
+                                                        <button className='text-color-red' onClick={(e)=>
+                                                            removeFromCart(e,item.data._id,addToCart,toastdispatch)
+                                                            } > remove </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>   
-                                            <button onClick={(e)=>updateProductQty(e,item.data._id,IncrementQuntity,"increment")}> + </button>
-                                            <input type="number" placeholder={Number(item.data.quntity)} disabled/>
+                                            <button onClick={(e)=>updateProductQty(e,item.data._id,addToCart,"increment",toastdispatch)}> + </button>
+                                            <input type="number" placeholder={Number(item.qty)} disabled/>
                                             <button 
-                                                 onClick={(e)=>updateProductQty(e,item.data._id,DecreamentQuntity,"decrement")}
+                                                 onClick={(e)=>{
+                                                    item.qty===1?removeFromCart(e,item.data._id,addToCart,toastdispatch) :
+                                                    updateProductQty(e,item.data._id,addToCart,"decrement",toastdispatch)
+                                                 }
+                                                }
                                              > - </button> 
                                         </td>
-                                        <td>  {(Number(price)-Number(item.data.extraOff))*Number(item.data.quntity)}  </td>
+                                        <td>  {(Number(price)-Number(item.data.extraOff))*Number(item.qty)}  </td>
                                     </tr>
                                 )})
                             }
@@ -195,7 +202,6 @@ const handlecheckout=()=>{
                                     <tr> 
                                         <td> Total </td>
                                         <td> 
-                                            
                                             {
                                                renderTotalAmount()  
                                             }

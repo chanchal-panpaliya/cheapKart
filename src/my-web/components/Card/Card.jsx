@@ -14,8 +14,7 @@ import {addToCartHandler,addToWishlistHandler,removeFromWishlist} from '../../us
 
 
 const CardProduct1=(props)=>{
-     const {addToCart,addToWishList,getSingleSelectedData,wishlist,cartItems} = useContext(CartContext)
-
+     const {addToCart,addToWishList,getSingleSelectedData,wishlist,cartItems,toastdispatch} = useContext(CartContext)
 
         let checkedcart = cartItems.length>0 ? cartItems.find((item)=>{ return item.data._id === props.data._id }) : false
         let checkedwishlist = wishlist.length>0 ? wishlist.find((item)=>{ return item.data._id === props.data._id }) : false
@@ -54,12 +53,12 @@ const CardProduct1=(props)=>{
                        check?
                        <>
                         <button class={checkedwishlist?"fa-solid fa-heart":"fa-solid fa-heart curser-pointer"} 
-                                onClick={(e)=>{ addToWishlistHandler(e,props,addToWishList) }} 
+                                onClick={(e)=>{ addToWishlistHandler(e,props,addToWishList,toastdispatch) }} 
                                 disabled={checkedwishlist}>  
                         </button>
 
                         <button class={checkedcart?"fa-solid fa-basket-shopping ":"fa-solid fa-basket-shopping curser-pointer" } 
-                                  onClick={(e)=>{ addToCartHandler(e,props,addToCart) }} 
+                                  onClick={(e)=>{ addToCartHandler(e,props,addToCart,toastdispatch) }} 
                                 disabled={checkedcart}>  
                         </button>
                        </>
@@ -78,7 +77,7 @@ const CardProduct1=(props)=>{
 
 
 const Card_ProductList=(props)=>{
-    const {addToCart,addToWishList,getSingleSelectedData,cartItems,wishlist} = useContext(CartContext)
+    const {addToCart,addToWishList,getSingleSelectedData,cartItems,wishlist,toastdispatch} = useContext(CartContext)
      let checkedcart = cartItems.find((item)=>{ return item.data._id === props.data._id })
      let checkedwishlist = wishlist.find((item)=>{ return item.data._id === props.data._id })
     return(
@@ -154,12 +153,12 @@ const Card_ProductList=(props)=>{
                            localStorage.getItem("token") != null?
                            <>
                             <button class={checkedcart?"button bg-cr-disable" :"button bg-cr-addtocart "} 
-                                  onClick={(e)=>{ addToCartHandler(e,props,addToCart) }}  
+                                  onClick={(e)=>{ addToCartHandler(e,props,addToCart,toastdispatch) }}  
                                   disabled={checkedcart}> 
                                   {checkedcart ? "Product Added" :"Add To Cart"}  
                             </button>
                             <button class={checkedwishlist?"button bg-cr-disable":"button bg-cr-addtowishlist "} 
-                                  onClick={(e)=>{ addToWishlistHandler(e,props,addToWishList) }} 
+                                  onClick={(e)=>{ addToWishlistHandler(e,props,addToWishList,toastdispatch) }} 
                                   disabled={checkedwishlist}> 
                                   {checkedwishlist?"Saved":"Add To Wishlist"} 
                             </button>
@@ -179,9 +178,10 @@ const Card_ProductList=(props)=>{
 
 
 const CardTOPOFFER=(props)=>{
-    const {addToCart,addToWishList,getSingleSelectedData,cartItems,wishlist} = useContext(CartContext)
+    const {addToCart,addToWishList,getSingleSelectedData,cartItems,wishlist,toastdispatch} = useContext(CartContext)
     let checkedcart = cartItems.find((item)=>{ return item.data._id === props.data._id })
     let checkedwishlist = wishlist.find((item)=>{ return item.data._id === props.data._id })
+    //target="_blank" rel="noopener noreferrer"
    return(
        <>
          {
@@ -191,7 +191,7 @@ const CardTOPOFFER=(props)=>{
              </div>
             : 
             <div className="product-card flex-col" key={props.data._id}>
-                <Link to={"/productDetails/"+props.data._id} target="_blank" rel="noopener noreferrer" onClick={()=>getSingleSelectedData(props.data)} > 
+                <Link to={"/productDetails/"+props.data._id}  onClick={()=>getSingleSelectedData(props.data)} > 
                  <div className="discount-shape">
                      <div className="discount-shape-text">
                            {props.data.percentOff}%
@@ -214,12 +214,12 @@ const CardTOPOFFER=(props)=>{
                      localStorage.getItem("token") != null?
                      <>
                        <button class={checkedwishlist?"fa-solid fa-heart":"fa-solid fa-heart curser-pointer"} 
-                                onClick={(e)=>{ addToWishlistHandler(e,props,addToWishList) }} 
+                                onClick={(e)=>{ addToWishlistHandler(e,props,addToWishList,toastdispatch) }} 
                                 disabled={checkedwishlist}>  
                         </button>
 
                         <button class={checkedcart?"fa-solid fa-basket-shopping ":"fa-solid fa-basket-shopping curser-pointer" } 
-                                onClick={(e)=>{ addToCartHandler(e,props,addToCart) }} 
+                                onClick={(e)=>{ addToCartHandler(e,props,addToCart,toastdispatch) }} 
                                 disabled={checkedcart}>  
                         </button>
                      </>
@@ -235,7 +235,7 @@ const CardTOPOFFER=(props)=>{
 }
 
 const CardWishList=(props)=>{
-    const {addToCart,removeWishList,getSingleSelectedData,cartItems} = useContext(CartContext)
+    const {addToCart,removeWishList,getSingleSelectedData,cartItems,toastdispatch} = useContext(CartContext)
     let checkedcart = cartItems.find((item)=>{ return item.data._id === props.data.data._id })
    return(
        <>
@@ -246,7 +246,7 @@ const CardWishList=(props)=>{
              </div>
             : 
             <div className="product-card flex-col" key={props.data.data._id}>
-                <Link to={"/productDetails/"+props.data.data._id} target="_blank" rel="noopener noreferrer" onClick={()=>getSingleSelectedData(props.data.data)} > 
+                <Link to={"/productDetails/"+props.data.data._id} onClick={()=>getSingleSelectedData(props.data.data)} > 
                   <div className='top-left-horizontal-shape'>      
                       <div className="bottom-shape-text"> </div> 
                   </div>
@@ -270,12 +270,14 @@ const CardWishList=(props)=>{
                       localStorage.getItem("token") != null?
                       <>
                         <button class={checkedcart?"fa-solid fa-basket-shopping ":"fa-solid fa-basket-shopping curser-pointer" } 
-                                onClick={()=>{
-                                  addToCartHandler(e,props.data,addToCart) 
-                                  removeWishList(props.data.data._id)}} 
+                                onClick={(e)=>{
+                                  addToCartHandler(e,props.data,addToCart,toastdispatch) 
+                                  removeFromWishlist(e,props.data.data._id,removeWishList,toastdispatch)
+                                  // removeWishList(props.data.data._id)
+                                }} 
                                 disabled={checkedcart}>  
                         </button>
-                      <button class="fa-solid fa-xmark curser-pointer" onClick={(e)=>removeFromWishlist(e,props.data.data._id,removeWishList)}></button>
+                      <button class="fa-solid fa-xmark curser-pointer" onClick={(e)=>removeFromWishlist(e,props.data.data._id,removeWishList,toastdispatch)}></button>
                       </>
                       :
                       null

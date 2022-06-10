@@ -1,6 +1,12 @@
 import "./Modal.css";
 import SharePage from "../SharePage/SharePage";
-import { useState } from "react";
+import { useState , useContext} from "react";
+//img
+import ok from '../../img/ok.png';
+import Plus from '../../img/logo512.png';
+import { useNavigate , Link } from "react-router-dom";
+//context
+import CartContext from "my-web/context/cart/CartContext";
 
 export const Modal =({data,modalClose})=>{
     return(
@@ -104,3 +110,40 @@ export const CouponCodeModal=({modalClose})=>{
     </div> 
    )
 }
+
+export const Modal_OrderSummary =({data,modalClose})=>{
+    let navigate = useNavigate()
+    let {getcheckoutdata} = useContext(CartContext)
+    return(
+        <div className='modal'>
+        <div className="modal-container">
+            <div className='modal-left-side'>
+                <h4> Payment Id : {data.paymentId} </h4>
+                <h4> Cart Item:  <Link to="/profile" onClick={()=>{modalClose; localStorage.setItem("route","order")}}> view </Link> </h4>
+                <h4> Total Amount : {data.amount} </h4>
+                <div>
+                    <b> {data.address.BillerName}</b>
+                    <div> Address: {data.address.BillerAddress} , {data.address.BillerCity} , {data.address.BillerState} ,
+                                    {data.address.BillerCounty} - {data.address.BillerZipPostal}
+                    </div>
+                    <b>
+                      MO: {data.address.BillerMobileNumber}
+                    </b>
+                </div>          
+                <img className='modal-order-img' src={Plus}/>                       
+            </div>  
+            <div className='modal-right-side'>
+                <div className='modal-right-flex-col-order'>
+                       <img className='modal-success-img' src={ok} />
+                       <h2>Transaction Successful</h2>
+                       <h1> Thank You for shopping</h1>
+                       <Link to="/" onClick={()=>{modalClose;}}> Shop More </Link>
+                </div> 
+            </div>
+            <button className='modal-close-modal' onClick={()=> {modalClose;navigate('/');getcheckoutdata("checkoutdone");}}> <i class="fa-solid fa-xmark"></i> </button>
+        </div>
+    </div> 
+    )
+}
+
+

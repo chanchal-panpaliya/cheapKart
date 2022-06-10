@@ -17,32 +17,19 @@ const UserProfile = () =>{
  return(
      <div>
             <div className="table">
-
-                                   <div className='row-table'>
-                                        <div className='column-table'> <b> FirstName </b> </div>
-                                        <div className='column-table'> {userdata.firstName || userdata.firstname}</div>
-                                    </div>
-                                    <div className='row-table'>
-                                        <div className='column-table'> <b> LastName </b> </div>
-                                        <div className='column-table'> {userdata.lastName || userdata.lastname}</div>
-                                    </div>  
-                                    <div className='row-table'>
-                                        <div className='column-table'> <b> Email-id </b> </div>
-                                        <div className='column-table'> {userdata.email}</div>
-                                    </div>
-
-                       {/* {
-                           userdata.map((item,index)=>{
-                               return(
-                                   <>
-                                    
-                                   </>
-                               )
-                           })
-
-                       } */}
-
-        </div>
+                <div className='row-table'>
+                    <div className='column-table'> <b> FirstName </b> </div>
+                    <div className='column-table'> {userdata.firstName || userdata.firstname}</div>
+                </div>
+                <div className='row-table'>
+                    <div className='column-table'> <b> LastName </b> </div>
+                    <div className='column-table'> {userdata.lastName || userdata.lastname}</div>
+                </div>  
+                <div className='row-table'>
+                    <div className='column-table'> <b> Email-id </b> </div>
+                    <div className='column-table'> {userdata.email}</div>
+                </div>                   
+            </div>
      </div>
  )
 }
