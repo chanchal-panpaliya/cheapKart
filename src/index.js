@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import CartState from './my-web/context/cart/CartState';
+import reportWebVitals from './reportWebVitals';
 
 // Call make Server
 makeServer();
@@ -16,3 +17,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+
+reportWebVitals();

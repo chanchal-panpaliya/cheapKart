@@ -77,17 +77,6 @@ const wishlist =
        toastdispatch({type:'DANGER',payload:"Product Remove From Cart"})
    }
 
-   //increment
-   const IncrementQuntity=(id)=>{
-        dispatch({type:'Increment_Quntity',payload:id})
-        toastdispatch({type:'INFO',payload:"Increment by one"})
-   }
-
-   //decrement
-   const DecreamentQuntity=(id)=>{
-        dispatch({type:'Decreament_Quntity',payload:id})
-        toastdispatch({type:'INFO',payload:"Decrement by one"})
-   }
 
    //addtowishlist
    const addToWishList = (item) =>{
@@ -156,8 +145,6 @@ const wishlist =
             // 
             addToCart ,
             removeItem ,
-            IncrementQuntity,
-            DecreamentQuntity,
             addToWishList ,
             removeWishList ,
             deleteToast ,

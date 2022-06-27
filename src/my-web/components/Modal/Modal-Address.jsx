@@ -38,18 +38,8 @@ export const Modal_Address_Add=({modalClose})=>{
       [e.target.name]: e.target.value,
     }));
 
-    // const [FirstName,setFirstName]=useState("");
-    // const [LastName,setLastName]=useState("");
-    // const [Emailid,setEmailid]=useState("");
-    // const [MobileNumber,setMobileNumber]=useState("");
-    // const [Address,setAddress]=useState("");
-    // const [State,setState]=useState("");
-    // const [City,setCity]=useState("");
-    // const [ZipPostal,setZipPostal]=useState("");
-
     const handleAddAddress =()=>{
         let data = {
-            // userid:1,
             id:uuid(),
             FirstName: FirstName ,
             LastName : LastName,

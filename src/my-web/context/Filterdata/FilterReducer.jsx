@@ -86,7 +86,6 @@ const FilterReducer =(state,action)=>{
               newlabelArr.push(action.payload)
               return {
                   ...state,
-                  ...state.GrosaryType,
                   GrosaryType: [...new Set(newlabelArr)]
               }
             }
@@ -94,7 +93,6 @@ const FilterReducer =(state,action)=>{
               const newlabelArr = state.GrosaryType.filter((item) => item !== action.payload)
               return {
                   ...state,
-                  ...state.GrosaryType,
                   GrosaryType: [...new Set(newlabelArr)]
               }
             }
@@ -106,7 +104,6 @@ const FilterReducer =(state,action)=>{
             newlabelArr.push(action.payload)
             return {
                 ...state,
-                ...state.GrosaryBrand,
                 GrosaryBrand: [...new Set(newlabelArr)]
             }
           }
@@ -114,7 +111,6 @@ const FilterReducer =(state,action)=>{
             const newlabelArr = state.GrosaryBrand.filter((item) => item !== action.payload)
             return {
                 ...state,
-                ...state.GrosaryBrand,
                 GrosaryBrand: [...new Set(newlabelArr)]
             }
           }
@@ -126,7 +122,6 @@ const FilterReducer =(state,action)=>{
           newlabelArr.push(action.payload)
           return {
               ...state,
-              ...state.FashionType,
               FashionType: [...new Set(newlabelArr)]
           }
         }
@@ -134,7 +129,6 @@ const FilterReducer =(state,action)=>{
           const newlabelArr = state.FashionType.filter((item) => item !== action.payload)
           return {
               ...state,
-              ...state.FashionType,
               FashionType: [...new Set(newlabelArr)]
           }
         } 
@@ -146,7 +140,6 @@ const FilterReducer =(state,action)=>{
           newlabelArr.push(action.payload)
           return {
               ...state,
-              ...state.FashionColor,
               FashionColor: [...new Set(newlabelArr)]
           }
         }
@@ -154,7 +147,6 @@ const FilterReducer =(state,action)=>{
           const newlabelArr = state.FashionColor.filter((item) => item !== action.payload)
           return {
               ...state,
-              ...state.FashionColor,
               FashionColor: [...new Set(newlabelArr)]
           }
         }
@@ -165,7 +157,6 @@ const FilterReducer =(state,action)=>{
           newlabelArr.push(action.payload)
           return {
               ...state,
-              ...state.Electronicstype,
               Electronicstype: [...new Set(newlabelArr)]
           }
         }
@@ -173,7 +164,6 @@ const FilterReducer =(state,action)=>{
           const newlabelArr = state.Electronicstype.filter((item) => item !== action.payload)
           return {
               ...state,
-              ...state.Electronicstype,
               Electronicstype: [...new Set(newlabelArr)]
           }
         } 
@@ -185,7 +175,6 @@ const FilterReducer =(state,action)=>{
           newlabelArr.push(action.payload)
           return {
               ...state,
-              ...state.Hometype,
               Hometype: [...new Set(newlabelArr)]
           }
         }
@@ -193,7 +182,6 @@ const FilterReducer =(state,action)=>{
           const newlabelArr = state.Hometype.filter((item) => item !== action.payload)
           return {
               ...state,
-              ...state.Hometype,
               Hometype: [...new Set(newlabelArr)]
           }
         }
@@ -205,7 +193,6 @@ const FilterReducer =(state,action)=>{
           newlabelArr.push(action.payload)
           return {
               ...state,
-              ...state.Appliancestype,
               Appliancestype: [...new Set(newlabelArr)]
           }
         }
@@ -213,7 +200,6 @@ const FilterReducer =(state,action)=>{
           const newlabelArr = state.Appliancestype.filter((item) => item !== action.payload)
           return {
               ...state,
-              ...state.Appliancestype,
               Appliancestype: [...new Set(newlabelArr)]
           }
         }
@@ -225,7 +211,6 @@ const FilterReducer =(state,action)=>{
           newlabelArr.push(action.payload)
           return {
               ...state,
-              ...state.MoreBrand,
               MoreBrand: [...new Set(newlabelArr)]
           }
         }
@@ -233,7 +218,6 @@ const FilterReducer =(state,action)=>{
           const newlabelArr = state.MoreBrand.filter((item) => item !== action.payload)
           return {
               ...state,
-              ...state.MoreBrand,
               MoreBrand: [...new Set(newlabelArr)]
           }
         }
@@ -245,7 +229,6 @@ const FilterReducer =(state,action)=>{
           newlabelArr.push(action.payload)
           return {
               ...state,
-              ...state.MoreType,
               MoreType: [...new Set(newlabelArr)]
           }
         }
@@ -253,7 +236,6 @@ const FilterReducer =(state,action)=>{
           const newlabelArr = state.MoreType.filter((item) => item !== action.payload)
           return {
               ...state,
-              ...state.MoreType,
               MoreType: [...new Set(newlabelArr)]
           }
         }

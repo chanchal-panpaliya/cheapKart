@@ -21,7 +21,7 @@ import {updateProductQty,removeFromCart,addToWishlistHandler} from '../../useEff
 
 
 const AddToCart = () =>{
-const {cartItems,removeItem,IncrementQuntity,DecreamentQuntity,addToWishList,wishlist,getcheckoutdata,addToCart,toastdispatch} = useContext(CartContext);
+const {cartItems,addToWishList,wishlist,getcheckoutdata,addToCart,toastdispatch} = useContext(CartContext);
 const [openmodal,setopenmodal]=useState(false)
 const [getcoupancode,setcoupancode]=useState("");
 const [getcoupanDiscount,setgetcoupanDiscount]=useState(0);
